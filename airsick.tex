@@ -1,0 +1,37 @@
+\documentclass{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\input{drawing}
+\input{style}
+
+\usepackage{mathtools, esint}
+\newcommand\eqtag[1]{\addtocounter{equation}{1}\tag{\theequation}\label{#1}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dt}{\d t}
+\newcommand{\dm}{\d m}
+% inspired from http://tex.stackexchange.com/questions/20643/diagonal-strikeout-starting-too-low-and-ending-too-high
+\newcommand{\strike}[2][black]{\tikz[baseline=(box.base)]{
+	\node[inner sep=0pt,outer sep=0pt] (box) {$#2$};
+	\draw[#1] (box.south west) -- (box.north east);
+}}
+
+
+\def\samples{160}
+
+\begin{document}
+\usetikzlibrary{3d}
+\include{front}
+\include{toc}
+\include{intro}
+\include{basics}
+\include{mechanics}
+\include{orbits}
+\include{launch}
+\include{maneuvers}
+\include{operating}
+\include{bib}
+\include{back}
+\end{document}
