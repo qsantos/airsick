@@ -1,0 +1,94 @@
+\raggedbottom
+
+%\renewcommand{\thechapter}   {\Roman {chapter}}
+%\renewcommand{\thesection}   {\arabic{section}}
+%\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{color}
+\definecolor{title}{RGB}{186,218,85}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\renewcommand{\angle}[1]{\textcolor{red!80!green}{#1}}
+\newcommand{\dist}[1]{\textcolor{green!60!black}{#1}}
+\newcommand{\area}[1]{\textcolor{green}{#1}}
+\newcommand{\vol} [1]{\textcolor{blue!80}{#1}}
+\newcommand{\posit}[1]{\textcolor{green!50!grey}{#1}}
+\newcommand{\speed}[1]{\textcolor{blue}{#1}}
+\newcommand{\accel}[1]{\textcolor{red}{#1}}
+\newcommand{\force}[1]{\textcolor{orange}{#1}}
+\newcommand{\delay}[1]{\textcolor{cyan}{#1}}
+\newcommand{\mass}[1]{\textcolor{grey}{#1}}
+
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[RE]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+\fancypagestyle{plain}{
+\renewcommand{\footrulewidth}{0pt}
+\fancyhf{}
+}
+
+\definecolor{quotemark}{gray}{0.7}
+\newcommand{\chaptquote}[2]{
+\begin{flushleft}
+{\bfseries\Huge\color{quotemark}``}
+#2
+\put(5,-15){\bfseries\Huge\color{quotemark}''}
+\end{flushleft}
+\vspace*{-1.5em}\hfill -- #1\vspace{2em}
+}
+
+\setlength{\marginparwidth}{0mm}
+
+% inspired http://tex.stackexchange.com/questions/53245/pretty-formattings-for-warning-and-info-blocks
+\usepackage{mdframed}
+\newenvironment{important}[1][]{\begin{mdframed}[%
+	backgroundcolor={red!15}, hidealllines=true,
+	skipabove=1.0\baselineskip, #1
+]%
+	\makebox[0pt]{\smash{% ignore width and height
+		\fontsize{32pt}{32pt}\selectfont% size
+		\hspace*{-19pt}\raisebox{-2pt}{% position
+			\color{red!70!black}\sffamily\bfseries !%
+		}%
+	}}%
+}{\end{mdframed}}
+\newenvironment{remark}[1][]{\begin{mdframed}[%
+	backgroundcolor={green!15}, hidealllines=true,
+	skipabove=1.0\baselineskip, #1
+]%
+	\makebox[0pt]{\smash{% ignore width and height
+		\fontsize{32pt}{32pt}\selectfont% size
+		\hspace*{-19pt}\raisebox{-2pt}{% position
+			\color{green!70!black}\sffamily\bfseries ?%
+		}%
+	}}%
+}{\end{mdframed}}
+
+% back cover
+\usepackage[absolute]{textpos}
+
+% chapter banners
+\usepackage{wallpaper}
+% inspired from http://tex.stackexchange.com/questions/64061/creating-variables-with-index-using-counters/64082#64082
+\newcommand\addindex[4][]{% ???, var name, index, value
+	\csname#1def\expandafter\endcsname\csname #2#3\endcsname{#4}%
+}
+\newcounter{BannerCount}
+\setcounter{BannerCount}{0}
+\newcommand\addbanner[1]{
+	\stepcounter{BannerCount}
+	\expandafter\addindex{banners}{\theBannerCount}{#1}
+}
+\newcommand\banner{\ClearWallPaper\ULCornerWallPaper{1}{banners/\csname banners\thechapter\endcsname.png}}
+\addbanner{minmus}
+\addbanner{gilly}
+\addbanner{eve}
+\addbanner{duna}
+\addbanner{ike}
+\addbanner{laythe}
+\addbanner{pol}

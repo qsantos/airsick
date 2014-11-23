@@ -1,0 +1,437 @@
+\chapter{Basics}
+\banner
+\chaptquote{Carl Sagan}{
+	Imagination will often carry us to worlds that never were. But
+	without it we go nowhere.
+}
+\csname banner1\endcsname
+
+\section{Units}
+
+\subsection{Dimensions}
+
+There exist different units for each kind of measure (e.g. \dist{distance}
+in \dist{meters}, \dist{feet}, etc. To avoid confusion, we agreed on which
+units should be prefered; they are called SI Units (for \emph{Système
+International}, International System).
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{l|l|l}
+		Dimension        & SI unit       & Other units                  \\ \hline
+		\angle{angle}    & radian (-)    & turn (-), degree ($^{\circ}$), gradian (gon) \\ \hline
+		\delay{duration} & second (s)    & hour (h), day (d), year (y)  \\ \hline
+		\dist {distance} & meter (m)     & feet, miles, light-year (ly) \\ \hline
+		\speed{speed}    & m/s           & km/h, knot                   \\ \hline
+		\mass {mass}     & kilogram (kg) & ton, pound                   \\ \hline
+		       pressure  & pascal (Pa)   & atmosphere (atm)             \\ \hline
+	\end{tabular}
+	\caption{In this context, a dimension is a type of measure.}
+\end{figure}
+
+\begin{remark}
+A \dist{light} year is the distance that a particle of light can travel
+in a \delay{year} of time. For comparison, it takes light a little more
+than \delay{eight minutes} (\delay{8min}) to get from the Sun to the
+Earth, meaning that the Sun is \dist{8 light-minutes} away from the
+Earth. Kerbin is about \dist{45 light-seconds} away from Kerbol.
+\end{remark}
+
+\subsection{Prefixes}
+
+We are used to refer to \dist{10,000 meters} (\dist{m}) as \dist{10
+kilometers} (\dist{km}). “kilo-” is a prefix meaning “thoussand”;
+it is the most used prefix but others exist:
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{l|l|l|l}
+		kilo- (k-) & mega- (M-) & giga- (G-) & tera- (T-) \\
+		\hline
+		$10^3$     & $10^6$     & $10^9$     & $10^{12}$  \\
+	\end{tabular}
+	\caption{Common prefixes}
+\end{figure}
+
+\begin{remark}
+There are also prefixes to decrease the value of an unit:
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{l|l|l|l}
+		milli- (m-) & micro- ($\mu$-) & nano- (n-) & pico- (p-) \\
+		\hline
+		$10^{-3}$   & $10^{-6}$       & $10^{-9}$  & $10^{-12}$ \\
+	\end{tabular}
+	\caption{Smaller prefixes}
+\end{figure}
+\end{remark}
+
+\subsection{Conversion}
+
+We sometimes need to switch the unit used for a measure. For example,
+let us convert $\speed{50 km/h}$ to SI units. We know that $\dist{km} = \dist{1000 m}$ and $\delay{h} =
+\delay{3600 s}$ so:
+\[
+\speed{50 km/h}
+= 50 (\dist{1000m})/(\delay{3600s})
+= 50 \times 1000 / 3600 \speed{m/s}
+= \speed{14 m/s}
+\]
+
+\subsection{Addition (and substraction)}
+
+An addition can only be done with the same kind of measure (e.g. a
+distance can only be summed with another distance). Now, consider the
+following operation:
+\[
+\dist{x} = \dist{2 ly} + \dist{4,730.3 Tm}
+\]
+
+Knowing that $\dist{ly} = \dist{9.4607 Tm}$:
+\begin{align*}
+\dist{x}
+&= \dist{2 ly} + \dist{4,730.3 Tm} \\
+&= 2 \times \dist{9.4607 Tm} + \dist{4,730.3 Tm} \\
+&= (18.92146 + 4,730.3) \dist{Tm} \\
+&= \dist{23.6518 Tm}
+\end{align*}
+
+Conversly, $\dist{Tm} = \dist{1/9.4607 ly}$ and:
+\begin{align*}
+\dist{x}
+&= \dist{2 ly} + \dist{4,730.3 Tm} \\
+&= \dist{2 ly} + (4,730.3 / 9.4607) \dist{ly} \\
+&= (2 + 0.5) \dist{ly} \\
+&= \dist{2.5 ly}
+\end{align*}
+
+Of course, the two ways are equivalent and $\dist{2.5 ly} = \dist{23.6518
+Tm}$.
+
+\subsection{Multiplication (and division)}
+
+We can create new units pretty easily. For example, if some object travels
+$d = 15 m$ in $t = 3 s$, we can define a value $v = d / t = (15m) / (3s)
+= 5 m/s$. This particular value is called the mean velocity. Conversely,
+assume the object has traveled at $50 km/h$ for $30s$; then, the distance
+it has gone through is:
+\[
+\dist{d}
+= \speed{v} \times \delay{t}
+= (\speed{50 km/h}) \times (\delay{30s})
+= 14 \speed{m/s} \times 30 \delay{s}
+= (14 \times 30) (\dist{m}/\strike[red]{\delay{s}} \times \strike[red]{\delay{s}})
+= \dist{417 m}
+\]
+
+\section{Functions}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[->]
+	\node[point=O] (O) at (0,0) {};
+	\node          (E) at (5,0) {x};
+	\node[point=C] (C) at (3,0) {};
+	\draw (O) -> (E);
+	\end{tikzpicture}
+	\caption{$\posit{C}$ is moving towards the right at speed $\speed{v}$}
+\end{figure}
+
+Consider a car $\posit{C}$ moving along a straight road at a speed of
+$\speed{v}$ (e.g. $50km/h$). We define $\dist{x}$ as the distance from
+the origin $\posit{O}$ to the car $\posit{C}$, e.g. $\dist{OC}$. After
+$\delay{t}$ time has passed (e.g. $\delay{t} = \delay{10s}$), we know
+that $\dist{x} = \speed{v} \delay{t}$; in other words, $\dist{x}$ is
+\textbf{function} of $\delay{t}$:
+\[
+\dist{x}(\delay{t}) = \speed{v} \delay{t}
+\]
+
+This notation gives us a general formula to compute $\dist{x}$ for any
+given value of $\delay{t}$. For example:
+\[
+\dist{x}(\delay{1h})
+= \speed{50km/h} \times \delay{1h}
+= \dist{50 km}
+\]
+
+As another example, consider a mass point $(\posit{O}, \mass{M})$. Then
+the value of the associated gravitation at a point $\posit{P}$ is:
+\[
+\accel{g}(\dist{r}) = \frac {\mathcal G \mass{M}} {\dist{r}^2}
+\]
+where $\mathcal G = 6.67 \times 10^{-11} N m^2/kg^2$ is a known value
+(gravitational constant) and $\dist{r}$ is the distance from $O$ to $P$.
+
+\section{Derivative}
+
+\subsection{Illustration}
+
+As previously, consider a car $C$ moving away from $\posit{O}$ with
+$\dist{x} = \dist{OC}$; this time we do not know how fast it is going, and
+it can accelerate or decelerate. First, because the speed is changing,
+we need a way to define it at any moment. We know how to define the
+\textbf{mean speed}:
+\[
+\speed{v}_{\mathrm{mean}} = \dist{x}(\delay{t}) / \delay{t}
+\]
+
+Like any mean, it depends on the speed since the beginning. For example,
+if the car has been going slowly during a long time and them abruptly
+accelerate, the mean speed remain low while the actual speed is higher.
+
+Instead of using the mean speed betwen times $\delay{0s}$ and
+$\delay{t}$. Instead, we will skip the beginning of the journey to start
+at time $\delay{t}$ and end after a short delay $\delay{\dt}$:
+\[
+\frac {
+	\overbrace{\dist{x}(\delay{t}+\delay{\dt})}^{\text{final position}}
+	- \overbrace{\dist{x}(\delay{t})}^{\text{skipping before}}
+} {\underbrace{\delay{\dt}}_{\text{amount of time traveled}}}
+\]
+
+As the value of $\delay{\dt}$ approaches $\delay{0}$, this
+“short-mean” approaches the actual speed; it is called the
+\textbf{instant speed}. Because the part on the fraction is small too,
+we usually note it $\dist{\d x}$. We then end up with:
+\[
+\frac {\dist{\d x}(\delay{t})} {\delay{\dt}}
+\text{ or }
+\frac {\dist{\d x}} {\delay{\dt}}(\delay{t})
+\text{ or }
+\frac {\d} {\delay{\dt}} \dist{x}(\delay{t})
+\]
+
+Like we wanted, the instant speed depends on the time: it is a function
+as well; it is called the derivative of $\dist{x}$. Because $\dist{x}$
+was a distance (e.g. m) and we derived with respect to a delay $\delay{t}$
+(e.g. s), the derivative is a speed (e.g. m/s).
+
+\begin{remark}
+An even shorter notation than $\frac {\d} {\delay{\dt}}$ (only when we
+use $\delay{\dt}$) is to just add a dot: $\speed{\dot x}(\delay{t})$.
+\end{remark}
+
+\subsection{Definition}
+
+From what is above, we get that the formal definition for the derivative
+of a function $f$ is:
+\[
+\frac {\d f(x)} {\d x}
+= \lim_{\d x \rightarrow 0} \frac {f(x+\d x) - f(x)} {\d x}
+\]
+
+\subsection{Second derivative}
+
+The instant speed is a function. Let us derivate it again. A variation in
+speed through time is an acceleration.  The derivative of the derivative
+is called the second derivative: \[
+\frac {\d^2 \dist{x}} {\delay{\dt}^2}
+= \frac {\d \speed{\dot x}} {\delay{\dt}}
+= \accel{\ddot x}
+\]
+
+\subsection{Common derivatives}
+
+\[
+\frac {\d} {\d x} (1)   = 0
+\]
+\[
+\frac {\d} {\d x} (x)   = 1
+\]
+\[
+\frac {\d} {\d x} (x^2) = 2x
+\]
+\[
+\frac {\d} {\d x} (x^n) = n x^{n-1}
+\]
+\[
+\frac {\d} {\d x} (a f)
+= a \frac {\d} {\d x} f
+\]
+\[
+\frac {\d} {\d x} (f + g)
+= \frac {\d} {\d x} f
++ \frac {\d} {\d x} g
+\]
+\[
+\frac {\d} {\d x} (f \times g)
+= f \times \frac {\d} {\d x} g
++ g \times \frac {\d} {\d x} f
+\]
+\[
+\frac {\d} {\d x} (f(g(x)))
+= \frac {\d} {\d x} g(x)
+\times \frac {\d} {\d x} f(g(x))
+\]
+
+\section{Integrals}
+
+\subsection{Concept}
+
+Once more, consider the car on the road. We are given its speed
+$\speed{\dot x}(\delay{t})$ through the time. Because we know how fast the
+car was going at any single instant, we can deduce how much it traveled
+from time $\delay{t_1}$ to $\delay{t_2}$ for example. The computation
+of the position depending on the speed is
+noted with the integral symbol (which just means sum of small elements):
+\[
+\int_{\delay{t_1}}^{\delay{t_2}} \speed{\dot x}(\delay{t}) \delay{\dt}
+= \int_{\delay{t_1}}^{\delay{t_2}} \frac {\dist{\d x}} {\strike[red]{\delay{\dt}}} \strike[red]{\delay{\dt}}
+= \sum_{\delay{t_1}}^{\delay{t_2}} \dist{\d x}
+= \underbrace{
+	\dist{x}(\delay{t_2}) - \dist{x}(\delay{t_1})
+}_{[\dist{x}]_{\delay{t_1}}^{\delay{t_2}}}
+\]
+
+\subsection{Illustration}
+
+For example, if $\speed{\dot x} = \accel{2m/s^2} \times \delay{t}$, then:
+\begin{align*}
+\dist{x}(\delay{30s}) - \dist{x}(\delay{0})
+&= \int_{\delay{0}}^{\delay{30s}} \accel{2m/s^2} \times \delay{t} \delay{\dt} \\
+&= \left(\int_{\delay{0})}^{\delay{30s}} 2 \delay{t} \delay{\dt}\right) \accel{m/s^2} \\
+&= [\delay{t}^2]_{\delay{0}}^{\delay{30s}} \accel{m/s^2} \\
+&= (900s^2 - 0s^2) \accel{m/s^2} \\
+&= \dist{900m}
+\end{align*}
+
+In particular, with we are given the additional information that $\posit{C}$
+did start at $\posit{O}$, i.e.  $\dist{x}(\delay{0}) = \dist{0}$, then:
+\[
+\dist{x}(\delay{30s}) = \dist{900m}
+\]
+
+\subsection{Antiderivative}
+
+More generally, in the previous example, we could write:
+\[
+\dist{x}(\delay{t}) - \dist{x}(\delay{0})
+= \int_{\delay{0}}^{\delay{30s}} \accel{2m/s^2} \times \delay{t} \delay{\dt}
+= \delay{t}^2 \accel{m/s^2}
+\]
+
+Another way to write it is:
+\[
+\dist{x}(\delay{t})
+= t^2 \accel{m/s^2} + \dist{C}
+\]
+where $\dist{C} = \dist{x}(\delay{0})$ is a value independent of
+$\delay{t}$ which depends on the \textbf{initial conditions} (e.g. the
+position of the car at the initial instant). Each of the possible
+expression of $\dist{x}$ (depending on $\dist{C}$) is a primitive of
+$\speed{\dot x}$.
+
+\section{Differential equations}
+
+\subsection{Definition}
+
+A differential equation is an equation whose unknown is a function in
+which a derivative of this function appears. For example:
+\[
+\frac {\d f} {\d x} = 3x^2
+\]
+
+This is a differential equation and we already know how to solve it
+(find the expression of $f$). Here, $f(x) = x^3 + C$ (there are several
+possible solutions).
+
+\subsection{Exponential}
+
+The exponential function is defined as $f(x) = e^x$ where $e$ is a
+mathematical constant whose value is about $2.718$. It was picked so that:
+\[
+\frac {\d f} {\d x} = f
+\]
+
+In other words:
+\[
+\frac {\d} {\d x} (e^x) = e^x
+\]
+
+\begin{remark}
+If we define $f(x) = e^{g(x)}$ instead, derivation rules
+gives us:
+\[
+\frac {\d f(x)} {\d x}
+= g'(x) e^{g(x)}
+\]
+so that $\frac {\d f} {\d x} = g' f$.
+\end{remark}
+
+\subsection{First order}
+
+Now, consider the following equation:
+\[
+\frac {\d f} {\d x} = f
+\]
+
+We already know that $f(x) = e^x$ is a solution; however, so is $f(x) =
+2 e^x$. Actually, the set of solutions to this equation is the functions
+$f(x) = C e^x$ where $C$ is any constant value.
+
+The remark we made before tell us how to solve a differential equation
+of the form:
+\[
+\frac {\d f} {\d x} = h f
+\]
+where $h$ is also a function. We just need to find $g$ such that $g' =
+h$, i.e. the solutions are:
+
+\[
+f(x) = C e^{\int_0^x h(x) \d x}
+\]
+
+\section{Geometric integrals}
+
+Circle circumference:
+\[
+\dist{d}
+= \oint_C \dist{\d s}
+= \int_{\angle{0}}^{\angle{2\pi}} \dist{R} \angle{\d \theta}
+= \dist{R} \left[ \theta \right]_{\angle{0}}^{\angle{2\pi}}
+= 2\pi \dist{R}
+\]
+
+Disk area:
+\[
+\area{A}
+= \iint_D \area{\d A}
+= \int_{\dist{r}=\dist{0}}^{\dist{R}}
+  \int_{\angle{\theta}=\angle{0}}^{\angle{2\pi}}
+  \dist{\d r} \times \dist{r} \angle{\d \theta}
+= 2\pi \int_{\dist{0}}^{\dist{R}} \dist{r} \dist{\d r}
+= 2\pi \left[\frac 1 2 \dist{r}^2\right]_{\dist{0}}^{\dist{R}}
+= \pi \dist{R}^2
+\]
+
+Sphere area:
+\[
+\area{A}
+= \oiint_S \area{\d A}
+= \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}}
+  \int_{\angle{\phi}=\angle{0}}^{\angle{2\pi}}
+  (\dist{R} \sin \angle{\phi} \angle{\d \theta})
+  (\dist{R} \angle{\d \phi})
+= 2\pi \dist{R}^2 \int_{\angle{0}}^{\angle{\pi}} \sin \angle{\phi} \angle{\d \phi}
+= 2\pi \dist{R}^2 \left[ - \cos \phi \right]_{\angle{0}}^{\angle{\pi}}
+= 4\pi \dist{R}^2
+\]
+
+Sphere enclosed volume:
+\[
+\vol{V}
+= \iiint_B \vol{\d V}
+= \int_{\dist{r}=\dist{0}}^{\dist{R}}
+  \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}}
+  \int_{\angle{\phi}=\angle{0}}^{\angle{2\pi}}
+  (\dist{r} \sin \angle{\phi} \angle{\d \theta}) (\dist{r} \d \angle{\phi}) \dist{\d r}
+= 2 \pi
+  \int_{\dist{r}=\dist{0}}^{\dist{R}}
+  \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}} \sin \angle{\phi} \angle{\d \phi} \dist{r}^2 \dist{\d r}
+= 2 \pi
+  \left[\frac 1 3 \dist{r}^3\right]_{\dist{0}}^{\dist{R}}
+  \left[- \cos \angle{\phi}\right]_{\angle{0}}^{\angle{\pi}}
+= \frac 4 3 \pi \dist{R}^3
+\]

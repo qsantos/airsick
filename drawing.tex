@@ -1,0 +1,84 @@
+\usepackage{pgfplots, pgfplotstable}
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{units}
+\usetikzlibrary{pgfplots.units}
+
+\usepackage{float,subcaption}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\usepackage{tikz,tikz-3dplot}
+\usetikzlibrary{calc,intersections} 
+\tikzset{point/.style={circle,fill,inner sep=1pt,label=above:{$\posit{#1}$}}}
+\tikzset{boint/.style={circle,fill,inner sep=1pt,label=below:{$\posit{#1}$}}}
+\tikzset{loint/.style={circle,fill,inner sep=1pt,label=left :{$\posit{#1}$}}}
+\tikzset{roint/.style={circle,fill,inner sep=1pt,label=right:{$\posit{#1}$}}}
+
+% inspired from http://tex.stackexchange.com/questions/38818/best-way-to-denote-an-angle-in-tikz/55555#55555
+\newcommand\markangle[6][none]{% [color] {X} {origin} {Y} {mark} {radius}
+	\begin{scope}
+	\clip (#2.center) -- (#3.center) -- (#4.center);
+	\draw[black,fill=#1,fill opacity=0.5,name path=markangleC] (#3) circle (#6);
+	\end{scope}
+
+	% middle calculation
+	\path[name path=markangleL1] (#3) -- (#2);
+	\path[name path=markangleL2] (#3) -- (#4);
+	\path[name intersections={of=markangleL1 and markangleC, by={markangleX1}},
+	      name intersections={of=markangleL2 and markangleC, by={markangleX2}}]
+	      (markangleX1) -- (markangleX2) coordinate[pos=.5] (middle);
+
+	% bissectrice definition
+	\path[name path=markangleB] (#3) -- (barycentric cs:#3=-1,middle=1.2);
+
+	% put mark
+	\path[name intersections={of=markangleB and markangleC, by={markanglemiddleArc}}]
+		(#3) -- (markanglemiddleArc) node[pos=1.5] {\angle{#5}};
+}
+% inspired from http://tex.stackexchange.com/questions/123158/tikz-using-the-ellipse-command-with-a-start-and-end-angle-instead-of-an-arc/123187#123187
+\tikzset{partial ellipse/.style args={#1:#2:#3}{
+	insert path={+ (#1:#3) arc (#1:#2:#3)}
+}}
+\newcommand{\orbit}[6][]{% options, focus, apoapsis, periapsis, start angle, end angle
+\begin{scope}[shift={(#2)}]
+	\pgfmathsetmacro{\ap}{(#3)}
+	\pgfmathsetmacro{\pe}{(#4)}
+	\pgfmathsetmacro{\a}{(\ap+\pe)/2}
+	\pgfmathsetmacro{\b}{sqrt(\ap*\pe)}
+	\pgfmathsetmacro{\e}{(\ap-\pe)/(\ap+\pe)}
+	\pgfmathsetmacro{\f}{\a*\e}
+	\draw[-latex,thick,#1] plot[domain=#5:#6,samples=\samples]
+		({\x}:{\a*(1-\e*\e)/(1-\e*cos(\x))});
+\end{scope}
+}
+\newcommand{\orbitpoint}[7][]{% options, focus, apoapsis, periapsis, angle, name, label
+\begin{scope}[shift={(#2)}]
+	\pgfmathsetmacro{\ap}{(#3)}
+	\pgfmathsetmacro{\pe}{(#4)}
+	\pgfmathsetmacro{\a}{(\ap+\pe)/2}
+	\pgfmathsetmacro{\b}{sqrt(\ap*\pe)}
+	\pgfmathsetmacro{\e}{(\ap-\pe)/(\ap+\pe)}
+	\pgfmathsetmacro{\f}{\a*\e}
+	\pgfmathsetmacro{\ang}{#5}
+	\pgfmathsetmacro{\rad}{\a*(1-\e*\e)/(1-\e*cos(\ang))}
+	\node[-latex,thick,#1] (#6) at (\ang:\rad) {#7};
+\end{scope}
+}
+\newcommand{\horbit}[5][]{% options, focus, periapsis, excentricity, domain
+	\draw[-latex,thick,#1] let \p1=(#2) in \pgfextra{
+		\pgfmathsetmacro{\ap}{#3}
+		\pgfmathsetmacro{\e}{#4}
+		\pgfmathsetmacro{\a}{\ap/(\e-1)}
+		\pgfmathsetmacro{\b}{(\a*sqrt(\e*\e-1)} 
+		\pgfmathsetmacro{\Ox}{\x1/1cm}
+		\pgfmathsetmacro{\Oy}{\y1/1cm}
+	}
+	plot[domain=-#5:#5,samples=\samples] ({\Ox - \a - \ap + \a*cosh(\x)},{\Oy + \b*sinh(\x)});
+}
+
+% http://tex.stackexchange.com/questions/12010/how-can-i-invert-a-clip-selection-within-tikz/12033#12033
+\tikzstyle{reverseclip}=[insert path={(current page.north east) --
+  (current page.south east) --
+  (current page.south west) --
+  (current page.north west) --
+  (current page.north east)}
+]
