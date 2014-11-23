@@ -1,6 +1,8 @@
-all: airsick.pdf
+TARGETS = airsick.pdf
 
-%.pdf: %.tex $(wildcard *.tex) $(wildcard data/)
+all: $(TARGETS)
+
+%.pdf: %.tex $(wildcard *.tex) $(wildcard data/*)
 	pdflatex -halt-on-error $*
 
 toc: all
@@ -8,3 +10,8 @@ toc: all
 
 clean:
 	rm -f *.aux *.log *.out *.toc
+
+destroy: clean
+	rm -f $(TARGETS)
+
+rebuild: destroy all
