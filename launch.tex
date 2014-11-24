@@ -91,41 +91,41 @@ will not go as high.
 \end{remark}
 
 \begin{figure}[H]
+\centering
+\foreach \b in {Earth,Kerbin,Moon,Mun}
+{
+	\begin{subfigure}{0.45\textwidth}
 	\centering
-	\foreach \b in {Earth,Kerbin,Moon,Mun}
-	{
-		\begin{subfigure}{0.45\textwidth}
-		\centering
-		\begin{tikzpicture}[scale=0.7]
-		\begin{axis}[
-			no markers,
-			axis lines=left,
-			xlabel=$\delay{t}$,
-			x unit=s,
-			ylabel=$\dist{z}$,
-			y unit=m,
-			legend style={
-				cells={anchor=west},
-				legend pos=north west,
-			}
-		]
-		\addlegendentry{$\force{F}=\force{0}$}
-		\addlegendentry{$\force{F}=\frac {\mathcal G \mass{M} \mass{m}} {\dist{R}^2}$}
-		\addlegendentry{$\force{F}=\frac {\mathcal G \mass{M} \mass{m}} {(\dist{R}+\dist{z})^2}$}
-		\foreach \y in {zn,zg,zG}
-		{
-			\addplot+ table [y=\y] {data/ascent_\b.dat};
+	\begin{tikzpicture}[scale=0.7]
+	\begin{axis}[
+		no markers,
+		axis lines=left,
+		xlabel=$\delay{t}$,
+		x unit=s,
+		ylabel=$\dist{z}$,
+		y unit=m,
+		legend style={
+			cells={anchor=west},
+			legend pos=north west,
 		}
-		\end{axis}
-		\end{tikzpicture}
-		\caption{\b}
-		\end{subfigure}
+	]
+	\addlegendentry{$\force{F}=\force{0}$}
+	\addlegendentry{$\force{F}=\frac {\mathcal G \mass{M} \mass{m}} {\dist{R}^2}$}
+	\addlegendentry{$\force{F}=\frac {\mathcal G \mass{M} \mass{m}} {(\dist{R}+\dist{z})^2}$}
+	\foreach \y in {zn,zg,zG}
+	{
+		\addplot+ table [y=\y] {data/ascent_\b.dat};
 	}
-	\caption{
-		we can see that the assumption that $z \ll R$ is safe
-		enough; moreover, the effect of gravity on small bodies
-		(c) (d) is negligible on such short periods of time
-	}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{\b}
+	\end{subfigure}
+}
+\caption{
+	we can see that the assumption that $z \ll R$ is safe enough;
+	moreover, the effect of gravity on small bodies (c) (d) is
+	negligible on such short periods of time
+}
 \end{figure}
 
 
@@ -183,21 +183,21 @@ cancels out; we note $\d P$ the difference in pressure below and above
 $\vol{\d V}$.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}[->]
-		\node (O) at (0,0) {$\vol{\d V}$};
-		\draw (O) circle (0.5);
-		\draw (-2,0) -- node[above]{$P$} (-1,0);
-		\draw ( 2,0) -- node[above]{$P$} ( 1,0);
-		\draw (0,-3) -- node[right]{$P$} (0,-1);
-		\draw (0, 2) -- node[right]{$P$} (0, 1);
-		\draw (0,-3) -- node[right]{$P - \d P$} (0,-1);
-	\end{tikzpicture}
-	\caption{
-		the pressure below $\vol{\d V}$ must be stronger to
-		fight gravity. $\d P$ will be a negative value, so that
-		we can keep the vertical axis orientation up
-	}
+\centering
+\begin{tikzpicture}[->]
+\node (O) at (0,0) {$\vol{\d V}$};
+\draw (O) circle (0.5);
+\draw (-2,0) -- node[above]{$P$} (-1,0);
+\draw ( 2,0) -- node[above]{$P$} ( 1,0);
+\draw (0,-3) -- node[right]{$P$} (0,-1);
+\draw (0, 2) -- node[right]{$P$} (0, 1);
+\draw (0,-3) -- node[right]{$P - \d P$} (0,-1);
+\end{tikzpicture}
+\caption{
+	the pressure below $\vol{\d V}$ must be stronger to fight
+	gravity. $\d P$ will be a negative value, so that we can keep
+	the vertical axis orientation up
+}
 \end{figure}
 
 The resultant force of pressure on $\vol{\d V}$ is $\area{\d A} \d P$
@@ -254,35 +254,35 @@ Using the closed expression for the pressure, we can now derive the
 density and then the terminal velocity depending on the altitude:
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\begin{axis}[
-		no markers,
-		axis lines=left,
-		xlabel=$\dist{h}$,
-		x unit=m,
-		ylabel=$\rho$,
-		y unit=kg/m^3,
-		legend style={
-			cells={anchor=west},
-			legend pos=north west,
-		}
-	]
-	\addlegendentry{$\rho(h)$}
-	\addplot[blue] table [y=rho] {data/air_density.dat};
-	\end{axis}
-	\begin{axis}[
-		no markers,
-		axis lines=left,
-		axis y line=right,
-		ylabel=$\speed{v_{\mathrm{term}}}$,
-		y unit=m/s,
-	]
-	\addlegendentry{$\speed{v_{\mathrm{term}}}(\dist{h})$}
-	\addplot[red] table [y=v]   {data/air_density.dat};
-	\end{axis}
-	\end{tikzpicture}
-	\caption{The terminal velocity quickly rises after \dist{30~km}}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	no markers,
+	axis lines=left,
+	xlabel=$\dist{h}$,
+	x unit=m,
+	ylabel=$\rho$,
+	y unit=kg/m^3,
+	legend style={
+		cells={anchor=west},
+		legend pos=north west,
+	}
+]
+\addlegendentry{$\rho(h)$}
+\addplot[blue] table [y=rho] {data/air_density.dat};
+\end{axis}
+\begin{axis}[
+	no markers,
+	axis lines=left,
+	axis y line=right,
+	ylabel=$\speed{v_{\mathrm{term}}}$,
+	y unit=m/s,
+]
+\addlegendentry{$\speed{v_{\mathrm{term}}}(\dist{h})$}
+\addplot[red] table [y=v]   {data/air_density.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{The terminal velocity quickly rises after \dist{30~km}}
 \end{figure}
 
 
@@ -298,36 +298,36 @@ its orbit from the center of the body to above the atmosphere. It is
 more convenient for further maneuvers to have a circular orbit.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def\R{2}
-		\def\h{0.5}
-		\def\ap{3}
-		\def\pea{0.1}
-		\def\peb{3}
-		\def\an{-7}
-		\path[
-			right color=blue!5,
-			left color=blue!5!black!10,
-		]
-		(O) circle (\R+\h);
-		\orbit[red]{O}{\ap}{\pea}{-180}{\an};
-		\path[
-			right color=blue!20,
-			left color=blue!20!black,
-		]
-		(O) circle (\R);
-		\node[loint=O] at (0,0) {};
-		\orbitpoint[boint=P]{O}{\ap}{\pea}{\an}{}{};
-		\orbit[red,dotted]{O}{\ap}{\pea}{\an}{360+\an};
-		\orbit[blue]{O}{\ap}{\peb}{-180}{180};
-		\orbitpoint[roint=B]{O}{\ap}{\peb}{0}{}{};
-	\end{tikzpicture}
-	\caption{
-		When $\posit{P}$ leaves the atmosphere and burns in
-		$\posit{B}$, it can change from the \textcolor{red}{red}
-		“orbit” to the \textcolor{blue}{blue} orbit.
-	}
+\centering
+\begin{tikzpicture}
+\def\R{2}
+\def\h{0.5}
+\def\ap{3}
+\def\pea{0.1}
+\def\peb{3}
+\def\an{-7}
+\path[
+	right color=blue!5,
+	left color=blue!5!black!10,
+]
+(O) circle (\R+\h);
+\orbit[red]{O}{\ap}{\pea}{-180}{\an};
+\path[
+	right color=blue!20,
+	left color=blue!20!black,
+]
+(O) circle (\R);
+\node[loint=O] at (0,0) {};
+\orbitpoint[boint=P]{O}{\ap}{\pea}{\an}{}{};
+\orbit[red,dotted]{O}{\ap}{\pea}{\an}{360+\an};
+\orbit[blue]{O}{\ap}{\peb}{-180}{180};
+\orbitpoint[roint=B]{O}{\ap}{\peb}{0}{}{};
+\end{tikzpicture}
+\caption{
+	When $\posit{P}$ leaves the atmosphere and burns in $\posit{B}$,
+	it can change from the \textcolor{red}{red} “orbit” to the
+	\textcolor{blue}{blue} orbit.
+}
 \end{figure}
 
 

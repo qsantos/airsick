@@ -16,79 +16,73 @@ get it to turn without using any fuel and while keeping the same velocity
 (in a different direction).
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\def\ap{0.5}
-	\node[point=O] (O) at (0,0) {};
-	\horbit[red,rotate=-45]{O}{\ap}{1.1}{0.5}
-	\node[point=X] (X) at (-45:-\ap) {};
-	\end{tikzpicture}
-	\caption{
-		The speed of the mobile will increase as it heads towards
-		the periapsis $\posit{X}$, trading its gravitational
-		potential for kinetic energy; it will then decrease when
-		moving away from $\posit{X}$. Overall, the total energy
-		will be conserved and it will move as fast when leaving
-		$\posit{O}$ as when getting there.
-	}
+\centering
+\begin{tikzpicture}
+\def\ap{0.5}
+\node[point=O] (O) at (0,0) {};
+\horbit[red,rotate=-45]{O}{\ap}{1.1}{0.5}
+\node[point=X] (X) at (-45:-\ap) {};
+\end{tikzpicture}
+\caption{
+	The speed of the mobile will increase as it heads towards the
+	periapsis $\posit{X}$, trading its gravitational potential for
+	kinetic energy; it will then decrease when moving away from
+	$\posit{X}$. Overall, the total energy will be conserved and it
+	will move as fast when leaving $\posit{O}$ as when getting there.
+}
 \end{figure}
 
 Now, this velocity change is done relatively to $\posit{O}$.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\def\ap{0.5}
-	\def\rad{4}
-	\orbit[blue]{0,0}{\rad}{\rad}{135}{45}
-	\node[point=O] (O) at (0,\rad) {};
-	\horbit[red,rotate=-45]{O}{\ap}{1.1}{0.5};
-	\draw (-3,4) edge[->] node[pos=1,right]{$x$} +(1,0)
-	             edge[->] node[pos=1,above]{$y$} +(0,1);
-	\end{tikzpicture}
-	\caption{
-		If we note $\speed{v_P}$ the velocity of $\posit{P}$
-		relatively to $\posit{O}$ and $\speed{v_O}$ the
-		velocity of $\posit{O}$ around its primary, the
-		velocity of $\posit{P}$ around $\posit{O}$'s primary
-		is $\speed{v_P}$ before encountering $\posit{O}$
-		and $\speed{v_P} + \speed{v_O}$ after (note that the
-		\textcolor{red}{red} trajectory moves with $\posit{O}$
-		along the blue trajectory).
-	}
+\centering
+\begin{tikzpicture}
+\def\ap{0.5}
+\def\rad{4}
+\orbit[blue]{0,0}{\rad}{\rad}{135}{45}
+\node[point=O] (O) at (0,\rad) {};
+\horbit[red,rotate=-45]{O}{\ap}{1.1}{0.5};
+\draw (-3,4) edge[->] node[pos=1,right]{$x$} +(1,0)
+             edge[->] node[pos=1,above]{$y$} +(0,1);
+\end{tikzpicture}
+\caption{
+	If we note $\speed{v_P}$ the velocity of $\posit{P}$ relatively
+	to $\posit{O}$ and $\speed{v_O}$ the velocity of $\posit{O}$
+	around its primary, the velocity of $\posit{P}$ around
+	$\posit{O}$'s primary is $\speed{v_P}$ before encountering
+	$\posit{O}$ and $\speed{v_P} + \speed{v_O}$ after (note that
+	the \textcolor{red}{red} trajectory moves with $\posit{O}$
+	along the blue trajectory).
+}
 \end{figure}
 
 \begin{figure}[H]
+\centering
+\begin{subfigure}{\textwidth}
 	\centering
-	\begin{subfigure}{\textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{img/ast-voyager-orbits.jpg}
-		\caption{
-			Voyager 2 flew by Jupiter, Saturn, Uranus and
-			Neptune, but the swingby of Neptune actually
-			slowed down the vessel as it turned slightly
-			out of the trajectory (out of the plane in the
-			image). \cite{voyagerassists}
-		}
-	\end{subfigure}
-
-	\begin{subfigure}{\textwidth}
-		\centering
-		\includegraphics{img/cassiniorbit.png}
-		\caption{
-			The Cassini-Huygens spacecraft left the
-			Earth for the \textcolor{green}{green}
-			solar orbit (\delay{1997}); it then flew
-			twice by Venus to increase its orbit to
-			the \textcolor{red}{red} one (\delay{1998})
-			and then to the \textcolor{blue}{blue} one
-			(\delay{1999}). The \textcolor{blue}{blue}
-			trajectory was further improved by gravity
-			assists by the Earth (\delay{1999}) and by Jupiter
-			(\delay{2000}). \cite{cassiniassists}
-		}
-	\end{subfigure}
-	\caption{Two famous series of gravity assists}
+	\includegraphics[width=0.8\linewidth]{img/ast-voyager-orbits.jpg}
+	\caption{
+		Voyager 2 flew by Jupiter, Saturn, Uranus and Neptune,
+		but the swingby of Neptune actually slowed down the
+		vessel as it turned slightly out of the trajectory
+		(out of the plane in the image). \cite{voyagerassists}
+	}
+\end{subfigure}
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics{img/cassiniorbit.png}
+	\caption{
+		The Cassini-Huygens spacecraft left the Earth for the
+		\textcolor{green}{green} solar orbit (\delay{1997});
+		it then flew twice by Venus to increase its orbit to
+		the \textcolor{red}{red} one (\delay{1998}) and then
+		to the \textcolor{blue}{blue} one (\delay{1999}). The
+		\textcolor{blue}{blue} trajectory was further improved
+		by gravity assists by the Earth (\delay{1999}) and by
+		Jupiter (\delay{2000}). \cite{cassiniassists}
+	}
+\end{subfigure}
+\caption{Two famous series of gravity assists}
 \end{figure}
 
 
@@ -121,24 +115,24 @@ same time and will be able to join their orbit. It is handy to correct
 the orbits before the last revolution to get a more accurate rendez-vous.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def\peri{2}
-		\def\apoa{3}
-		\def\apob{5}
-		\node[point=O] (O) at (0,0) {};
-		\node[loint=X] (X) at (-\peri,0) {};
-		\orbit[blue]{O}{\apoa}{\peri}{0}{360};
-		\orbit[red] {O}{\apob}{\peri}{0}{360};
-		\orbitpoint[point=P1]{O}{\apoa}{\peri}{ 40}{P1}{};
-		\orbitpoint[point=P2]{O}{\apob}{\peri}{110}{P1}{};
-	\end{tikzpicture}
-	\caption{
-		$\posit{P2}$ will reach $\posit{X}$ ahead of $\posit{P1}$;
-		however, the red orbit has a higher apoapsis and thus a
-		longer period: after some time, $\posit{P1}$ will catch
-		up with $\posit{P2}$
-	}
+\centering
+\begin{tikzpicture}
+\def\peri{2}
+\def\apoa{3}
+\def\apob{5}
+\node[point=O] (O) at (0,0) {};
+\node[loint=X] (X) at (-\peri,0) {};
+\orbit[blue]{O}{\apoa}{\peri}{0}{360};
+\orbit[red] {O}{\apob}{\peri}{0}{360};
+\orbitpoint[point=P1]{O}{\apoa}{\peri}{ 40}{P1}{};
+\orbitpoint[point=P2]{O}{\apob}{\peri}{110}{P1}{};
+\end{tikzpicture}
+\caption{
+	$\posit{P2}$ will reach $\posit{X}$ ahead of $\posit{P1}$;
+	however, the red orbit has a higher apoapsis and thus a
+	longer period: after some time, $\posit{P1}$ will catch up
+	with $\posit{P2}$
+}
 \end{figure}
 
 
@@ -161,38 +155,37 @@ satellites, noted $\dist{s}$ that must be lower than the range of the
 satellites antennas $\dist{r_a}$.
 
 \begin{figure}[H]
-	\centering
-	\def\n{5}
-	\begin{tikzpicture}
-		\def\R{2}
-		\def\r{3}
-		\pgfmathsetmacro{\h}{cos(180/\n)*\r}
-		\node[point=O] (O) at (0,0) {};
-		\node[point=C] (C) at (180/\n:\h) {};
-		\draw[blue] (O) circle (\R);
-		\orbit[red]{O}{\r}{\r}{0}{360};
-		\foreach \i in {1,...,\n}
-		{
-			\orbitpoint[point=P\i]{O}{\r}{\r}{(\i-1)*360/\n}{P\i}{}
-		}
-		% inspired from http://tex.stackexchange.com/questions/75146/draw-a-path-between-many-nodes-using-foreach/75149#75149
-		\foreach \i  [remember=\i as \lasti (initially \n)] in {1,...,\n}
-		{
-			\draw[green] (P\lasti) -- (P\i);
-		}
-		\draw (O) --node[below]     {$\dist{r}$} (P1);
-		\draw (O) --node[above left]{$\dist{h}$} (C);
-		\markangle{P1}{O}{C}{$\alpha/2$}{1}
-		\draw (P3) -- (O) -- (P4);
-		\markangle{P3}{O}{P4}{$\alpha$}{1}
-		\draw[green] (P4) --node[below]{$\dist{s}$} (P5);
-	\end{tikzpicture}
-	\caption{
-		There are $\n$ satellites on the \textcolor{red}{red}
-		orbit around $\posit{O}$. The surface is shown in
-		\textcolor{blue}{blue} and the lines-of-sight of the
-		satellites in \textcolor{green}{green}.
-	}
+\centering
+\def\n{5}
+\begin{tikzpicture}
+\def\R{2}
+\def\r{3}
+\pgfmathsetmacro{\h}{cos(180/\n)*\r}
+\node[point=O] (O) at (0,0) {};
+\node[point=C] (C) at (180/\n:\h) {};
+\draw[blue] (O) circle (\R);
+\orbit[red]{O}{\r}{\r}{0}{360};
+\foreach \i in {1,...,\n}
+{
+	\orbitpoint[point=P\i]{O}{\r}{\r}{(\i-1)*360/\n}{P\i}{}
+}
+% inspired from http://tex.stackexchange.com/questions/75146/draw-a-path-between-many-nodes-using-foreach/75149#75149
+\foreach \i  [remember=\i as \lasti (initially \n)] in {1,...,\n}
+{
+	\draw[green] (P\lasti) -- (P\i);
+}
+\draw (O) --node[below]     {$\dist{r}$} (P1);
+\draw (O) --node[above left]{$\dist{h}$} (C);
+\markangle{P1}{O}{C}{$\alpha/2$}{1}
+\draw (P3) -- (O) -- (P4);
+\markangle{P3}{O}{P4}{$\alpha$}{1}
+\draw[green] (P4) --node[below]{$\dist{s}$} (P5);
+\end{tikzpicture}
+\caption{
+	There are $\n$ satellites on the \textcolor{red}{red} orbit around
+	$\posit{O}$. The surface is shown in \textcolor{blue}{blue} and
+	the lines-of-sight of the satellites in \textcolor{green}{green}.
+}
 \end{figure}
 
 What we have to choose is the number of satellites $n$ and their
@@ -248,37 +241,34 @@ The curvature of Kerbin makes that a satellite sees less than half the
 surface; the closer it is the surface, the less it can see.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def\R{2}
-		\def\r{5}
-		\node[boint=O] (O) at (0,0) {};
-		\node[point=P] (P) at (\r,0) {};
-
-		% tangents
-		\pgfmathsetmacro{\be}{acos(\R/\r)}
-		\node[point=X1] (X1) at ( \be:\R) {};
-		\node[point=X2] (X2) at (-\be:\R) {};
-		\draw (P) -- (X1);
-		\draw (P) -- (X2);
-
-		% values
-		\draw (O) --node[above left]{$\dist{R}$} (X1);
-		\draw (O) --node[below]     {$\dist{r}$} (P);
-		\markangle{X1}{P}{O}{$\alpha$}{1}
-		\markangle{X1}{O}{P}{$\beta$} {1}
-
-		% show covered area
-		\fill[grey!10] (P) -- (-\be:\R) arc (-\be:\be:\R) -- cycle;
-		\draw      ( \be:\R) arc ( \be:360-\be:\R);
-		\draw[red] (-\be:\R) arc (-\be:\be    :\R);
-	\end{tikzpicture}
-	\caption{
-		$\posit{X1}$ and $\posit{X2}$ are the farthest point
-		that $\posit{P}$ can see from this distance; the line
-		$(PX1)$ is said to be tangent to the circle, and there
-		is a right angle in $\posit{X1}$
-	}
+\centering
+\begin{tikzpicture}
+\def\R{2}
+\def\r{5}
+\node[boint=O] (O) at (0,0) {};
+\node[point=P] (P) at (\r,0) {};
+% tangents
+\pgfmathsetmacro{\be}{acos(\R/\r)}
+\node[point=X1] (X1) at ( \be:\R) {};
+\node[point=X2] (X2) at (-\be:\R) {};
+\draw (P) -- (X1);
+\draw (P) -- (X2);
+% values
+\draw (O) --node[above left]{$\dist{R}$} (X1);
+\draw (O) --node[below]     {$\dist{r}$} (P);
+\markangle{X1}{P}{O}{$\alpha$}{1}
+\markangle{X1}{O}{P}{$\beta$} {1}
+% show covered area
+\fill[grey!10] (P) -- (-\be:\R) arc (-\be:\be:\R) -- cycle;
+\draw      ( \be:\R) arc ( \be:360-\be:\R);
+\draw[red] (-\be:\R) arc (-\be:\be    :\R);
+\end{tikzpicture}
+\caption{
+	$\posit{X1}$ and $\posit{X2}$ are the farthest point that
+	$\posit{P}$ can see from this distance; the line $(PX1)$ is
+	said to be tangent to the circle, and there is a right angle
+	in $\posit{X1}$
+}
 \end{figure}
 
 \begin{remark}
@@ -295,39 +285,37 @@ We quickly see that $\sin \angle{\alpha} = \cos \angle{\beta} = \frac
 
 \section{Light exposition}
 
+% inspired from http://www.texample.net/tikz/examples/earth-orbit/
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def\R{1.5}
-		\def\r{2.5}
-		\node[point=O] (O) at (5,5) {};
-		% inspired from http://www.texample.net/tikz/examples/earth-orbit/
-
-		% light rays
-		\fill[yellow!20] (O) +(-5,-\r-0.1) rectangle +(5,\r+0.1);
-		\orbit[red]{O}{\r}{\r}{0}{360};
-		\fill[yellow!20!black!80] (O) +(0,-\R) rectangle +(5,\R);
-		\path[
-			left color=blue!20,
-			right color=blue!20!black,
-		]
-		(O) circle (\R);
-
-		\draw[black,->,thick] (O) +(-3,2) --node[below]{star} +(-4,2);
-
-		\begin{scope}
-		\clip (O) +(0,-\R) rectangle +(5,\R);
-		\orbit[blue]{O}{\r}{\r}{0}{360};
-		\end{scope}
-
-		\orbitpoint[roint=P]{O}{\r}{\r}{20}{}{}
-	\end{tikzpicture}
-	\caption{
-		The light rays are shown in \textcolor{orange}{orange}.
-		When $\posit{P}$ is in the \textcolor{blue}{blue}
-		part of the orbit, it does not receive light from the
-		primary star.
-	}
+\centering
+\begin{tikzpicture}
+\def\R{1.5}
+\def\r{2.5}
+\node[point=O] (O) at (5,5) {};
+% shadow
+\fill[yellow!20] (O) +(-5,-\r-0.1) rectangle +(5,\r+0.1);
+\fill[yellow!20!black!80] (O) +(0,-\R) rectangle +(5,\R);
+\path[
+	left color=blue!20,
+	right color=blue!20!black,
+]
+(O) circle (\R);
+% arrow
+\draw[black,->,thick] (O) +(-3,2) --node[below]{star} +(-4,2);
+% orbit
+\orbit[red]{O}{\r}{\r}{0}{360};
+\begin{scope}
+\clip (O) +(0,-\R) rectangle +(5,\R);
+\orbit[blue]{O}{\r}{\r}{0}{360};
+\end{scope}
+\orbitpoint[roint=P]{O}{\r}{\r}{20}{}{}
+\end{tikzpicture}
+\caption{
+	The light rays are shown in \textcolor{orange}{orange}.
+	When $\posit{P}$ is in the \textcolor{blue}{blue}
+	part of the orbit, it does not receive light from the
+	primary star.
+}
 \end{figure}
 
 \begin{important}

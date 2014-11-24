@@ -27,31 +27,29 @@ G \mass{M}} {\dist{r}^2} \hat r$.
 \subsection{Orbital elements}
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\pgfmathsetmacro{\a}{3}
-		\pgfmathsetmacro{\e}{0.5}
-		\pgfmathsetmacro{\pe}{\a*(1-\e)}
-		\pgfmathsetmacro{\ap}{\a*(1+\e)}
-		\pgfmathsetmacro{\f}{\e*\a}
-
-		% orbit
-		\node[boint=O]  (O) at (0,0) {};
-		\node          (F1) at (-\f,0) {};
-		\node[boint=F] (F2) at ( \f,0) {};
-		\orbit[red]{F1}{\ap}{\pe}{0}{360};
-
-		\orbitpoint[point=P]{F1}{\ap}{\pe}{45}{P}{}
-		\node[roint=X] (X) at (\a,0) {};
-
-		% true anomaly
-		\draw (X) -- (F2) -- (P);
-		\markangle{X}{F2}{P}{$\theta$}{0.5}
-
-		% eccentric anomaly
-		\draw (X) -- (O) -- (P);
-		\markangle{X}{O}{P}{$E$}{0.5}
-	\end{tikzpicture}
+\centering
+\begin{tikzpicture}
+% parameters
+\pgfmathsetmacro{\a}{3}
+\pgfmathsetmacro{\e}{0.5}
+\pgfmathsetmacro{\pe}{\a*(1-\e)}
+\pgfmathsetmacro{\ap}{\a*(1+\e)}
+\pgfmathsetmacro{\f}{\e*\a}
+% axis
+\node[boint=O] (O) at (0, 0) {};
+\node[roint=X] (X) at (\a,0) {};
+% orbit
+\node          (F1) at (-\f,0) {};
+\node[boint=F] (F2) at ( \f,0) {};
+\orbit[red]{F1}{\ap}{\pe}{0}{360};
+\orbitpoint[point=P]{F1}{\ap}{\pe}{45}{P}{}
+% true anomaly
+\draw (X) -- (F2) -- (P);
+\markangle{X}{F2}{P}{$\theta$}{0.5}
+% eccentric anomaly
+\draw (X) -- (O) -- (P);
+\markangle{X}{O}{P}{$E$}{0.5}
+\end{tikzpicture}
 \end{figure}
 
 \begin{itemize}

@@ -22,21 +22,21 @@ directions on give the how much you have to go on each coordinate to
 get from the origin to the point.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def \axlen {3}
-		\def \x {1}
-		\def \y {2}
-		\node[boint=O]  (O) at (0,0) {};
-		\node[point=P]  (P)  at (\x,\y) {};
-		\node[boint=\x] (Px) at (\x,0) {};
-		\node[loint=\y] (Py) at (0,\y) {};
-		\draw[thick,->] (O) -- (\axlen,0) node[anchor=west] {$x$};
-		\draw[thick,->] (O) -- (0,\axlen) node[anchor=south]{$y$};
-		\draw (P) edge[dashed] (Px);
-		\draw (P) edge[dashed] (Py);
-	\end{tikzpicture}
-	\caption{$\posit{P}$ is at coordinates $\posit{(1,2)}$ in this referential}
+\centering
+\begin{tikzpicture}
+\def \axlen {3}
+\def \x {1}
+\def \y {2}
+\node[boint=O]  (O) at (0,0) {};
+\node[point=P]  (P)  at (\x,\y) {};
+\node[boint=\x] (Px) at (\x,0) {};
+\node[loint=\y] (Py) at (0,\y) {};
+\draw[thick,->] (O) -- (\axlen,0) node[anchor=west] {$x$};
+\draw[thick,->] (O) -- (0,\axlen) node[anchor=south]{$y$};
+\draw (P) edge[dashed] (Px);
+\draw (P) edge[dashed] (Py);
+\end{tikzpicture}
+\caption{$\posit{P}$ is at coordinates $\posit{(1,2)}$ in this referential}
 \end{figure}
 
 Cartesian coordinates can be used in three dimensions by adding one axis
@@ -50,18 +50,18 @@ to the origin while a second is the angle of $\posit{P}$ with a fixed
 porientation.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\def \R  {3}
-		\def \th {40}
-		\node[point=O] (O) at (0,0) {};
-		\node          (X) at (0:\R) {};
-		\node[point=P] (P) at (\th:\R) {};
-		\draw (O) -- (X);
-		\draw (O) -- node[above left]{$\dist{r}$} (P);
-		\markangle{X}{O}{P}{$\theta$}{\R/3};
-	\end{tikzpicture}
-	\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
+\centering
+\begin{tikzpicture}
+\def \R  {3}
+\def \th {40}
+\node[point=O] (O) at (0,0) {};
+\node          (X) at (0:\R) {};
+\node[point=P] (P) at (\th:\R) {};
+\draw (O) -- (X);
+\draw (O) -- node[above left]{$\dist{r}$} (P);
+\markangle{X}{O}{P}{$\theta$}{\R/3};
+\end{tikzpicture}
+\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
 \end{figure}
 
 
@@ -105,27 +105,25 @@ and $\angle{\theta}$, we add a third one, $\angle{\phi}$, which is the
 angle with the polar plane:
 
 \begin{figure}[H]
-	\centering
-	\tdplotsetmaincoords{60}{110}
-	\begin{tikzpicture}[tdplot_main_coords]
-		\def \r  {4}
-		\def \th {30}
-		\def \ph {60}
-
-		\node[loint=O]  (O) at (0,0,0) {};
-		\draw[thick,->] (O) -- (4,0,0) node[anchor=north east]{$x$};
-		\draw[thick,->] (O) -- (0,4,0) node[anchor=north west]{$y$};
-		\draw[thick,->] (O) -- (0,0,4) node[anchor=south]{$z$};
-
-		\tdplotsetcoord{P}{\r}{\th}{\ph}
-	\draw[red,-stealth] (O) -- (P) node[above right] {$P$};
-	\draw[red,dashed]   (O) -- (Pxy);
-	\draw[red,dashed]   (P) -- (Pxy);
-	\tdplotsetthetaplanecoords{\ph}
-	\tdplotdrawarc                       {(O)}{1}{0}{\ph}{anchor=north}     {$\phi$}
-	\tdplotdrawarc[tdplot_rotated_coords]{(O)}{2.5}{0}{\th}{anchor=south west}{$\theta$}
-	\end{tikzpicture}
-	\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
+\centering
+\tdplotsetmaincoords{60}{110}
+\begin{tikzpicture}[tdplot_main_coords]
+\def \r  {4}
+\def \th {30}
+\def \ph {60}
+\node[loint=O]  (O) at (0,0,0) {};
+\draw[thick,->] (O) -- (4,0,0) node[anchor=north east]{$x$};
+\draw[thick,->] (O) -- (0,4,0) node[anchor=north west]{$y$};
+\draw[thick,->] (O) -- (0,0,4) node[anchor=south]{$z$};
+\tdplotsetcoord{P}{\r}{\th}{\ph}
+\draw[red,-stealth] (O) -- (P) node[above right] {$P$};
+\draw[red,dashed]   (O) -- (Pxy);
+\draw[red,dashed]   (P) -- (Pxy);
+\tdplotsetthetaplanecoords{\ph}
+\tdplotdrawarc                       {(O)}{1}{0}{\ph}{anchor=north}     {$\phi$}
+\tdplotdrawarc[tdplot_rotated_coords]{(O)}{2.5}{0}{\th}{anchor=south west}{$\theta$}
+\end{tikzpicture}
+\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
 \end{figure}
 
 
@@ -175,23 +173,21 @@ center the referential on $\posit{P}$ since it is the one point not
 moving when integrating.
 
 \begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\def \r  {5}
-	\def \R  {2}
-	\def \th {40}
-	\draw (0,0) circle (\R);
-	\node[point={C,\mu}]         (C) at (0, 0)   {};
-	\node[point={P,\mass{m}}]    (P) at (\r,0)   {};
-	\node[point={Q,\mass{\d m}}] (Q) at (\th:\R) {};
-	\draw (C) -- node[below]{$\dist{r}$} (P);
-	\draw (P) -- node[above]{$\dist{s}$} (Q);
-	\draw (Q) -- node[above]{}  (C);
-
-	\markangle{C}{P}{Q}{$\psi$}{1}
-	\markangle{Q}{C}{P}{$\theta$}{1}
-
-	\end{tikzpicture}
+\centering
+\begin{tikzpicture}
+\def \r  {5}
+\def \R  {2}
+\def \th {40}
+\draw (0,0) circle (\R);
+\node[point={C,\mu}]         (C) at (0, 0)   {};
+\node[point={P,\mass{m}}]    (P) at (\r,0)   {};
+\node[point={Q,\mass{\d m}}] (Q) at (\th:\R) {};
+\draw (C) -- node[below]{$\dist{r}$} (P);
+\draw (P) -- node[above]{$\dist{s}$} (Q);
+\draw (Q) -- node[above]{}  (C);
+\markangle{C}{P}{Q}{$\psi$}{1}
+\markangle{Q}{C}{P}{$\theta$}{1}
+\end{tikzpicture}
 \end{figure}
 
 Because of the symmetry around the axis $(PC)$, we already know that
