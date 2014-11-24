@@ -431,39 +431,48 @@ the less influence it has on the sum: the value is becoming closer and
 closer to $7x$. Thus: $\frac {\d g(x)} {\d x} = 7x$.
 
 
-\subsection{Common derivatives}
+\subsection{Derivation rules}
+
+Now, what if we want to compute the derivative of $h(x) = 12x +
+7x^2$? Of course, we could go through the same step as in the previous
+part. However, we can notice that $h = f + g$ (this means that $h(x)
+= f(x) + g(x)$ for all $x$'s). It turns out that it can be shown that
+$\frac {\d} {\d x} (f+g) = \frac {\d} {\d x} f + \frac {\d} {\d x} g$
+for any functions $f$ and $g$. Using this rule and knowing the derivative
+of $f$ and $g$, we can derive:
 
 \[
-\frac {\d} {\d x} (1)   = 0
+\frac {\d} {\d x} h(x)
+= \frac {\d} {\d x} (f+g)(x)
+= \frac {\d} {\d x} f(x) + \frac {\d} {\d x} g(x)
+= 12 + 7x
 \]
-\[
-\frac {\d} {\d x} (x)   = 1
-\]
-\[
-\frac {\d} {\d x} (x^2) = 2x
-\]
-\[
-\frac {\d} {\d x} (x^n) = n x^{n-1}
-\]
-\[
-\frac {\d} {\d x} (a f)
-= a \frac {\d} {\d x} f
-\]
-\[
-\frac {\d} {\d x} (f + g)
-= \frac {\d} {\d x} f
-+ \frac {\d} {\d x} g
-\]
-\[
-\frac {\d} {\d x} (f \times g)
-= f \times \frac {\d} {\d x} g
-+ g \times \frac {\d} {\d x} f
-\]
-\[
-\frac {\d} {\d x} (f(g(x)))
-= \frac {\d} {\d x} g(x)
-\times \frac {\d} {\d x} f(g(x))
-\]
+
+There are a few derivation rules that can help us determine the derivative
+of complex functions easily.
+
+\begin{figure}[H]
+\begin{subfigure}{0.5\textwidth}
+\begin{alignat*}{2}
+& (\alpha f)'              &&= \alpha f' \\
+& (f + g)'                 &&= f' + g' \\
+& (f \times g)'            &&= f' \times g' + g' \times f \\
+& \left(\frac f g\right)'  &&= \frac {f'g - g'f} {g^2} \\
+& (f(g(x))'                &&= g'(x) \times f'(g(x))
+\end{alignat*}
+\caption{derivation rules}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\begin{alignat*}{2}
+& (x^n)'    &&= n x^{n-1}   \\
+& (e^x)'    &&= e^x         \\
+& (\ln x)'  &&= \frac 1 x \\
+& (\cos x)' &&= -\sin x \\
+& (\sin x)' &&=  \cos x
+\end{alignat*}
+\caption{common derivatives}
+\end{subfigure}
+\end{figure}
 
 
 
