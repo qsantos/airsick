@@ -385,6 +385,52 @@ A shorter way of saying that the acceleration is the derivative of
 is the second derivative of the position: $\accel{a} = \accel{\ddot x}$.
 
 
+\subsection{Formal derivation}
+
+While we now have a way to compute the derivative of a function at a
+given point, it is not accurate: while we do get a better approximation
+by taking a smaller value for $h$, the result is still an approximation
+and can sometimes stay far off.
+
+Instead, we can look at the expressions to determine the exact value
+for the limit. For instance, let us consider the function $f(x) = 12x$
+and let us search for $\frac {\d f(x)} {\d x}$ for any given $x$. First:
+
+\[
+\frac {\Delta f(x)} {\Delta x}
+= \frac {f(x+h) - f(x)} {(x+h) - x}
+= \frac {12(x+h) - 12x} {h}
+= \frac {12\strike[red]{h}} {\strike[red]{h}}
+= 12
+\]
+
+We now look at the value $\frac {\Delta f(x)} {\Delta x}$ as $\Delta x$
+gets small; in this case, it happens to always be $12$, and does not
+depend on $\Delta x$. Thus, however small $\Delta x$, the value is
+$12$, and:
+
+\[
+\frac {\d f(x)} {\d x}
+= \lim_{h \to 0} \frac {\Delta f(x)} {\Delta x}
+= 12
+\]
+
+That way, we know the exaxt value of derivative of $f$ in any point. Let
+us take a second example with $g(x) = 7x^2$:
+
+\[
+\frac {\Delta g(x)} {\Delta x}
+= \frac {7(x+h)^2 - 7x^2} {h}
+= \frac {7(x^2 + 2xh + h^2) - 7x^2} {h}
+= \frac {7x\strike[red]{h} + h^{\strike[red]{2}}} {\strike[red]{h}}
+= 7x + h
+\]
+
+Here, the expression does depend on $h$. However, the smaller $h$ gets,
+the less influence it has on the sum: the value is becoming closer and
+closer to $7x$. Thus: $\frac {\d g(x)} {\d x} = 7x$.
+
+
 \subsection{Common derivatives}
 
 \[
