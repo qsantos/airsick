@@ -167,31 +167,42 @@ expressed in meters.
 \caption{$\posit{C}$ is moving towards the right at speed $\speed{v}$}
 \end{figure}
 
-Consider a car $\posit{C}$ moving along a straight road at a speed of
-$\speed{v}$ (e.g. $50~km/h$). We define $\dist{x}$ as the distance from
-the origin $\posit{O}$ to the car $\posit{C}$, e.g. $\dist{OC}$. After
-$\delay{t}$ time has passed (e.g. $\delay{t} = \delay{10~s}$), we know
-that $\dist{x} = \speed{v} \delay{t}$; in other words, $\dist{x}$ is
-\textbf{function} of $\delay{t}$:
+Let us consider a car $\posit{C}$ moving along a straight road at a
+speed of $\speed{v}$ (e.g. $\speed{50~km/h}$). The position of the car,
+$\posit{C}$, can be determined by the distance from $\posit{C}$ to an
+arbitrary fix point $\posit{O}$ (the \textbf{origin}). We will note this
+distance $\dist{x}$ and we have thus $\dist{x} = \dist{OC}$.
+
+Say we are interested in the variations of the position of the car as
+time changes and say write the current time $\delay{t}$ as the delay since
+the car was at the origin ($\posit{C} = \posit{O}$).
+
+In other words, we are interested in $\dist{x}$ as a \textbf{function}
+of $\delay{t}$. After some time $\delay{t}$ has passed (e.g. $\delay{t}
+= delay{10~s}$), we know that $\dist{x} = \speed{v} \times \delay{t}$. We
+write it:
+
 \[
-\dist{x}(\delay{t}) = \speed{v} \delay{t}
+\dist{x}(\delay{t}) = \speed{v} \times \delay{t}
 \]
 
 This notation gives us a general formula to compute $\dist{x}$ for any
 given value of $\delay{t}$. For example:
+
 \[
 \dist{x}(\delay{1~h})
 = \speed{50~km/h} \times \delay{1~h}
 = \dist{50~km}
 \]
 
-As another example, consider a mass point $(\posit{O}, \mass{M})$. Then
-the value of the associated gravitation at a point $\posit{P}$ is:
+As another example, it is known that the intensity of the light emitted by a star decreases proportionnaly to the square of the distance to the star. This can be written as:
+
 \[
-\accel{g}(\dist{r}) = \frac {\mathcal G \mass{M}} {\dist{r}^2}
+L(\dist{r}) = \frac C {\dist{r}^2}
 \]
-where $\mathcal G = 6.67 \times 10^{-11} N m^2/kg^2$ is a known value
-(gravitational constant) and $\dist{r}$ is the distance from $O$ to $P$.
+
+where $C$ is some \textbf{constant} value (i.e. independent from
+$\dist{r}$) which is to be determined experimentally.
 
 
 
