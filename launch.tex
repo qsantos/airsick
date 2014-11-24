@@ -282,7 +282,7 @@ density and then the terminal velocity depending on the altitude:
 	\addplot[red] table [y=v]   {data/air_density.dat};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{The terminal velocity quickly rises after 30km}
+	\caption{The terminal velocity quickly rises after \dist{30~km}}
 \end{figure}
 
 
@@ -349,9 +349,9 @@ For example, on Kerbin, you need to reach an horizontal velocity of:
 \[
 \speed{v_{\text{orbit}}}
 =
-\sqrt{\frac {6.67 \times 10^{11} m^3/kg/s^2 \times \mass{5.29 \times 10^{22} kg}} {\dist{600km} + \dist{80km}}}
+\sqrt{\frac {6.67 \times 10^{11}~m^3/kg/s^2 \times \mass{5.29 \times 10^{22}~kg}} {\dist{600~km} + \dist{80~km}}}
 =
-\speed{2279 m/s}
+\speed{2279~m/s}
 \]
 
 \begin{remark}
@@ -362,6 +362,6 @@ we save ($\delay{T}$ is the orbital period): \[
 =
 \frac {2\pi \dist{R}} {\delay{T}}
 =
-\speed{174.5 m/s}
+\speed{174.5~m/s}
 \]
 \end{remark}

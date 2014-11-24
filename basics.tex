@@ -35,9 +35,9 @@ International}, International System).
 \begin{remark}
 A \dist{light} year is the distance that a particle of light can travel
 in a \delay{year} of time. For comparison, it takes light a little more
-than \delay{eight minutes} (\delay{8min}) to get from the Sun to the
-Earth, meaning that the Sun is \dist{8 light-minutes} away from the
-Earth. Kerbin is about \dist{45 light-seconds} away from Kerbol.
+than \delay{eight minutes} (\delay{8~min}) to get from the Sun to the
+Earth, meaning that the Sun is \dist{8~light-minutes} away from the
+Earth. Kerbin is about \dist{45~light-seconds} away from Kerbol.
 \end{remark}
 
 
@@ -76,13 +76,14 @@ There are also prefixes to decrease the value of an unit:
 \subsection{Conversion}
 
 We sometimes need to switch the unit used for a measure. For example,
-let us convert $\speed{50 km/h}$ to SI units. We know that $\dist{km} = \dist{1000 m}$ and $\delay{h} =
-\delay{3600 s}$ so:
+let us convert $\speed{50~km/h}$ to SI units. We know that $\dist{km}
+= \dist{1000~m}$ and $\delay{h} = \delay{3600~s}$ so:
+
 \[
-\speed{50 km/h}
-= 50 (\dist{1000m})/(\delay{3600s})
+\speed{50~km/h}
+= 50 (\dist{1000~m})/(\delay{3600~s})
 = 50 \times 1000 / 3600 \speed{m/s}
-= \speed{14 m/s}
+= \speed{14~m/s}
 \]
 
 This particular example shows how easy it is to include units in
@@ -96,45 +97,49 @@ An addition can only be done with the same kind of measure (e.g. a
 distance can only be summed with another distance). Now, consider the
 following operation:
 \[
-\dist{x} = \dist{2 ly} + \dist{4,730.3 Tm}
+\dist{x} = \dist{2~ly} + \dist{4,730.3~Tm}
 \]
 
-Knowing that $\dist{ly} = \dist{9.4607 Tm}$:
+Knowing that $\dist{ly} = \dist{9.4607~Tm}$:
+
 \begin{align*}
 \dist{x}
-&= \dist{2 ly} + \dist{4,730.3 Tm} \\
-&= 2 \times \dist{9.4607 Tm} + \dist{4,730.3 Tm} \\
+&= 2 \times \dist{ly} + \dist{4,730.3~Tm} \\
+&= 2 \times \dist{9.4607~Tm} + \dist{4,730.3~Tm} \\
 &= (18.92146 + 4,730.3) \dist{Tm} \\
-&= \dist{23.6518 Tm}
+&= \dist{23.6518~Tm}
 \end{align*}
 
-Conversly, $\dist{Tm} = \dist{1/9.4607 ly}$ and:
+Conversly, $\dist{Tm} = \dist{1/9.4607~ly}$ and:
+
 \begin{align*}
 \dist{x}
-&= \dist{2 ly} + \dist{4,730.3 Tm} \\
-&= \dist{2 ly} + (4,730.3 / 9.4607) \dist{ly} \\
+&= \dist{2~ly} + \dist{4,730.3~Tm} \\
+&= \dist{2~ly} + (4,730.3 / 9.4607) \dist{ly} \\
 &= (2 + 0.5) \dist{ly} \\
-&= \dist{2.5 ly}
+&= \dist{2.5~ly}
 \end{align*}
 
-Of course, the two ways are equivalent and $\dist{2.5 ly} = \dist{23.6518
-Tm}$.
+Of course, the two ways are equivalent and we can check that
+$\dist{2.5~ly} = \dist{23.6518~Tm}$.
 
 
 \subsection{Multiplication (and division)}
 
 We can create new units pretty easily. For example, if some object travels
-$d = 15 m$ in $t = 3 s$, we can define a value $v = d / t = (15m) / (3s)
-= 5 m/s$. This particular value is called the mean velocity. Conversely,
-assume the object has traveled at $50 km/h$ for $30s$; then, the distance
-it has gone through is:
+$\dist{d} = \dist{15~m}$ in $\delay{t} = \delay{3~s}$, we can define
+a value $v = d / t = \dist{15~m} / \delay{3~s} = \speed{5~m/s}$. This
+particular value is called the mean velocity. Conversely, assume the
+object has traveled at $50~km/h$ for $30s$; then, the distance it has
+gone through is:
+
 \[
 \dist{d}
 = \speed{v} \times \delay{t}
-= (\speed{50 km/h}) \times (\delay{30s})
-= 14 \speed{m/s} \times 30 \delay{s}
+= (\speed{50~km/h}) \times (\delay{30~s})
+= 14~\speed{m/s} \times 30~\delay{s}
 = (14 \times 30) (\dist{m}/\strike[red]{\delay{s}} \times \strike[red]{\delay{s}})
-= \dist{417 m}
+= \dist{417~m}
 \]
 
 
@@ -153,9 +158,9 @@ it has gone through is:
 \end{figure}
 
 Consider a car $\posit{C}$ moving along a straight road at a speed of
-$\speed{v}$ (e.g. $50km/h$). We define $\dist{x}$ as the distance from
+$\speed{v}$ (e.g. $50~km/h$). We define $\dist{x}$ as the distance from
 the origin $\posit{O}$ to the car $\posit{C}$, e.g. $\dist{OC}$. After
-$\delay{t}$ time has passed (e.g. $\delay{t} = \delay{10s}$), we know
+$\delay{t}$ time has passed (e.g. $\delay{t} = \delay{10~s}$), we know
 that $\dist{x} = \speed{v} \delay{t}$; in other words, $\dist{x}$ is
 \textbf{function} of $\delay{t}$:
 \[
@@ -165,9 +170,9 @@ that $\dist{x} = \speed{v} \delay{t}$; in other words, $\dist{x}$ is
 This notation gives us a general formula to compute $\dist{x}$ for any
 given value of $\delay{t}$. For example:
 \[
-\dist{x}(\delay{1h})
-= \speed{50km/h} \times \delay{1h}
-= \dist{50 km}
+\dist{x}(\delay{1~h})
+= \speed{50~km/h} \times \delay{1~h}
+= \dist{50~km}
 \]
 
 As another example, consider a mass point $(\posit{O}, \mass{M})$. Then
@@ -311,20 +316,20 @@ noted with the integral symbol (which just means sum of small elements):
 
 \subsection{Illustration}
 
-For example, if $\speed{\dot x} = \accel{2m/s^2} \times \delay{t}$, then:
+For example, if $\speed{\dot x} = \accel{2~m/s^2} \times \delay{t}$, then:
 \begin{align*}
-\dist{x}(\delay{30s}) - \dist{x}(\delay{0})
-&= \int_{\delay{0}}^{\delay{30s}} \accel{2m/s^2} \times \delay{t} \delay{\dt} \\
-&= \left(\int_{\delay{0})}^{\delay{30s}} 2 \delay{t} \delay{\dt}\right) \accel{m/s^2} \\
-&= [\delay{t}^2]_{\delay{0}}^{\delay{30s}} \accel{m/s^2} \\
-&= (900s^2 - 0s^2) \accel{m/s^2} \\
-&= \dist{900m}
+\dist{x}(\delay{30~s}) - \dist{x}(\delay{0~s})
+&= \int_{\delay{0}}^{\delay{30~s}} \accel{2~m/s^2} \times \delay{t} \delay{\dt} \\
+&= \left(\int_{\delay{0})}^{\delay{30~s}} 2 \delay{t} \delay{\dt}\right) \accel{m/s^2} \\
+&= [\delay{t}^2]_{\delay{0}}^{\delay{30~s}} \accel{m/s^2} \\
+&= (900~s^2 - 0~s^2) \accel{m/s^2} \\
+&= \dist{900~m}
 \end{align*}
 
 In particular, with we are given the additional information that $\posit{C}$
 did start at $\posit{O}$, i.e.  $\dist{x}(\delay{0}) = \dist{0}$, then:
 \[
-\dist{x}(\delay{30s}) = \dist{900m}
+\dist{x}(\delay{30~s}) = \dist{900~m}
 \]
 
 
@@ -333,7 +338,7 @@ did start at $\posit{O}$, i.e.  $\dist{x}(\delay{0}) = \dist{0}$, then:
 More generally, in the previous example, we could write:
 \[
 \dist{x}(\delay{t}) - \dist{x}(\delay{0})
-= \int_{\delay{0}}^{\delay{30s}} \accel{2m/s^2} \times \delay{t} \delay{\dt}
+= \int_{\delay{0}}^{\delay{30~s}} \accel{2~m/s^2} \times \delay{t} \delay{\dt}
 = \delay{t}^2 \accel{m/s^2}
 \]
 
