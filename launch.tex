@@ -2,7 +2,10 @@
 \banner
 \chaptquote{Yuri Gagarin}{Let's go!}
 
+
+
 \section{Vertical ascent}
+
 
 \subsection{General expression}
 
@@ -30,6 +33,7 @@ And integrating once more:
 	+ \speed{v_e} \delay{t}
 + \dist{J}_{\force{F}}(\delay{t})
 \end{align*}
+
 
 \subsection{Gravity}
 
@@ -67,6 +71,7 @@ We will then proceed to a numerical approximation:
 \end{aligned}
 \right.
 \]
+
 
 \subsection{Graphs}
 
@@ -123,7 +128,10 @@ will not go as high.
 	}
 \end{figure}
 
+
+
 \section{Atmospheric drag}
+
 
 \subsection{Definition}
 
@@ -135,6 +143,7 @@ Atmospheric drag exerts a force opposite to the velocity with intensity:
 where $\rho$ is the density of air and $C_d$ and $A$ are aerodynamics
 factors.
 
+
 \subsection{Terminal velocity}
 
 When terminal velocity is reached, $\speed{\dot z}$ is constant so
@@ -144,6 +153,7 @@ $\accel{\ddot z}$ is null and:
 \Leftrightarrow
 \speed{v} = \sqrt{2\frac {\mass{m} \accel{g}} {\rho C_d \area{A}}}
 \]
+
 
 \subsection{Optimal speed}
 
@@ -162,6 +172,7 @@ Now we define $f(\speed{v}) = C_1 \speed{v} + \frac {\force{C_2}}
 {\speed{v}}$ and find its minimum. Its derivative is $f'(v) = C_1 - \frac
 {\force{C_2}} {\speed{v}^2}$. It comes that the minimum is $\speed{v}
 = \sqrt{\frac {\force{C_2}} {C_1}}$.  It matches the terminal velocity.
+
 
 \subsection{Derivation of air pressure}
 
@@ -236,6 +247,7 @@ P(\dist{z})
 = P_0 \left(1 - \frac {L\dist{z}} {T}\right)^{- \frac {\accel{g} \mass{M}} {LR}}
 \]
 
+
 \subsection{Evolution of terminal velocity}
 
 Using the closed expression for the pressure, we can now derive the
@@ -273,7 +285,10 @@ density and then the terminal velocity depending on the altitude:
 	\caption{The terminal velocity quickly rises after 30km}
 \end{figure}
 
+
+
 \section{Gravity turn}
+
 
 \subsection{Principle}
 
@@ -314,6 +329,7 @@ more convenient for further maneuvers to have a circular orbit.
 		“orbit” to the \textcolor{blue}{blue} orbit.
 	}
 \end{figure}
+
 
 \subsection{Classical burn}
 

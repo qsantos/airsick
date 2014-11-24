@@ -6,7 +6,10 @@
 }
 \csname banner1\endcsname
 
+
+
 \section{Units}
+
 
 \subsection{Dimensions}
 
@@ -36,6 +39,8 @@ than \delay{eight minutes} (\delay{8min}) to get from the Sun to the
 Earth, meaning that the Sun is \dist{8 light-minutes} away from the
 Earth. Kerbin is about \dist{45 light-seconds} away from Kerbol.
 \end{remark}
+
+
 
 \subsection{Prefixes}
 
@@ -67,6 +72,7 @@ There are also prefixes to decrease the value of an unit:
 \end{figure}
 \end{remark}
 
+
 \subsection{Conversion}
 
 We sometimes need to switch the unit used for a measure. For example,
@@ -78,6 +84,11 @@ let us convert $\speed{50 km/h}$ to SI units. We know that $\dist{km} = \dist{10
 = 50 \times 1000 / 3600 \speed{m/s}
 = \speed{14 m/s}
 \]
+
+This particular example shows how easy it is to include units in
+computations. As we will see below, having the units is useful when
+considering more complex expressions.
+
 
 \subsection{Addition (and substraction)}
 
@@ -109,6 +120,7 @@ Conversly, $\dist{Tm} = \dist{1/9.4607 ly}$ and:
 Of course, the two ways are equivalent and $\dist{2.5 ly} = \dist{23.6518
 Tm}$.
 
+
 \subsection{Multiplication (and division)}
 
 We can create new units pretty easily. For example, if some object travels
@@ -124,6 +136,8 @@ it has gone through is:
 = (14 \times 30) (\dist{m}/\strike[red]{\delay{s}} \times \strike[red]{\delay{s}})
 = \dist{417 m}
 \]
+
+
 
 \section{Functions}
 
@@ -164,7 +178,10 @@ the value of the associated gravitation at a point $\posit{P}$ is:
 where $\mathcal G = 6.67 \times 10^{-11} N m^2/kg^2$ is a known value
 (gravitational constant) and $\dist{r}$ is the distance from $O$ to $P$.
 
+
+
 \section{Derivative}
+
 
 \subsection{Illustration}
 
@@ -213,6 +230,7 @@ An even shorter notation than $\frac {\d} {\delay{\dt}}$ (only when we
 use $\delay{\dt}$) is to just add a dot: $\speed{\dot x}(\delay{t})$.
 \end{remark}
 
+
 \subsection{Definition}
 
 From what is above, we get that the formal definition for the derivative
@@ -221,6 +239,7 @@ of a function $f$ is:
 \frac {\d f(x)} {\d x}
 = \lim_{\d x \rightarrow 0} \frac {f(x+\d x) - f(x)} {\d x}
 \]
+
 
 \subsection{Second derivative}
 
@@ -231,6 +250,7 @@ is called the second derivative: \[
 = \frac {\d \speed{\dot x}} {\delay{\dt}}
 = \accel{\ddot x}
 \]
+
 
 \subsection{Common derivatives}
 
@@ -266,7 +286,10 @@ is called the second derivative: \[
 \times \frac {\d} {\d x} f(g(x))
 \]
 
+
+
 \section{Integrals}
+
 
 \subsection{Concept}
 
@@ -285,6 +308,7 @@ noted with the integral symbol (which just means sum of small elements):
 }_{[\dist{x}]_{\delay{t_1}}^{\delay{t_2}}}
 \]
 
+
 \subsection{Illustration}
 
 For example, if $\speed{\dot x} = \accel{2m/s^2} \times \delay{t}$, then:
@@ -302,6 +326,7 @@ did start at $\posit{O}$, i.e.  $\dist{x}(\delay{0}) = \dist{0}$, then:
 \[
 \dist{x}(\delay{30s}) = \dist{900m}
 \]
+
 
 \subsection{Antiderivative}
 
@@ -323,7 +348,10 @@ position of the car at the initial instant). Each of the possible
 expression of $\dist{x}$ (depending on $\dist{C}$) is a primitive of
 $\speed{\dot x}$.
 
+
+
 \section{Differential equations}
+
 
 \subsection{Definition}
 
@@ -336,6 +364,7 @@ which a derivative of this function appears. For example:
 This is a differential equation and we already know how to solve it
 (find the expression of $f$). Here, $f(x) = x^3 + C$ (there are several
 possible solutions).
+
 
 \subsection{Exponential}
 
@@ -360,6 +389,7 @@ gives us:
 so that $\frac {\d f} {\d x} = g' f$.
 \end{remark}
 
+
 \subsection{First order}
 
 Now, consider the following equation:
@@ -382,6 +412,7 @@ h$, i.e. the solutions are:
 \[
 f(x) = C e^{\int_0^x h(x) \d x}
 \]
+
 
 \section{Geometric integrals}
 

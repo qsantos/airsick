@@ -6,11 +6,14 @@
 	forces impressed upon it.
 }
 
+
+
 \section{Referential}
 
 A referential is the object you use as a landmark (origin) to keep track
 of interesting points. A system of coordinates if the kind of data you
 use to store the position of these points relatively to the origin.
+
 
 \subsection{Cartesian coordinates}
 
@@ -39,6 +42,7 @@ get from the origin to the point.
 Cartesian coordinates can be used in three dimensions by adding one axis
 (usually noted $z$).
 
+
 \subsection{Polar coordinates}
 
 Polar coordinates work in two dimensions. On value is simply the distance
@@ -59,6 +63,7 @@ porientation.
 	\end{tikzpicture}
 	\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
 \end{figure}
+
 
 \subsection{Polar coordinates}
 
@@ -91,6 +96,7 @@ By deriving again, we get the acceleration:
   + (2 \speed{\dot r} \dot \theta + \dist{r} \ddot \theta) \hat \theta
 \]
 
+
 \subsection{Spherical coordinates}
 
 Spherical coordinates are simply the generalization of polar
@@ -122,7 +128,10 @@ angle with the polar plane:
 	\caption{The polar coordinates of $\posit{P}$ are $\posit{(\theta:r)}$}
 \end{figure}
 
+
+
 \section{Newtonian mechanics}
+
 
 \subsection{Center of mass}
 
@@ -138,6 +147,7 @@ the derivative of the position: $\speed{\vec v} = \speed{\dot{\vec
 r}}$; the acceleration is the derivative of the velocity: $\accel{a} =
 \accel{\dot{\vec v}} = \accel{\ddot{\vec r}}$.
 
+
 \subsection{Newton's second law}
 
 If we consider a point-mass $(\posit{P}, \mass{m})$ which is subjected
@@ -152,6 +162,8 @@ When $\force{\vec F} = 0$, the acceleration is null as well and the
 speed is constant (in practise, there are forces of friction, which
 slows objects down). This is Newton's first law (chapter quote).
 \end{remark}
+
+
 
 \section{Shell theorem}
 
@@ -247,6 +259,8 @@ for $\angle{\psi}$. This means that $\angle{\psi} = \arcsin \frac
 We then use the relations $\sin(\arcsin x) = x$ and $\cos(\arcsin x) =
 \sqrt{1 - x^2}$ for $0 \leq x \leq \frac {\pi} 2$.
 
+
+
 \section{Sphere of incluence}
 
 Consider spherical bodies $(\posit{P_1}, \mass{M_1})$ and $(\posit{P_2},
@@ -293,7 +307,10 @@ $\force{F_2} = \mathcal G \frac {\mass{M_2} \mass{m}} {\dist{r}^2}$
 & \Leftrightarrow \dist{r} = \dist{a} \sqrt{\frac {\mass{M_2}} {\mass{M_1}}} \\
 \end{align*}
 
+
+
 \section{Thrust}
+
 
 \subsection{Set up}
 
@@ -302,6 +319,7 @@ $\delay{t}+\delay{dt}$, it ejects $\mass{\dm}$ of its fuel with relative
 velocity $\speed{v_e}$; its center of mass is noted $\posit{F}$. We will
 use $\posit{G}$ to refer to the center of mass of the system containing
 both the rocket and the ejected fuel.
+
 
 \subsection{Derivation of exerted force}
 
@@ -361,6 +379,7 @@ $\delay{t}+\delay{dt}$:
 + \force{F}
 \end{align*}
 
+
 \subsection{Specific impulse}
 
 In KSP, the engines are defined by their maximum thrust $\force{F_t}$
@@ -378,6 +397,7 @@ weight) of fuel used, i.e. $\delay{I_{\mathrm{sp}}} = \frac {\force{F_t}}
 = - \delay{I_{\mathrm{sp}}} \times \accel{g}
 \end{array}
 \]
+
 
 \subsection{Tsiolkovsky rocket equation}
 
