@@ -306,6 +306,7 @@ more convenient for further maneuvers to have a circular orbit.
 \def\pea{0.1}
 \def\peb{3}
 \def\an{-7}
+\node[loint=O] (O) at (0,0) {};
 \path[
 	right color=blue!5,
 	left color=blue!5!black!10,
@@ -317,7 +318,6 @@ more convenient for further maneuvers to have a circular orbit.
 	left color=blue!20!black,
 ]
 (O) circle (\R);
-\node[loint=O] at (0,0) {};
 \orbitpoint[boint=P]{O}{\ap}{\pea}{\an}{}{};
 \orbit[red,dotted]{O}{\ap}{\pea}{\an}{360+\an};
 \orbit[blue]{O}{\ap}{\peb}{-180}{180};
