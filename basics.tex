@@ -94,13 +94,18 @@ considering more complex expressions.
 \subsection{Addition (and substraction)}
 
 An addition can only be done with the same kind of measure (e.g. a
-distance can only be summed with another distance). Now, consider the
-following operation:
+distance can only be summed with another distance). This is seems obvious,
+but simply checking that the values that are being some are actually of
+the same kind can help locate errors early and save tremendous amounts
+of time. Now, consider the following operation:
+
 \[
 \dist{x} = \dist{2~ly} + \dist{4,730.3~Tm}
 \]
 
-Knowing that $\dist{ly} = \dist{9.4607~Tm}$:
+We do not know how to sum arbitrary units (for instance \dist{m}
+with \mass{kg}). However, we do know that that $\dist{ly} =
+\dist{9.4607~Tm}$. Thus, we can replace it in the expression:
 
 \begin{align*}
 \dist{x}
@@ -110,7 +115,8 @@ Knowing that $\dist{ly} = \dist{9.4607~Tm}$:
 &= \dist{23.6518~Tm}
 \end{align*}
 
-Conversly, $\dist{Tm} = \dist{1/9.4607~ly}$ and:
+Conversly, we could also have said that $\dist{Tm} = \dist{1/9.4607~ly}$
+and then:
 
 \begin{align*}
 \dist{x}
@@ -126,12 +132,12 @@ $\dist{2.5~ly} = \dist{23.6518~Tm}$.
 
 \subsection{Multiplication (and division)}
 
-We can create new units pretty easily. For example, if some object travels
-$\dist{d} = \dist{15~m}$ in $\delay{t} = \delay{3~s}$, we can define
-a value $v = d / t = \dist{15~m} / \delay{3~s} = \speed{5~m/s}$. This
-particular value is called the mean velocity. Conversely, assume the
-object has traveled at $50~km/h$ for $30s$; then, the distance it has
-gone through is:
+We can create new units pretty easily. For example, if some object
+travels a distance $\dist{d} = \dist{15~m}$ in a duration $\delay{t}
+= \delay{3~s}$, we can define the velocity $\speed{v} = \dist{d} /
+\delay{t} = \dist{15~m} / \delay{3~s} = \speed{5~m/s}$. Conversely,
+assume the object has traveled at a velocity $\speed{50~km/h}$ for a
+duration $\delay{30~s}$; then, the distance it has gone through is:
 
 \[
 \dist{d}
@@ -141,6 +147,10 @@ gone through is:
 = (14 \times 30) (\dist{m}/\strike[red]{\delay{s}} \times \strike[red]{\delay{s}})
 = \dist{417~m}
 \]
+
+By doing the operations on both the numerical values and the units,
+we know what our result is: in this case, it's a distance, and it is
+expressed in meters.
 
 
 
