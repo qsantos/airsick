@@ -206,65 +206,171 @@ $\dist{r}$) which is to be determined experimentally.
 
 
 
-\section{Derivative}
-
-
-\subsection{Illustration}
-
-As previously, consider a car $C$ moving away from $\posit{O}$ with
-$\dist{x} = \dist{OC}$; this time we do not know how fast it is going, and
-it can accelerate or decelerate. First, because the speed is changing,
-we need a way to define it at any moment. We know how to define the
-\textbf{mean speed}:
-\[
-\speed{v}_{\mathrm{mean}} = \dist{x}(\delay{t}) / \delay{t}
-\]
-
-Like any mean, it depends on the speed since the beginning. For example,
-if the car has been going slowly during a long time and them abruptly
-accelerate, the mean speed remain low while the actual speed is higher.
-
-Instead of using the mean speed betwen times $\delay{0s}$ and
-$\delay{t}$. Instead, we will skip the beginning of the journey to start
-at time $\delay{t}$ and end after a short delay $\delay{\dt}$:
-\[
-\frac {
-	\overbrace{\dist{x}(\delay{t}+\delay{\dt})}^{\text{final position}}
-	- \overbrace{\dist{x}(\delay{t})}^{\text{skipping before}}
-} {\underbrace{\delay{\dt}}_{\text{amount of time traveled}}}
-\]
-
-As the value of $\delay{\dt}$ approaches $\delay{0}$, this
-“short-mean” approaches the actual speed; it is called the
-\textbf{instant speed}. Because the part on the fraction is small too,
-we usually note it $\dist{\d x}$. We then end up with:
-\[
-\frac {\dist{\d x}(\delay{t})} {\delay{\dt}}
-\text{ or }
-\frac {\dist{\d x}} {\delay{\dt}}(\delay{t})
-\text{ or }
-\frac {\d} {\delay{\dt}} \dist{x}(\delay{t})
-\]
-
-Like we wanted, the instant speed depends on the time: it is a function
-as well; it is called the derivative of $\dist{x}$. Because $\dist{x}$
-was a distance (e.g. m) and we derived with respect to a delay $\delay{t}$
-(e.g. s), the derivative is a speed (e.g. m/s).
-
-\begin{remark}
-An even shorter notation than $\frac {\d} {\delay{\dt}}$ (only when we
-use $\delay{\dt}$) is to just add a dot: $\speed{\dot x}(\delay{t})$.
-\end{remark}
+\section{Derivatives}
 
 
 \subsection{Definition}
 
-From what is above, we get that the formal definition for the derivative
-of a function $f$ is:
+Assume we know the position $\dist{x}(\delay{t})$ of the car for any
+instant $\delay{t}$ and we want to determine the velocity of the car at
+a given instant $\delay{t_0}$.
+
+\pgfmathdeclarefunction{examplepos}{1}{\pgfmathparse{e^(2.2*(#1)) - e^(10-5*(#1)) + 22024}}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis lines=left,
+	xlabel=$\delay{t}$,
+	ylabel=$\dist{x}$,
+	legend pos=north west,
+	clip=false,
+]
+\addplot{examplepos(x)};
+\node[roint=A] (A) at (axis cs:4, {examplepos(4)}) {};
+\node[boint={\delay{t_0}}] (t) at (A |- {axis cs:0,0}) {};
+\node[loint={\dist{x}(\delay{t_0})}] (x) at (A -| {axis cs:0,0}) {};
+\draw[dashed] (t) -- (A) -- (x);
+\addlegendentry{$\dist{x}(\delay{t})$}
+\end{axis}
+\end{tikzpicture}
+\caption{
+	The horizontal axis represents the passage of time, the vertical
+	axis the position. The blue line shows the current position of
+	the current at every instant. We are interested in the instant
+	$\delay{t_0}$; this is noted $\posit{A}$ on the graph.
+}
+\end{figure}
+
+The velocity is a the \textbf{variation} of position through time. Thus,
+to know how fast the car is going at time $\delay{t_0}$, we need to look
+at the position of the car at two different instants. We already have
+$\delay{t_0}$; let us also consider $\delay{t_0+h}$ for some arbitrary
+value $\delay{h}$.
+
+The difference in position between instants $\delay{t_0}$ and
+$\delay{t_0+h}$ is thus $\dist{x}(\delay{t_0+h}) - \dist{x}(\delay{t_0})$;
+a shorter notation for this is $\dist{\Delta x}(\delay{t_0})$. The
+value $\delay{h}$ is not shown because we do not really care about
+it. The Greek letter $\Delta$, for $d$, is generally used to denote a
+\textbf{d}ifference (here, the difference in position).
+
+Notice that, the bigger $\delay{h}$, the bigger we expect this difference
+to be; to compensate for this, we will divide by how much time has passed,
+which is to say $\delay{t_0+h} - \delay{t_0} = \delay{\Delta t_0})$:
+
 \[
-\frac {\d f(x)} {\d x}
-= \lim_{\d x \rightarrow 0} \frac {f(x+\d x) - f(x)} {\d x}
+\frac {\dist{\Delta x}(\delay{t_0})} {\delay{\Delta t_0}}
 \]
+
+This value is the \textbf{mean velocity} from instant $\delay{t_0}$ to
+instant $\delay{t_0+h}$. However, the mean velocity is a value that
+only gives a general idea of the speed on some period of time. In this
+duration, the \textbf{instant velocity} (actual speed) can very a lot
+and the mean velocity would then be far off to these values.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis lines=left,
+	xlabel=$\delay{t}$,
+	ylabel=$\dist{x}$,
+	legend pos=north west,
+	clip=false,
+]
+\addplot{examplepos(x)};
+\node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
+\node[roint=B] (B) at (axis cs:4.9, {examplepos(4.9)}) {};
+\node[boint={\delay{t_0}}]   (t0) at (A |- {axis cs:0,0}) {};
+\node[boint={\delay{t_0+h}}] (t1) at (B |- {axis cs:0,0}) {};
+\node[loint={\dist{x}(\delay{t_0})}]   (x0) at (A -| {axis cs:0,0}) {};
+\node[loint={\dist{x}(\delay{t_0+h})}] (x1) at (B -| {axis cs:0,0}) {};
+\draw[dashed] (t0) -- (A) -- (x0);
+\draw[dashed] (t1) -- (B) -- (x1);
+\draw[color=red,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
+\addlegendentry{$\dist{x}(\delay{t})$}
+\end{axis}
+\end{tikzpicture}
+\caption{
+	We add a point $\posit{B}$ to the previous graph at time
+	$\delay{t_0}+h$. The mean velocity from $\posit{A}$ to $\posit{B}$
+	can be thought as the slope of the red line $(AB)$.
+}
+\end{figure}
+
+Since
+we expect the speed to not change a lot on short periods of time, a
+natural solution is to consider the mean velocity over shorter durations.
+
+\begin{figure}[H]
+\centering
+\foreach \i in {0,...,3}{
+	\begin{subfigure}{0.4\textwidth}
+	\begin{tikzpicture}[scale=0.5]
+		\begin{axis}[
+		samples=\samples,
+		domain=0:5,
+		ticks=none,
+		no markers,
+		axis lines=left,
+		legend pos=north west,
+		clip=false,
+		]
+	\addplot{examplepos(x)};
+	\node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
+	\node[loint=B] (B) at (axis cs:{4.0+0.9/(2^\i)}, {examplepos(4.0+0.9/(2^\i))}) {};
+	\draw[color=red,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
+	\end{axis}
+	\end{tikzpicture}
+	\end{subfigure}
+}
+\caption{
+	The closer to $\posit{A}$ we pick $\posit{B}$, the best the red
+	line matches the curve for velocity at $\posit{A}$.
+}
+\end{figure}
+
+So, as we pick shorter and shorter durations $\delay{h}$, the value
+$\delay{\Delta t_0}$ becomes smaller, but so does $\dist{\Delta
+x}$. Often, we will notice that the mean velocity over $\delay{h}$
+seems to becomes closer and closer to a particular value. Instead of
+continuing to choose smaller and smaller values of $\delay{h}$, we will
+pick this values and call it the \textbf{limit} of $\frac {\dist{\Delta
+x}(\delay{t_0})} {\delay{\Delta t_0}}$ as $\delay{h}$ tends to $0$
+(becomes smaller and smaller):
+
+\[
+\lim_{\delay{h} \to \delay{0}} \frac {\dist{\Delta x}(\delay{t_0})} {\delay{\Delta t_0}}
+\]
+
+The limit of such an expression is called the \textbf{derivative} of
+$\posit{x}$ at $\delay{t_0}$. We have a shorter way to note this:
+
+\[
+\frac {\dist{\d x}(\delay{t_0})} {\delay{\dt}}
+\]
+
+We can then remark that we have actually defined the derivative for any
+$\delay{t_0}$. Thus, we have a new function that let us evaluate the
+velocity at any $\delay{t_0}$.
+
+\[
+\frac {\dist{\d x}} {\delay{\dt}}
+\]
+
+\begin{remark}
+An even shorter notation is $\speed{\dot x}$. This notation is only used
+for derivatives with respect to time.
+\end{remark}
 
 
 \subsection{Second derivative}
