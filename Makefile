@@ -8,6 +8,9 @@ all: $(TARGETS)
 %/:
 	mkdir -p $@
 
+optimize: all
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -sOutputFile=airsick_opt.pdf airsick.pdf
+
 toc: all
 	pdflatex -halt-on-error -shell-escape airsick
 
