@@ -165,7 +165,7 @@ We can multiply both hands by $\sqrt{\dist{r_0}}$ and set $x = \frac
 	xlabel=$\frac {\dist{r_1}} {\dist{r_0}}$,
 	ylabel=$\alpha \speed{\Delta v}$
 ]
-\addplot+ {abs(sqrt(2-2/(1+x)) - 1) + abs(1/sqrt(x) - sqrt(2/x - 2/(1+x)))};
+\addplot{abs(sqrt(2-2/(1+x)) - 1) + abs(1/sqrt(x) - sqrt(2/x - 2/(1+x)))};
 \end{axis}
 \end{tikzpicture}
 \caption{
@@ -285,10 +285,10 @@ Again, we set $x = \frac {\dist{r_2}} {\dist{r_0}}$ and $y = \frac
 	ylabel=$\alpha \speed{\Delta v}$,
 	legend pos=north west,
 ]
-\addplot+ {abs(sqrt(2-2/(1+x)) - 1) + abs(1/sqrt(x) - sqrt(2/x - 2/(1+x)))};
+\addplot{abs(sqrt(2-2/(1+x)) - 1) + abs(1/sqrt(x) - sqrt(2/x - 2/(1+x)))};
 \addlegendentry{Hohmann}
 \foreach \myy in {10,50}{
-	\addplot+ {abs(sqrt(2-2/(1+\myy)) - 1) + abs(sqrt(2/\myy - 2/(x+\myy)) - sqrt(2/\myy - 2/(1+\myy))) + abs(1/sqrt(x) - sqrt(2/x - 2/(x+\myy)))};
+	\addplot{abs(sqrt(2-2/(1+\myy)) - 1) + abs(sqrt(2/\myy - 2/(x+\myy)) - sqrt(2/\myy - 2/(1+\myy))) + abs(1/sqrt(x) - sqrt(2/x - 2/(x+\myy)))};
 	\edef\temp{\noexpand
 	\addlegendentry{Bi ($y = \myy$)}
 	}\temp
@@ -414,7 +414,7 @@ For $\angle{\theta} = \angle{\pi}$, we get $\speed{\Delta v} = 2
 	xlabel=$\theta$ ($^{\circ}$),
 	ylabel=$\frac {\speed{\Delta v}} {\speed{v}}$,
 ]
-\addplot+ {abs(2*sin(x/2))};
+\addplot{abs(2*sin(x/2))};
 \end{axis}
 \end{tikzpicture}
 \caption{

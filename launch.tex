@@ -114,7 +114,7 @@ will not go as high.
 	\addlegendentry{$\force{F}=\frac {\mathcal G \mass{M} \mass{m}} {(\dist{R}+\dist{z})^2}$}
 	\foreach \y in {zn,zg,zG}
 	{
-		\addplot+ table [y=\y] {data/ascent_\b.dat};
+		\addplot table [y=\y] {data/ascent_\b.dat};
 	}
 	\end{axis}
 	\end{tikzpicture}
