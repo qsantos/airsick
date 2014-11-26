@@ -1,23 +1,24 @@
-TARGETS = airsick.pdf
+TARGET   = airsick.pdf
+BUILDDIR = .build
 
-all: $(TARGETS)
+all: $(TARGET)
 
-%.pdf: %.tex $(wildcard *.tex) $(wildcard data/*) figures/
-	pdflatex -halt-on-error -shell-escape $*
-
-%/:
-	mkdir -p $@
+# http://tex.stackexchange.com/questions/13271/13277#13277
+%.pdf: %.tex $(wildcard *.tex) $(wildcard data/*)
+	@mkdir -p "$(BUILDDIR)/$(BUILDDIR)/"
+	@openout_any=a pdflatex -halt-on-error -shell-escape -output-dir "$(BUILDDIR)" $*
+	@mv "$(BUILDDIR)/$@" .
 
 optimize: all
 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -sOutputFile=airsick_opt.pdf airsick.pdf
 
 toc: all
-	pdflatex -halt-on-error -shell-escape airsick
+	pdflatex -halt-on-error -shell-escape "$(TARGET:.pdf=.tex)"
 
 clean:
-	rm -f *.aux *.log *.out *.toc *.auxlock figures/*
+	rm -Rf "$(BUILDDIR)/"
 
 destroy: clean
-	rm -f $(TARGETS)
+	rm -f "$(TARGET)"
 
 rebuild: destroy all

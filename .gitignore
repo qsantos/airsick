@@ -1,8 +1,2 @@
-*.aux
-*.log
-*.out
-*.toc
-*.pdf
-*.auxlock
-figures/
 .*
+*.pdf
