@@ -451,7 +451,7 @@ There are a few derivation rules that can help us determine the derivative
 of complex functions easily.
 
 \begin{figure}[H]
-\begin{subfigure}{0.5\textwidth}
+\begin{subfigure}{0.45\textwidth}
 \begin{alignat*}{2}
 & (\alpha f)'              &&= \alpha f' \\
 & (f + g)'                 &&= f' + g' \\
@@ -461,7 +461,7 @@ of complex functions easily.
 \end{alignat*}
 \caption{derivation rules}
 \end{subfigure}
-\begin{subfigure}{0.5\textwidth}
+\begin{subfigure}{0.45\textwidth}
 \begin{alignat*}{2}
 & (x^n)'    &&= n x^{n-1}   \\
 & (e^x)'    &&= e^x         \\
@@ -604,52 +604,68 @@ f(x) = C e^{\int_0^x h(x) \d x}
 \section{Geometric integrals}
 
 Circle circumference:
-\[
+\begin{align*}
 \dist{d}
-= \oint_C \dist{\d s}
-= \int_{\angle{0}}^{\angle{2\pi}} \dist{R} \angle{\d \theta}
-= \dist{R} \left[ \theta \right]_{\angle{0}}^{\angle{2\pi}}
-= 2\pi \dist{R}
-\]
+&= \oint_C \dist{\d s}
+\\
+&= \int_{\angle{0}}^{\angle{2\pi}} \dist{R} \angle{\d \theta}
+\\
+&= \dist{R} \left[ \theta \right]_{\angle{0}}^{\angle{2\pi}}
+\\
+&= 2\pi \dist{R}
+\\
+\end{align*}
 
 Disk area:
-\[
+\begin{align*}
 \area{A}
-= \iint_D \area{\d A}
-= \int_{\dist{r}=\dist{0}}^{\dist{R}}
+&= \iint_D \area{\d A}
+\\
+&= \int_{\dist{r}=\dist{0}}^{\dist{R}}
   \int_{\angle{\theta}=\angle{0}}^{\angle{2\pi}}
   \dist{\d r} \times \dist{r} \angle{\d \theta}
-= 2\pi \int_{\dist{0}}^{\dist{R}} \dist{r} \dist{\d r}
-= 2\pi \left[\frac 1 2 \dist{r}^2\right]_{\dist{0}}^{\dist{R}}
-= \pi \dist{R}^2
-\]
+\\
+&= 2\pi \int_{\dist{0}}^{\dist{R}} \dist{r} \dist{\d r}
+\\
+&= 2\pi \left[\frac 1 2 \dist{r}^2\right]_{\dist{0}}^{\dist{R}}
+\\
+&= \pi \dist{R}^2
+\end{align*}
 
 Sphere area:
-\[
+\begin{align*}
 \area{A}
-= \oiint_S \area{\d A}
-= \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}}
+&= \oiint_S \area{\d A}
+\\
+&= \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}}
   \int_{\angle{\phi}=\angle{0}}^{\angle{2\pi}}
   (\dist{R} \sin \angle{\phi} \angle{\d \theta})
   (\dist{R} \angle{\d \phi})
-= 2\pi \dist{R}^2 \int_{\angle{0}}^{\angle{\pi}} \sin \angle{\phi} \angle{\d \phi}
-= 2\pi \dist{R}^2 \left[ - \cos \phi \right]_{\angle{0}}^{\angle{\pi}}
-= 4\pi \dist{R}^2
-\]
+\\
+&= 2\pi \dist{R}^2 \int_{\angle{0}}^{\angle{\pi}} \sin \angle{\phi} \angle{\d \phi}
+\\
+&= 2\pi \dist{R}^2 \left[ - \cos \phi \right]_{\angle{0}}^{\angle{\pi}}
+\\
+&= 4\pi \dist{R}^2
+\end{align*}
 
 Sphere enclosed volume:
-\[
+\begin{align*}
 \vol{V}
-= \iiint_B \vol{\d V}
-= \int_{\dist{r}=\dist{0}}^{\dist{R}}
+&= \iiint_B \vol{\d V}
+\\
+&= \int_{\dist{r}=\dist{0}}^{\dist{R}}
   \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}}
   \int_{\angle{\phi}=\angle{0}}^{\angle{2\pi}}
   (\dist{r} \sin \angle{\phi} \angle{\d \theta}) (\dist{r} \d \angle{\phi}) \dist{\d r}
-= 2 \pi
+\\
+&= 2 \pi
   \int_{\dist{r}=\dist{0}}^{\dist{R}}
   \int_{\angle{\theta}=\angle{0}}^{\angle{\pi}} \sin \angle{\phi} \angle{\d \phi} \dist{r}^2 \dist{\d r}
-= 2 \pi
+\\
+&= 2 \pi
   \left[\frac 1 3 \dist{r}^3\right]_{\dist{0}}^{\dist{R}}
   \left[- \cos \angle{\phi}\right]_{\angle{0}}^{\angle{\pi}}
-= \frac 4 3 \pi \dist{R}^3
-\]
+\\
+&= \frac 4 3 \pi \dist{R}^3
+\end{align*}
