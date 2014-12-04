@@ -226,15 +226,13 @@ a given instant $\delay{t_0}$.
 	axis lines=left,
 	xlabel=$\delay{t}$,
 	ylabel=$\dist{x}$,
-	legend pos=north west,
 	clip=false,
 ]
-\addplot{examplepos(x)};
+\addplot+[color=green]{examplepos(x)};
 \node[roint=A] (A) at (axis cs:4, {examplepos(4)}) {};
 \node[boint={\delay{t_0}}] (t) at (A |- {axis cs:0,0}) {};
 \node[loint={\dist{x}(\delay{t_0})}] (x) at (A -| {axis cs:0,0}) {};
 \draw[dashed] (t) -- (A) -- (x);
-\addlegendentry{$\dist{x}(\delay{t})$}
 \end{axis}
 \end{tikzpicture}
 \caption{
@@ -283,10 +281,9 @@ and the mean velocity would then be far off to these values.
 	axis lines=left,
 	xlabel=$\delay{t}$,
 	ylabel=$\dist{x}$,
-	legend pos=north west,
 	clip=false,
 ]
-\addplot{examplepos(x)};
+\addplot+[color=green]{examplepos(x)};
 \node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
 \node[roint=B] (B) at (axis cs:4.9, {examplepos(4.9)}) {};
 \node[boint={\delay{t_0}}]   (t0) at (A |- {axis cs:0,0}) {};
@@ -295,8 +292,7 @@ and the mean velocity would then be far off to these values.
 \node[loint={\dist{x}(\delay{t_0+h})}] (x1) at (B -| {axis cs:0,0}) {};
 \draw[dashed] (t0) -- (A) -- (x0);
 \draw[dashed] (t1) -- (B) -- (x1);
-\draw[color=red,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
-\addlegendentry{$\dist{x}(\delay{t})$}
+\draw[color=blue,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
 \end{axis}
 \end{tikzpicture}
 \caption{
@@ -321,13 +317,12 @@ natural solution is to consider the mean velocity over shorter durations.
 		ticks=none,
 		no markers,
 		axis lines=left,
-		legend pos=north west,
 		clip=false,
 		]
-	\addplot{examplepos(x)};
+	\addplot+[color=green]{examplepos(x)};
 	\node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
 	\node[loint=B] (B) at (axis cs:{4.0+0.9/(2^\i)}, {examplepos(4.0+0.9/(2^\i))}) {};
-	\draw[color=red,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
+	\draw[color=blue,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
 	\end{axis}
 	\end{tikzpicture}
 	\end{subfigure}
