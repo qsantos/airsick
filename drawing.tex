@@ -2,8 +2,10 @@
 \pgfplotsset{compat=1.10}
 \usepgfplotslibrary{units}
 \usetikzlibrary{pgfplots.units}
+
 \usetikzlibrary{external}
 \tikzexternalize[prefix=.build/]
+\tikzsetfigurename{\thesubsection-}
 
 \usepackage{float,subcaption}
 \usepackage[font=small,labelfont=bf]{caption}
