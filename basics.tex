@@ -231,8 +231,8 @@ a given instant $\delay{t_0}$.
 ]
 \addplot+[color=green]{examplepos(x)};
 \node[roint=A] (A) at (axis cs:4, {examplepos(4)}) {};
-\node[boint={\delay{t_0}}] (t) at (A |- {axis cs:0,0}) {};
-\node[loint={\dist{x}(\delay{t_0})}] (x) at (A -| {axis cs:0,0}) {};
+\node[boint={\delay{t_0}}] (t) at (A |- {0,0}) {};
+\node[loint={\dist{x}(\delay{t_0})}] (x) at (A -| {0,0}) {};
 \draw[dashed] (t) -- (A) -- (x);
 \end{axis}
 \end{tikzpicture}
@@ -287,10 +287,10 @@ and the mean velocity would then be far off to these values.
 \addplot+[color=green]{examplepos(x)};
 \node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
 \node[roint=B] (B) at (axis cs:4.9, {examplepos(4.9)}) {};
-\node[boint={\delay{t_0}}]   (t0) at (A |- {axis cs:0,0}) {};
-\node[boint={\delay{t_0+h}}] (t1) at (B |- {axis cs:0,0}) {};
-\node[loint={\dist{x}(\delay{t_0})}]   (x0) at (A -| {axis cs:0,0}) {};
-\node[loint={\dist{x}(\delay{t_0+h})}] (x1) at (B -| {axis cs:0,0}) {};
+\node[boint={\delay{t_0}}]   (t0) at (A |- {0,0}) {};
+\node[boint={\delay{t_0+h}}] (t1) at (B |- {0,0}) {};
+\node[loint={\dist{x}(\delay{t_0})}]   (x0) at (A -| {0,0}) {};
+\node[loint={\dist{x}(\delay{t_0+h})}] (x1) at (B -| {0,0}) {};
 \draw[dashed] (t0) -- (A) -- (x0);
 \draw[dashed] (t1) -- (B) -- (x1);
 \draw[color=blue,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
