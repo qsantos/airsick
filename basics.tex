@@ -214,7 +214,8 @@ Assume we know the position $\dist{x}(\delay{t})$ of the car for any
 instant $\delay{t}$ and we want to determine the velocity of the car at
 a given instant $\delay{t_0}$.
 
-\pgfmathdeclarefunction{examplepos}{1}{\pgfmathparse{e^(2.2*(#1)) - e^(10-5*(#1)) + 22024}}
+\pgfmathdeclarefunction{examplepos}{1}{\pgfmathparse{e^(2.2*(#1)) - e^(10-5*(#1))}}
+\pgfmathdeclarefunction{examplevel}{1}{\pgfmathparse{2.2*e^(2.2*(#1)) + 5*e^(10-5*(#1))}}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -360,6 +361,44 @@ velocity at any $\delay{t_0}$.
 \[
 \frac {\dist{\d x}} {\delay{\dt}}
 \]
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis lines=left,
+	xlabel=$\delay{t}$,
+	ylabel=$\dist{x}$,
+	clip=false,
+]
+\addplot+[color=green]{examplepos(x)};
+\end{axis}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis y line=right,
+	axis x line=none,
+	ylabel=$\speed{v}$,
+	clip=false,
+]
+\addplot+[color=blue]{examplevel(x)};
+\end{axis}
+\end{tikzpicture}
+\caption{
+	This graph features both \posit{position} and
+	\speed{velocity}. Since they do not represent the same type of
+	measurement, they each use a different axis and comparing the
+	relative positions of their curves is meaningless. However, we can
+	see that, as the position stabilizes in the middle, the velocity
+	decreases; in the end the object moves again, faster and faster.
+}
+\end{figure}
 
 \begin{remark}
 An even shorter notation is $\speed{\dot x}$. This notation is only used
