@@ -3,9 +3,10 @@
 \usepgfplotslibrary{units}
 \usetikzlibrary{pgfplots.units}
 
-\usetikzlibrary{external}
-\tikzexternalize[prefix=.build/]
-\tikzsetfigurename{\thesubsection-}
+\def\samples{160}
+\pgfmathdeclarefunction{examplepos}{1}{\pgfmathparse{e^(2.2*(#1)) - e^(10-5*(#1))}}
+\pgfmathdeclarefunction{examplevel}{1}{\pgfmathparse{2.2*e^(2.2*(#1)) + 5*e^(10-5*(#1))}}
+\pgfmathdeclarefunction{examplevel2}{1}{\pgfmathparse{e^(-((#1)-2)^2) + 2*e^(-((#1)-4)^2)}}
 
 \usepackage{float,subcaption}
 \usepackage[font=small,labelfont=bf]{caption}

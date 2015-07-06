@@ -1,0 +1,27 @@
+\usepackage{color}
+
+\definecolor{title}{RGB}{186,218,85}
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{grey}{rgb}{0.5,0.5,0.5}
+
+\renewcommand{\angle}[1]{\textcolor{red!80!green}{#1}}
+\newcommand{\dist}[1]{\textcolor{green!60!black}{#1}}
+\newcommand{\area}[1]{\textcolor{green}{#1}}
+\newcommand{\vol} [1]{\textcolor{blue!80}{#1}}
+\newcommand{\posit}[1]{\textcolor{green!50!grey}{#1}}
+\newcommand{\speed}[1]{\textcolor{blue}{#1}}
+\newcommand{\accel}[1]{\textcolor{red}{#1}}
+\newcommand{\force}[1]{\textcolor{orange}{#1}}
+\newcommand{\delay}[1]{\textcolor{cyan}{#1}}
+\newcommand{\mass}[1]{\textcolor{grey}{#1}}
+
+\usepackage{mathtools, esint}
+\newcommand\eqtag[1]{\addtocounter{equation}{1}\tag{\theequation}\label{#1}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dt}{\d t}
+\newcommand{\dm}{\d m}
+% inspired from http://tex.stackexchange.com/questions/20643/diagonal-strikeout-starting-too-low-and-ending-too-high
+\newcommand{\strike}[2][black]{\tikz[baseline=(box.base)]{
+	\node[inner sep=0pt,outer sep=0pt] (box) {$#2$};
+	\draw[#1] (box.south west) -- (box.north east);
+}}
