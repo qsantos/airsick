@@ -4,16 +4,27 @@
 \definecolor{orange}{rgb}{1,0.5,0}
 \definecolor{grey}{rgb}{0.5,0.5,0.5}
 
-\renewcommand{\angle}[1]{\textcolor{red!80!green}{#1}}
-\newcommand{\dist}[1]{\textcolor{green!60!black}{#1}}
-\newcommand{\area}[1]{\textcolor{green}{#1}}
-\newcommand{\vol} [1]{\textcolor{blue!80}{#1}}
-\newcommand{\posit}[1]{\textcolor{green!50!grey}{#1}}
-\newcommand{\speed}[1]{\textcolor{blue}{#1}}
-\newcommand{\accel}[1]{\textcolor{red}{#1}}
-\newcommand{\force}[1]{\textcolor{orange}{#1}}
-\newcommand{\delay}[1]{\textcolor{cyan}{#1}}
-\newcommand{\mass}[1]{\textcolor{grey}{#1}}
+\definecolor{angle}{rgb}{0.8, 0.2, 0}
+\definecolor{dist} {rgb}{0, 0.6, 0}
+\definecolor{area} {rgb}{0, 1, 0}
+\definecolor{vol}  {rgb}{0, 0, 0.8}
+\definecolor{posit}{rgb}{0.25, 0.75, 0.25}
+\definecolor{speed}{rgb}{0, 0, 1}
+\definecolor{accel}{rgb}{1, 0, 0}
+\definecolor{force}{rgb}{1, 0.5, 0}
+\definecolor{delay}{rgb}{0, 1, 1}
+\definecolor{mass} {rgb}{0.5, 0.5, 0.5}
+
+\renewcommand{\angle}[1]{\textcolor{angle}{#1}}
+\newcommand{\dist}   [1]{\textcolor{dist}{#1}}
+\newcommand{\area}   [1]{\textcolor{area}{#1}}
+\newcommand{\vol}    [1]{\textcolor{vol}{#1}}
+\newcommand{\posit}  [1]{\textcolor{posit}{#1}}
+\newcommand{\speed}  [1]{\textcolor{speed}{#1}}
+\newcommand{\accel}  [1]{\textcolor{accel}{#1}}
+\newcommand{\force}  [1]{\textcolor{force}{#1}}
+\newcommand{\delay}  [1]{\textcolor{delay}{#1}}
+\newcommand{\mass}   [1]{\textcolor{mass}{#1}}
 
 \usepackage{mathtools, esint}
 \newcommand\eqtag[1]{\addtocounter{equation}{1}\tag{\theequation}\label{#1}}
