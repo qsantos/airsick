@@ -509,7 +509,92 @@ of complex functions easily.
 \section{Integrals}
 
 
-\subsection{Concept}
+\subsection{Definition}
+
+Now, let us consider the reverse situation: we know the velocity of the
+car $\speed{v}$ at any given instant and we would like to know where it
+was at an arbitrary instant $\delay{t_0}$. In other words, we know the
+derivative of the position $\speed{\dot x} = \speed{v}$ and we intend
+to get the position $\posit{x}$ back.
+
+The first thing to notice is that the velocity only informs us on
+\textit{relative} motion: two cars can have the same velocity through time
+while being in different positions. In the example below, the positions of two
+cars with the same speed are shown; since the red car starts ahead, it stays
+ahead.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis lines=left,
+	xlabel=$\delay{t}$,
+	ylabel=$\dist{x}$,
+	clip=false,
+]
+\addplot{examplepos(x)};
+\addplot{5e4+examplepos(x)};
+\end{axis}
+\end{tikzpicture}
+\caption{
+	The red car moves like the blue car does, but starts ahead.
+}
+\end{figure}
+
+This means that we need additional information; usually we will assume that the
+position of the car at instant $\delay{t} = \delay{0~s}$ is some arbitrary
+value $\posit{C}$ or even $\posit{0}$ (when the arbitrary value does not
+matter).
+
+???
+Given a constant velocity $\speed{v_0}$ and a delay $\delay{t_0}$,
+we know how to compute the distance $\posit{x_0}$ as $\posit{x_0} =
+\speed{v_0} \times \delay{t_0}$. In this situation however, the velocity
+changes over the time interval from $\delay{0~s}$ to $\delay{t_0}$.
+
+As a first approximation, we could pretend the velocity is always
+equal to $\speed{v}(\delay{t_0})$, which makes the position trivial
+to compute: $\posit{x}(\delay{t_0}) \simeq \speed{v}(\delay{t_0})
+\times \delay{t_0}$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	samples=\samples,
+	domain=0:5,
+	ticks=none,
+	no markers,
+	axis lines=left,
+	xlabel=$\delay{t}$,
+	ylabel=$\speed{v}$,
+	clip=false,
+]
+\fill[green,opacity=0.1] (0,0) rectangle (axis cs:3.5, {examplevel2(3.5)});
+\addplot+[color=red]{examplevel2(x)};
+\node[roint=A] (A) at (axis cs:3.5, {examplevel2(3.5)}) {};
+\node[boint={\delay{t_0}}] (t0) at (A |- {0,0}) {};
+\node[loint={\speed{v}(\delay{t_0})}] (v0) at (A -| {0,0}) {};
+\draw[dashed] (t0) -- (A) -- (v0);
+\end{axis}
+\end{tikzpicture}
+\caption{
+	The graph clearly shows that the velocity may not be close
+	to $\speed{v}(\delay{t_0})$: this is a very rough first
+	approximation.
+}
+\end{figure}
+
+Since this value is also the area of a rectangle of sizes
+$\speed{v}(\delay{t_0})$ and $\delay{t_0}$, we can visualize it on
+the graph:
+
+The green area represents the value $\speed{v}(\delay{t_0}) \times
+\delay{t_0}$.
 
 Once more, consider the car on the road. We are given its speed
 $\speed{\dot x}(\delay{t})$ through the time. Because we know how fast the
