@@ -253,13 +253,14 @@ surface; the closer it is the surface, the less it can see.
 \node[point=X2] (X2) at (-\be:\R) {};
 \draw (P) -- (X1);
 \draw (P) -- (X2);
+% visible cone
+\fill[grey!10] (P) -- (-\be:\R) arc (-\be:\be:\R) -- cycle;
 % values
 \draw (O) --node[above left]{$\dist{R}$} (X1);
 \draw (O) --node[below]     {$\dist{r}$} (P);
 \markangle{X1}{P}{O}{$\alpha$}{1}
 \markangle{X1}{O}{P}{$\beta$} {1}
 % show covered area
-\fill[grey!10] (P) -- (-\be:\R) arc (-\be:\be:\R) -- cycle;
 \draw      ( \be:\R) arc ( \be:360-\be:\R);
 \draw[red] (-\be:\R) arc (-\be:\be    :\R);
 \end{tikzpicture}
