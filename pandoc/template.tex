@@ -1,0 +1,10 @@
+$if(skipnumber)$
+\chapter*{$title$}
+% inspired from http://stackoverflow.com/questions/2488681/latex-unnumbered-section-in-header-of-document/2492571#2492571 
+\markboth{\MakeUppercase{$title$}}{}
+\addcontentsline{toc}{chapter}{$title$}
+$else$
+\chapter{$title$}
+\banner
+$endif$
+$body$

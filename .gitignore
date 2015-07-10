@@ -1,2 +1,6 @@
 .*
 *.pdf
+*.pyc
+__pycache__/
+web/*.html
+web/figures/
