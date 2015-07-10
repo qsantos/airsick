@@ -18,6 +18,9 @@
 \tikzset{loint/.style={circle,fill,inner sep=1pt,label=left :{$\posit{#1}$}}}
 \tikzset{roint/.style={circle,fill,inner sep=1pt,label=right:{$\posit{#1}$}}}
 
+% set up spherical coordinates
+\tdplotsetmaincoords{60}{110}
+
 % inspired from http://tex.stackexchange.com/questions/38818/best-way-to-denote-an-angle-in-tikz/55555#55555
 \newcommand\markangle[6][none]{% [color] {X} {origin} {Y} {mark} {radius}
 	\begin{scope}
