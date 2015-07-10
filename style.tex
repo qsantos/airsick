@@ -79,3 +79,8 @@
 \addbanner{ike}
 \addbanner{laythe}
 \addbanner{pol}
+
+% automatically scale graphics
+\usepackage[export]{adjustbox} % also load graphicx
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{\Oldincludegraphics[max width=\textwidth,#1]{#2}}
