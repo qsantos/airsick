@@ -1,0 +1,167 @@
+/* General */
+body
+{
+	max-width: 40em;
+	margin: 0 auto;
+	font-size: large;
+	color: #333;
+	background-color: #f4f4f4;
+}
+
+
+/* Figures */
+figure
+{
+	border: 1px solid #888;
+	border-radius: 10px;
+	box-shadow: 10px 10px 5px #888;
+	padding: 1em 0.5em;
+	margin: 3em 2em;
+	overflow: hidden;
+}
+figure>figure
+{
+	float: left;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	margin: 0 1em;
+	max-width: calc(50% - 2em);
+	overflow: visible;
+}
+figure>img
+{
+	display: block;
+	max-width: 100%;
+	margin: 0 auto;
+}
+img[src$=".svg"]
+{
+	width: 100%;
+}
+body>figure a:hover>img
+{
+	box-shadow: 0 0 5px #888;
+}
+figcaption
+{
+	padding: 0.5em;
+}
+figcaption::before
+{
+	content: "Figure: ";
+	font-weight: bold;
+}
+
+
+/* Quotes */
+blockquote
+{
+	margin: 3em 0 0 0;
+}
+blockquote::before
+{
+	float: left;
+	margin-left: -0.5em;
+	margin-top: -0.5em;
+	content: "“";
+	color: #999;
+	font-family: "Times New Roman", serif;
+	font-size: 4em;
+}
+blockquote::after
+{
+	float: right;
+	margin-left: 0.5em;
+	margin-top: -0.5em;
+	content: "”";
+	color: #999;
+	font-family: "Times New Roman", serif;
+	font-size: 4em;
+}
+blockquote+cite
+{
+	margin-bottom: 3em;
+	display: block;
+	text-align: right;
+}
+blockquote+cite::before
+{
+	content: "— ";
+}
+
+
+/* Tables */
+table
+{
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+th
+{
+	padding: 0.5em;
+}
+th+th
+{
+	border-left: 1px solid black;
+}
+td
+{
+	padding: 0.5em;
+	border-top: 1px solid black;
+}
+td+td
+{
+	border-left: 1px solid black;
+}
+
+
+/* Maths */
+math[display=block]
+{
+	font-size: x-large;
+}
+mtd
+{
+	padding: 0;
+}
+math a:target
+{
+	border-top: 1px dotted grey;
+	border-bottom: 1px dotted grey;
+}
+
+/* Table of contents */
+#TOC>ul
+{
+	list-style: none;
+	padding: 0 0 0 0.5em;
+}
+#TOC>ul>li
+{
+	display: inline-block;
+	margin: 0 0.5em 0.5em 0;
+	line-height: 3em;
+	text-align: center;
+	border: 1px solid #bbb;
+}
+#TOC>ul>li>a
+{
+	display: inline-block;
+	width: 10.6em;
+	height: 3em;
+}
+
+
+/* Citations */
+#citations>ol>li>div
+{
+	padding-bottom: .1em;
+	padding-left: calc(.5em + 5px);
+}
+#citations>ol>li>div:target
+{
+	border-left: 5px solid black;
+	padding-left: .5em;
+}
