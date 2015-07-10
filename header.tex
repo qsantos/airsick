@@ -1,4 +1,4 @@
-\usepackage{color}
+\usepackage{xcolor}
 
 \definecolor{title}{RGB}{186,218,85}
 \definecolor{orange}{rgb}{1,0.5,0}
@@ -36,3 +36,12 @@
 	\node[inner sep=0pt,outer sep=0pt] (box) {$#2$};
 	\draw[#1] (box.south west) -- (box.north east);
 }}
+
+% skips empty pars after '\gobblepars'
+% useful for LaTeX generator
+% inspired from http://phaseportrait.blogspot.com/2011/08/using-gobblepars-to-prevent-latex-from.html
+\makeatletter
+\newcommand\gobblepars{%
+\@ifnextchar\par%
+    {\expandafter\gobblepars\@gobble}%
+    {}}
