@@ -1,19 +1,20 @@
-\chapter{Maneuvers}
-\banner
-\chaptquote{xkcd}{
-	The six words you \emph{never} say at NASA: “And besides --
-	it works in Kerbal Space Program.”
-}
+---
+title: Maneuvers
+date: 2015-07-11
+---
 
-The this chapter, we will see how to change from a circular orbit
-to another.
+> The six words you *never* say at NASA: “And besides — it works in Kerbal
+> Space Program.”
+-- [xkcd](https://xkcd.com/1244/), cartoonist and NASA roboticist
 
+In this chapter, we will see how to change from a circular orbit to another.
 
+Pro-/retro- grade burn
+======================
 
-\section{Pro-/retro- grade burn}
+The vis-viva equation (\ref{eql:visviva}) tells us:
 
-The vis-viva equation~(\ref{eql:visviva}) tells us:
-\[
+$$
 \speed{v}^2
 =
 \mathcal G \mass{M} \left(
@@ -21,14 +22,13 @@ The vis-viva equation~(\ref{eql:visviva}) tells us:
 	-
 	\frac 2 {\dist{r_a} + \dist{r_p}}
 \right)
-\]
+$$
 
 For example, if we are at an apsis (apo- or peri-) and want to rise the
-opposite point, we need to speed up (burn prograde), and slow down to
-decrease it; the formula above tells us how much so.
+opposite point, we need to speed up (burn prograde), and slow down to decrease
+it; the formula above tells us how much so.
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \def\peri{1}
 \def\apoa{1}
@@ -40,20 +40,20 @@ decrease it; the formula above tells us how much so.
 \orbit[color=red] {O}{\apob}{\peri}{0}{360}
 \node[loint=B] (B) at (-\peri,0) {};
 \end{tikzpicture}
-\caption{
-	A satellite on the \textcolor{blue}{blue} orbit can
-	switch to the \textcolor{red}{red} one by burning prograde
-	(speeding up) at $\posit{B}$; conversely it can switch from
-	the \textcolor{red}{red} orbit to the \textcolor{blue}{blue}
-	one by burning retro grade at this same point.
-}
-\end{figure}
+<figcaption>
+A satellite on the \textcolor{blue}{blue} orbit can switch to the
+\textcolor{red}{red} one by burning prograde (speeding up) at $\posit{B}$;
+conversely it can switch from the \textcolor{red}{red} orbit to the
+\textcolor{blue}{blue} one by burning retro grade at this same point.
+</figcaption>
+</figure>
 
-When searching for good trajectories, we are interested in saving
-propellant. According to~(\ref{eql:thrust}), this is the same as saving
-for $\speed{\Delta v}$ (althgouh proportionally). If $\dist{r}$ is
-the apsis where the burn is performed, $\dist{r_0}$ the opposite apsis
-before the burn and $\dist{r_1}$ after:
+When searching for good trajectories, we are interested in saving propellant.
+According to (\ref{eql:thrust}), this is the same as saving for $\speed{\Delta
+v}$ (althgouh proportionally). If $\dist{r}$ is the apsis where the burn is
+performed, $\dist{r_0}$ the opposite apsis before the burn and $\dist{r_1}$
+after:
+
 \begin{align*}
 \speed{\Delta v}
 &=
@@ -79,15 +79,15 @@ before the burn and $\dist{r_1}$ after:
 
 
 
-\section{Hohmann transfer}
+Hohmann transfer
+================
 
-Now, assume we are in a circular orbit of radius $\dist{r_0}$ and want to
-do a simple transfer to a circular orbit of radius $\dist{r_1}$. During
-a Hohmann transfer, we first raise our apoapsis to $\dist{r_1}$ and then
-the periapsis (from the new apopsis).
+Now, assume we are in a circular orbit of radius $\dist{r_0}$ and want to do a
+simple transfer to a circular orbit of radius $\dist{r_1}$. During a Hohmann
+transfer, we first raise our apoapsis to $\dist{r_1}$ and then the periapsis
+(from the new apopsis).
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \def\rada{1}
 \def\radb{3}
@@ -98,15 +98,15 @@ the periapsis (from the new apopsis).
 \node[loint=B1] (B1) at (-\rada,0) {};
 \node[roint=B2] (B2) at ( \radb,0) {};
 \end{tikzpicture}
-\caption{
-	We first switch from the \textcolor{blue}{blue} orbit to the
-	\textcolor{green}{green} one by burning at $\posit{B1}$ and then
-	from the \textcolor{green}{green} one to the \textcolor{red}{red}
-	one by burning at $\posit{B2}$.
-}
-\end{figure}
+<figcaption>
+We first switch from the \textcolor{blue}{blue} orbit to the
+\textcolor{green}{green} one by burning at $\posit{B1}$ and then from the
+\textcolor{green}{green} one to the \textcolor{red}{red} one by burning at
+$\posit{B2}$.
+</figcaption>
+</figure>
 
-\[
+$$
 \frac 1 {\sqrt{\mathcal G \mass{M}}} \speed{\Delta v}
 =
 \left|
@@ -128,12 +128,12 @@ the periapsis (from the new apopsis).
 	\frac 2 {\dist{r_0} + \dist{r_1}}
 }
 \right|
-\]
+$$
 
 We can multiply both hands by $\sqrt{\dist{r_0}}$ and set $x = \frac
 {\dist{r_1}} {\dist{r_0}}$ to get a simpler expression:
 
-\[
+$$
 \underbrace{
 	\sqrt{\frac {\dist{r_0}} {\mathcal G \mass{M}}}
 }_{\alpha}
@@ -150,10 +150,9 @@ We can multiply both hands by $\sqrt{\dist{r_0}}$ and set $x = \frac
 -
 \sqrt{\frac 2 x - \frac 2 {1 + x}}
 \right|
-\]
+$$
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \begin{axis}[
 	samples=\samples,
@@ -168,21 +167,20 @@ We can multiply both hands by $\sqrt{\dist{r_0}}$ and set $x = \frac
 \addplot{abs(sqrt(2-2/(1+x)) - 1) + abs(1/sqrt(x) - sqrt(2/x - 2/(1+x)))};
 \end{axis}
 \end{tikzpicture}
-\caption{
-	Note that decreasing an orbit by half costs about as much as the
-	converse (doubling it), but dividing it by four costs twice as
-	much as the converse.
-}
-\end{figure}
+<figcaption>
+Note that decreasing an orbit by half costs about as much as the converse
+(doubling it), but dividing it by four costs twice as much as the converse.
+</figcaption>
+</figure>
 
 
 
-\section{Bi-elliptical transfer}
+Bi-elliptical transfer
+======================
 
 The idea is to use three burns instead of two.
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \def\rada{1}
 \def\radb{3}
@@ -196,13 +194,13 @@ The idea is to use three burns instead of two.
 \node[roint=B2] (B2) at ( \radi,0) {};
 \node[roint=B3] (B3) at (-\radb,0) {};
 \end{tikzpicture}
-\caption{
-	During a bi-elliptical transfer, we use two intermediate orbits
-	(\textcolor{green}{green}, then \textcolor{violet}{violet});
-	the idea is that it will be easier to raise the
-	\textcolor{green}{green} periapsis from a higher apoapsis
-}
-\end{figure}
+<figcaption>
+During a bi-elliptical transfer, we use two intermediate orbits
+(\textcolor{green}{green}, then \textcolor{violet}{violet}); the idea is that
+it will be easier to raise the \textcolor{green}{green} periapsis from a higher
+apoapsis
+</figcaption>
+</figure>
 
 \begin{align*}
 \frac 1 {\sqrt{\mathcal G \mass{M}}} \speed{\Delta v}
@@ -244,8 +242,9 @@ The idea is to use three burns instead of two.
 \right|
 \end{align*}
 
-Again, we set $x = \frac {\dist{r_2}} {\dist{r_0}}$ and $y = \frac
-{\dist{r_1}} {\dist{r_0}}$ and:
+Again, we set $x = \frac {\dist{r_2}} {\dist{r_0}}$ and $y = \frac {\dist{r_1}}
+{\dist{r_0}}$ and:
+
 \begin{align*}
 \underbrace{
 	\sqrt{\frac {\dist{r_0}} {\mathcal G \mass{M}}}
@@ -273,8 +272,7 @@ Again, we set $x = \frac {\dist{r_2}} {\dist{r_0}}$ and $y = \frac
 \right|
 \end{align*}
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \begin{axis}[
 	samples=\samples,
@@ -295,30 +293,27 @@ Again, we set $x = \frac {\dist{r_2}} {\dist{r_0}}$ and $y = \frac
 }
 \end{axis}
 \end{tikzpicture}
-\end{figure}
-
-\clearpage
+</figure>
 
 
 
-\section{Inclination change}
+Inclination change
+==================
 
-\begin{important}
-Remember, we are only considering \textbf{circular} orbits. The formulas
-and derivations below only make sense for circular orbits. We advise
-you to set your inclination in a circular orbit before any subsequent
-maneuver.
-\end{important}
+<important>
+Remember, we are only considering **circular** orbits. The formulas and
+derivations below only make sense for circular orbits. We advise you to set
+your inclination in a circular orbit before any subsequent maneuver.
+</important>
 
+(Anti-)normal burn
+------------------
 
-\subsection{(Anti-)normal burn}
+Consider the orbital plane in which a satellite is moving. We are interested in
+the effect of an acceleration orthogonal to the plane (normal or antinormal).
+For this, we study the evolution of the velocity.
 
-Consider the orbital plane in which a satellite is moving. We are
-interested in the effect of an acceleration orthogonal to the plane
-(normal or antinormal). For this, we study the evolution of the velocity.
-
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}[->,thick]
 \node[boint=P] (P)   at (0,0) {};
 \node (V)   at ( 50:3)    {$\speed{\overrightarrow v}$};
@@ -329,16 +324,17 @@ interested in the effect of an acceleration orthogonal to the plane
 \draw[->,thick] (P) -- (VdV);
 \markangle{V}{P}{VdV}{$\d \theta$}{1.5}
 \end{tikzpicture}
-\caption{
-	The satellite is heading towards $\speed{\vec v}$ and an
-	acceleration is applied to it so that during a time $\delay{\dt}$,
-	its velocity is changed by $\speed{\vec{\d v}}$.
-}
+<figcaption>
+The satellite is heading towards $\speed{\vec v}$ and an acceleration is
+applied to it so that during a time $\delay{\dt}$, its velocity is changed by
+$\speed{\vec{\d v}}$.
+</figcaption>
 \label{fig:normalburn}
-\end{figure}
+</figure>
 
-As seen in figure~(\ref{fig:normalburn}), we can easily find the change
-in inclination:
+As seen in figure (\ref{fig:normalburn}), we can easily find the change in
+inclination:
+
 \begin{align*}
 \angle{\d \theta}
 \simeq
@@ -358,19 +354,18 @@ in inclination:
 \end{align*}
 
 
-\subsection{Straight burn}
+Straight burn
+-------------
 
 Doing a $180^{\circ}$ inclination chage using a constant radial burn like
-exposed above yields a $\speed{\Delta v}$ proportional to the current
-orbital velocity $\speed{v}$: $\speed{\Delta v} = \angle{\pi} \speed{v}
-\simeq 3 \speed{v}$. However, simply going retrograde until the speed is
-reverse only yields $\speed{\Delta v} = 2 \speed{v}$ for the same result.
+exposed above yields a $\speed{\Delta v}$ proportional to the current orbital
+velocity $\speed{v}$: $\speed{\Delta v} = \angle{\pi} \speed{v} \simeq 3
+\speed{v}$. However, simply going retrograde until the speed is reverse only
+yields $\speed{\Delta v} = 2 \speed{v}$ for the same result.
 
-You can find another derivation of the cost in \cite[page
-2]{incproof,incproof2}.
+You can find another derivation of the cost in @incproof @incproof2.
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}[->,thick]
 \node[boint=P] (P)   at (0,0) {};
 \coordinate (V0) at (40:3);
@@ -382,28 +377,27 @@ You can find another derivation of the cost in \cite[page
 \draw[red] (V0) -- +(VV);
 \markangle{V0}{P}{V1}{$\theta$}{1}
 \end{tikzpicture}
-\caption{
-	A rotation of angle $\angle{\theta}$ from velocity vector
-	$\speed{\vec{v_0}}$ to $\speed{\vec{v_1}}$ is done in a straight
-	change in speed $\speed{\Delta v}$.
-}
-\end{figure}
+<figcaption>
+A rotation of angle $\angle{\theta}$ from velocity vector $\speed{\vec{v_0}}$
+to $\speed{\vec{v_1}}$ is done in a straight change in speed $\speed{\Delta
+v}$.
+</figcaption>
+</figure>
 
 We need to compute $\speed{\Delta v}$ for given $\speed{v} =
-\speed{|\vec{v_0}|} = \speed{|\vec{v_1}|}$ and $\angle{\theta}$. Because
-the triangle is isosceles, the altitude and the median from $P$ are
-one so:
-\[
+\speed{|\vec{v_0}|} = \speed{|\vec{v_1}|}$ and $\angle{\theta}$. Because the
+triangle is isosceles, the altitude and the median from $P$ are one so:
+
+$$
 \speed{\Delta v}
 =
 \left|2 \speed{v} \sin \frac {\angle{\theta}} 2\right|
-\]
+$$
 
-For $\angle{\theta} = \angle{\pi}$, we get $\speed{\Delta v} = 2
-\speed{v}$ which is the expected result.
+For $\angle{\theta} = \angle{\pi}$, we get $\speed{\Delta v} = 2 \speed{v}$
+which is the expected result.
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \begin{axis}[
 	samples=\samples,
@@ -417,27 +411,26 @@ For $\angle{\theta} = \angle{\pi}$, we get $\speed{\Delta v} = 2
 \addplot{abs(2*sin(x/2))};
 \end{axis}
 \end{tikzpicture}
-\caption{
-	An inclination change of about $\angle{30^{\circ}}$ already costs
-	half the orbital speed; $\angle{60^{\circ}}$ costs as much as
-	the orbital speed.
-}
-\end{figure}
+<figcaption>
+An inclination change of about $\angle{30^{\circ}}$ already costs half the
+orbital speed; $\angle{60^{\circ}}$ costs as much as the orbital speed.
+</figcaption>
+</figure>
 
 
-\subsection{Bi-elliptical inclination change}
+Bi-elliptical inclination change
+--------------------------------
 
-Whatever the method used for the inclination change, the cost is
-proportional to the current orbital speed. Thus, it is more efficient to
-do such a maneuver at low speed (e.g. at apoapsis). /u/ObsessedWithKSP
-demonstrated a maneuver similar to the bi-elliptical transfer for a more
-efficient plane change \cite{biincchange,biincchange2}.
+Whatever the method used for the inclination change, the cost is proportional
+to the current orbital speed. Thus, it is more efficient to do such a maneuver
+at low speed (e.g. at apoapsis). /u/ObsessedWithKSP demonstrated a maneuver
+similar to the bi-elliptical transfer for a more efficient plane change
+@biincchange @biincchange2.
 
-A formal derivation of the optimal inclination change has been published
-by /u/listens\_to\_galaxies \cite{incproof,incproof2}.
+A formal derivation of the optimal inclination change has been published by
+/u/listens\_to\_galaxies @incproof @incproof2.
 
-\begin{figure}[H]
-\centering
+<figure>
 \begin{tikzpicture}
 \def\rada{2}
 \def\radi{5}
@@ -456,20 +449,24 @@ by /u/listens\_to\_galaxies \cite{incproof,incproof2}.
 \orbit{O}{\rada}{\rada}{0}{360}
 \end{scope}
 \end{tikzpicture}
-\caption{
-	Starting in the \textcolor{blue}{blue} plane on the circular
-	orbit, the spacecraft first burns prograde in $\posit{B1}$
-	to raise its apoapsis to $\posit{B2}$; once there, its speed
-	is lower and it can proceed to the inclination change to
-	the \textcolor{red}{red} plane effectively; finaly, it burns
-	retrograde back in $\posit{B1}$ to return to a circular orbit.
-}
-\end{figure}
+<figcaption>
+Starting in the \textcolor{blue}{blue} plane on the circular orbit, the
+spacecraft first burns prograde in $\posit{B1}$ to raise its apoapsis to
+$\posit{B2}$; once there, its speed is lower and it can proceed to the
+inclination change to the \textcolor{red}{red} plane effectively; finaly, it
+burns retrograde back in $\posit{B1}$ to return to a circular orbit.
+</figcaption>
+</figure>
+
+
+Radial in/out burn
+==================
+
+TODO
 
 
 
-\section{Radial in/out burn}
+Arbitrary burn
+==============
 
-
-
-\section{Arbitrary burn}
+TODO
