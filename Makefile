@@ -2,8 +2,8 @@ TARGET   = airsick.pdf
 BUILDDIR = .build
 WEBDIR   = web
 SRC = $(wildcard *.md)
-HTML = $(addprefix $(WEBDIR)/, $(patsubst %.md,%.html,$(SRC)))
-TEX  = $(patsubst %.md,%.tex,$(SRC))
+HTML = $(addprefix $(WEBDIR)/,   $(patsubst %.md,%.html,$(SRC)))
+TEX  = $(addprefix $(BUILDDIR)/, $(patsubst %.md,%.tex, $(SRC)))
 
 all: pdf web
 
@@ -15,10 +15,10 @@ web: $(addprefix $(WEBDIR)/, $(patsubst %.md,%.html,$(SRC)))
 %.pdf: %.tex $(wildcard *.tex) $(TEX) $(wildcard data/*)
 	@echo $@
 	@mkdir -p "$(BUILDDIR)/$(BUILDDIR)/"
-	@pdflatex -halt-on-error -output-dir "$(BUILDDIR)" $*
+	@pdflatex -halt-on-error -include-directory="$(BUILDDIR)" -output-dir="$(BUILDDIR)" $*
 	@mv "$(BUILDDIR)/$@" .
 
-%.tex: %.md
+$(BUILDDIR)/%.tex: %.md
 	@echo $@
 	@pandoc $< -t json | \
 		pandoc/quote.py latex | \
