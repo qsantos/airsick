@@ -6,48 +6,53 @@ import subprocess
 import hashlib
 import os
 import sys
+import shutil
 
-basedir = "web"
-imagedir = "figures"
+builddir = '.build'
 
 
-def tex2image(tex, outfile):
-    """Convert LaTeX to SVG"""
+def tex2image(tex, extension='svg'):
+    """Convert LaTeX to SVG or PDF"""
 
-    tex = (
-        r'\documentclass{standalone}'  # crop the viewport
-        r'\input{header}'  # usual LaTeX stuff
-        r'\input{drawing}'  # needed for drawing
-        r'\begin{document}'
-        '\n%s\n'
-        r'\end{document}'
-        '\n'
-        % tex
-    )
+    # pick a deterministic file name
+    hash = hashlib.sha1(tex.encode()).hexdigest()
+    basename = os.path.join(builddir, hash)
 
     # make .tex file
-    filename = os.path.join(tempdir, 'tikz.tex')
-    with open(filename, 'w') as f:
-        f.write(tex)
+    texfile = basename + '.tex'
+    if not os.path.isfile(texfile):
+        with open(texfile, 'w') as f:
+            f.write(
+                r'\documentclass{standalone}'  # crop the viewport
+                r'\input{header}'  # usual LaTeX stuff
+                r'\input{drawing}'  # needed for drawing
+                r'\begin{document}'
+                '\n%s\n'
+                r'\end{document}' '\n'
+                % tex
+            )
 
     # make .dvi from .tex
-    p = subprocess.call(["latex", "-output-directory", tempdir, filename],
-                        stdout=sys.stderr)
+    dvifile = basename + '.dvi'
+    if not os.path.isfile(dvifile):
+        subprocess.check_call(
+            ["latex", "-output-directory", builddir, basename],
+            stdout=sys.stderr
+        )
 
-    # compilation failed
-    if p != 0:
-        sys.stderr.write(tex)
-        shutil.rmtree(tempdir)
-        sys.exit(p)
+    # make .pdf from .dvi
+    if extension == 'pdf':
+        pdffile = basename + '.pdf'
+        if not os.path.isfile(pdffile):
+            subprocess.check_call(['dvipdf', dvifile, pdffile])
+        return pdffile
 
     # make .svg from .dvi
-    filename = os.path.join(tempdir, 'tikz.dvi')
-    p = subprocess.call(['dvisvgm', '--no-fonts', filename, '-o', outfile])
-
-    # conversion failed
-    if p != 0:
-        shutil.rmtree(tempdir)
-        sys.exit(p)
+    if extension == 'svg':
+        svgfile = basename + '.svg'
+        if not os.path.isfile(svgfile):
+            subprocess.check_call(['dvisvgm', '--no-fonts', dvifile, '-o', svgfile])
+        return svgfile
 
 
 def filter(key, value, format, meta):
@@ -60,31 +65,26 @@ def filter(key, value, format, meta):
     if not code.startswith(r"\begin{tikzpicture}"):
         return None
 
-    # pick a deterministic file name
-    hash = hashlib.sha1(code.encode()).hexdigest()
-    filename = os.path.join(imagedir, hash + '.svg')
-    outfile = os.path.join(basedir, filename)
-
     # create the figure, if not already done
-    if not os.path.isfile(outfile):
-        try:
-            os.mkdir(os.path.join(basedir, imagedir))
-        except OSError:
-            pass
-        tex2image(code, outfile)
+    if format in ('html', 'html5'):
+        original = tex2image(code, 'svg')
+        filename = os.path.join('figures', os.path.basename(original))
+        shutil.copyfile(original, os.path.join('web', filename))
+    elif format == 'latex':
+        filename = tex2image(code, 'pdf')
+    else:
+        sys.stderr.write('Unexpected format "%s"\n' % format)
+        sys.exit(1)
 
     image = pandocfilters.Image([], [filename, "TikZ figure"])
     return pandocfilters.Para([image])
 
 
 if __name__ == "__main__":
-    import tempfile
-    import shutil
-
-    # directory for temporary files
-    tempdir = tempfile.mkdtemp()
+    # ensure build directory exists
+    try:
+        os.mkdir(builddir)
+    except OSError:
+        pass
 
     pandocfilters.toJSONFilter(filter)
-
-    # clean up
-    shutil.rmtree(tempdir)

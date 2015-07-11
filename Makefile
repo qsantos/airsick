@@ -15,7 +15,7 @@ web: $(addprefix $(WEBDIR)/, $(patsubst %.md,%.html,$(SRC)))
 %.pdf: %.tex $(wildcard *.tex) $(TEX) $(wildcard data/*)
 	@echo $@
 	@mkdir -p "$(BUILDDIR)/$(BUILDDIR)/"
-	@openout_any=a pdflatex -halt-on-error -shell-escape -output-dir "$(BUILDDIR)" $*
+	@pdflatex -halt-on-error -output-dir "$(BUILDDIR)" $*
 	@mv "$(BUILDDIR)/$@" .
 
 %.tex: %.md
