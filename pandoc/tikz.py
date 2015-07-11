@@ -11,6 +11,12 @@ import shutil
 builddir = '.build'
 
 
+try:  # Python 3
+    devnull = subprocess.DEVNULL
+except AttributeError:  # Python 2
+    devnull = open(os.devnull, 'w')
+
+
 def tex2image(tex, extension='svg'):
     """Convert LaTeX to SVG or PDF"""
 
@@ -21,6 +27,7 @@ def tex2image(tex, extension='svg'):
     # make .tex file
     texfile = basename + '.tex'
     if not os.path.isfile(texfile):
+        sys.stderr.write('-> %s\n' % texfile)
         with open(texfile, 'w') as f:
             f.write(
                 r'\documentclass{standalone}'  # crop the viewport
@@ -35,23 +42,32 @@ def tex2image(tex, extension='svg'):
     # make .dvi from .tex
     dvifile = basename + '.dvi'
     if not os.path.isfile(dvifile):
+        sys.stderr.write('-> %s\n' % dvifile)
         subprocess.check_call(
             ["latex", "-output-directory", builddir, basename],
-            stdout=sys.stderr
+            stdout=devnull,
         )
 
     # make .pdf from .dvi
     if extension == 'pdf':
         pdffile = basename + '.pdf'
         if not os.path.isfile(pdffile):
-            subprocess.check_call(['dvipdf', dvifile, pdffile])
+            sys.stderr.write('-> %s\n' % pdffile)
+            subprocess.check_call(
+                ['dvipdf', dvifile, pdffile],
+                stderr=devnull,
+            )
         return pdffile
 
     # make .svg from .dvi
     if extension == 'svg':
         svgfile = basename + '.svg'
         if not os.path.isfile(svgfile):
-            subprocess.check_call(['dvisvgm', '--no-fonts', dvifile, '-o', svgfile])
+            sys.stderr.write('-> %s\n' % svgfile)
+            subprocess.check_call(
+                ['dvisvgm', '--no-fonts', dvifile, '-o', svgfile],
+                stderr=devnull,
+            )
         return svgfile
 
 
