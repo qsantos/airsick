@@ -62,18 +62,22 @@ blockquote
 blockquote::before
 {
 	float: left;
+	line-height: 0;
 	margin-left: -0.5em;
-	margin-top: -0.5em;
+	margin-top: 0.4em;
 	content: "“";
 	color: #999;
 	font-family: "Times New Roman", serif;
 	font-size: 4em;
 }
-blockquote::after
+blockquote>p:last-child::after
 {
-	float: right;
-	margin-left: 0.5em;
-	margin-top: -0.5em;
+	display: inline-block;
+	line-height: 0;
+	position: relative;
+	top: 0.5em;
+	margin-left: 0.1em;
+	margin-top: -1.5em;
 	content: "”";
 	color: #999;
 	font-family: "Times New Roman", serif;
@@ -81,13 +85,19 @@ blockquote::after
 }
 blockquote+cite
 {
+	clear: both;
 	margin-bottom: 3em;
 	display: block;
 	text-align: right;
+	font-size: medium;
 }
 blockquote+cite::before
 {
 	content: "— ";
+}
+blockquote p
+{
+	margin: 0;
 }
 
 
