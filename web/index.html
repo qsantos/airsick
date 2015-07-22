@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Airsick</title>
+<link rel="stylesheet" href="style.css">
+<style>
+header
+{
+	margin-bottom: 5em;
+}
+header>h1
+{
+	letter-spacing: .2em;
+	font-variant: small-caps;
+	font-size: 3em;
+}
+header>h2
+{
+	text-align: center
+}
+header>h2>em
+{
+	font-style: normal;
+	font-size: large;
+}
+header>h2>strong
+{
+	font-size: 1.2em;
+	font-style: italic;
+	/*
+	text-decoration: underline;
+	text-decoration: underline double;
+	*/
+	border-bottom: 5px double red;
+	font-variant: small-caps;
+	color: #000;
+}
+.badass
+{
+	color: #bada55;
+}
+img
+{
+	max-width:100%;
+	box-shadow: 0px 0px 50px #000;
+}
+nav::before
+{
+	content: '';
+	margin: 5em auto 5em auto;
+	display: block;
+	width: 15em;
+	height: 1px;
+	background: linear-gradient(to right, transparent, black, transparent);
+}
+nav>h1
+{
+	font-size: xx-large;
+}
+dt>a
+{
+	/* Text */
+	font-size: x-large;
+	font-family: sans;
+	font-weight: bold;
+	color: white;
+	text-shadow: 0px 0px 5px black;
+	padding-left: 1em;
+
+	/* Background */
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	display: block;
+	width: 100%;
+}
+dd
+{
+	margin-bottom: 2em;
+	border-left: 3px solid black;
+	padding-left: 1em;
+	max-width: 35em;
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+<h1 class="title">A.i.r.s.i.c.k.</h1>
+<h2>Advised Introduction to <strong>Rocket Science</strong> <em>(Including Crashes)</em> for <span class="badass">Kerbals</span></h2>
+<p>
+A website/booklet covering the basics of spaceflight and orbital mechanics,
+inspired by <a href="https://kerbalspaceprogram.com/en/">Kerbal Space
+Program</a>.
+</p>
+</header>
+
+<img alt="Front cover" src="img/front.jpg">
+<p style="text-align: center">
+<a href="#toc">Browse the web version</a> | <a href="airsick.pdf">Download the PDF</a>
+</p>
+
+<nav id="toc">
+<h1>Table of contents</h1>
+<dl>
+<dt><a href="intro.html">Introduction</a></dt>
+<dd>A short introduction describing the document.</dd>
+<dt><a href="basics.html"style="background-image: url('img/banners/minmus.png')">Basics</a></dt>
+<dd>A few notations and concepts from mathematics and physics that can be useful to understand the formulas from next chapters.</dd>
+<dt><a href="mechanics.html"style="background-image: url('img/banners/gilly.png')">Mechanics</a></dt>
+<dd>How stuff moves, and how we try to efficiently predict its position at some point in the future.</dd>
+<dt><a href="orbits.html"style="background-image: url('img/banners/eve.png')">Orbits</a></dt>
+<dd>How orbits work, how they can be described with a few numbers, and how we can use them to predict a trajectory.</dd>
+<dt><a href="launch.html"style="background-image: url('img/banners/duna.png')">Launch</a></dt>
+<dd>How a spacecraft can lift from the ground all the way up to its first stable orbit.</dd>
+<dt><a href="maneuvers.html"style="background-image: url('img/banners/ike.png')">Maneuvers</a></dt>
+<dd>How a spacecraft can change its trajectory, and how much such a maneuver would cost.</dd>
+<dt><a href="operating.html"style="background-image: url('img/banners/laythe.png')">Operating</a></dt>
+<dd>Some practical matters to take into considerations when planing missions for orbiters or landers.</dd>
+</dl>
+</nav>
+
+<footer>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License" src="/img/licence.png" width="80" height="15" />
+</a>
+Contact: yoha@sinon.org
+</footer>
+</main>
+</body>
+</html>

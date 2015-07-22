@@ -1,11 +1,79 @@
-/* General */
+/* Main blocks */
 body
 {
-	max-width: 40em;
-	margin: 0 auto;
+	margin-left: 64px;
 	font-size: large;
+	line-height: 1.8;
 	color: #333;
 	background-color: #f4f4f4;
+}
+main
+{
+	margin: 0 auto;
+	max-width: 40em;
+}
+main>section+section::before
+{
+	content: '';
+	margin: 5em auto 5em auto;
+	display: block;
+	width: 15em;
+	height: 1px;
+	background: linear-gradient(to right, transparent, black, transparent);
+}
+article>footer
+{
+	font-size: small;
+}
+main>footer
+{
+	display: block;
+	max-width: 20em;
+	margin: 3em auto 0 auto;
+	padding: 0.5em 2em;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	background-color: #444;
+	border-top-right-radius: 1em;
+	border-bottom-left-radius: 1em;
+	text-shadow: 0 0 2px #000;
+}
+
+
+section>p
+{
+	margin-top: 2em;
+	margin-bottom: 0em;
+}
+
+
+/* headings */
+h1, h2, h3
+{
+	font-family: sans;
+}
+main>header>h1.title
+{
+	border-bottom: 5px solid #333;
+}
+main>header>h3.date
+{
+	font-size: small;
+	font-weight: normal;
+}
+main>header>h3.date::before
+{
+	content: "Last change: ";
+}
+section>h1
+{
+	border-bottom: 1px solid #ddd;
+	font-size: xx-large;
+}
+section>h2
+{
+	font-size: x-large;
 }
 
 

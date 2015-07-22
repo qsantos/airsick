@@ -35,7 +35,9 @@ $(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
 		pandoc/tags.py html5 | \
 		pandoc/mathml.py html5 | \
 		pandoc/tikz.py html5 | \
-		pandoc -f json -t html5 -s --css=style.css -H pandoc/header.html --toc --toc-depth=1 -o $@
+		pandoc -f json -t html5 -o $@ \
+			-s --css=style.css --toc --toc-depth=1 --section-divs \
+			-H pandoc/header.html -B pandoc/before.html -A pandoc/after.html
 
 optimize: all
 	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -sOutputFile=airsick_opt.pdf airsick.pdf
