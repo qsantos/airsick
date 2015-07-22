@@ -9,7 +9,7 @@ all: pdf web
 
 pdf: $(TARGET) $(TEX)
 
-web: $(addprefix $(WEBDIR)/, $(patsubst %.md,%.html,$(SRC)))
+web: $(HTML)
 
 # http://tex.stackexchange.com/questions/13271/13277#13277
 %.pdf: %.tex $(wildcard *.tex) $(TEX) $(wildcard data/*)
@@ -18,7 +18,7 @@ web: $(addprefix $(WEBDIR)/, $(patsubst %.md,%.html,$(SRC)))
 	@pdflatex -halt-on-error -include-directory="$(BUILDDIR)" -output-dir="$(BUILDDIR)" $*
 	@mv "$(BUILDDIR)/$@" .
 
-$(BUILDDIR)/%.tex: %.md
+$(BUILDDIR)/%.tex: %.md $(wildcard pandoc/*.py pandoc/*.tex)
 	@echo $@
 	@pandoc $< -t json | \
 		pandoc/quote.py latex | \
@@ -26,7 +26,7 @@ $(BUILDDIR)/%.tex: %.md
 		pandoc/tikz.py latex | \
 		pandoc -f json -t latex --biblatex --template pandoc/template.tex -o $@
 
-$(WEBDIR)/%.html: %.md
+$(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
 	@echo $@
 	@mkdir -p "$(WEBDIR)/figures/"
 	@pandoc $< -t json | \
@@ -49,8 +49,7 @@ clean:
 	rm -f $(TEX)
 
 destroy: clean
-	rm -f "$(TARGET)"
-	rm -f $(WEBDIR)/*.html
+	rm -f "$(TARGET)" $(HTML)
 	rm -Rf "$(WEBDIR)/figures/"
 
 rebuild: destroy all
