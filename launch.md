@@ -3,9 +3,11 @@ title: Launch to orbit
 date: 2015-07-11
 ---
 
-> Let's go!
+> Can it be that you have come from outer space?
+>
+> — As a matter of fact, I have!
 -- [Yuri Gagarin](https://en.wikipedia.org/wiki/Yuri_Gagarin),
-first human being in space
+first human being in space, to people near his landing site
 
 
 Vertical ascent
