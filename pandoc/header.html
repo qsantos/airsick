@@ -3,4 +3,45 @@ Yuck. Javascript.
 But hey, try aligning MathML sutff in CSS.
 Also, <mlabeledtr> still is not supported.
 -->
-<script type="text/javascript" src="fix_mathml_tags.js"></script>
+<script src="fix_mathml_tags.js"></script>
+<!-- Use Mathjax for compatibility (Opera is dead, Chrome is broken and IE is IE) -->
+<script>
+// inspired from from https://github.com/mathjax/MathJax/issues/182
+function has_mathml()
+{
+	var hasMathML = false;
+	if (!document.createElement)
+		return false;
+
+	var div = document.createElement("div");
+	div.style.position = "absolute";
+	div.style.top = div.style.left = 0;
+	div.style.visibility = "hidden";
+	div.style.width = div.style.height = "auto";
+	div.style.fontFamily = "serif";
+	div.style.lineheight = "normal";
+	div.innerHTML = "<math><mfrac><mi>xx</mi><mi>yy</mi></mfrac></math>";
+	document.body.appendChild(div);
+
+	return div.offsetHeight > div.offsetWidth;
+}
+function mathml_compat()
+{
+	if (has_mathml())
+		return;
+
+	var mathjax = document.createElement('script');
+	mathjax.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML.js';
+	document.head.appendChild(mathjax);
+
+	var toc = document.getElementById('TOC');
+	var warning = document.createElement('p');
+	warning.style.fontWeight = 'bold';
+	warning.style.padding = '1em';
+	warning.style.borderLeft = '2px solid red';
+	warning.style.borderRight = '2px solid red';
+	warning.innerHTML = 'You may want to upgrade to an <a href="https://www.mozilla.org/en-US/firefox/new/">up-to-date browser</a> which supports <a href="https://en.wikipedia.org/wiki/MathML">MathML</a>.';
+	toc.parentNode.insertBefore(warning, toc);
+}
+window.addEventListener('load', mathml_compat, false);
+</script>
