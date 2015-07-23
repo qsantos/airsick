@@ -58,3 +58,9 @@ This document makes extensive use of pictures, diagrams and various
 illustrations. Most figures were generated with the file from \LaTeX using the
 Tikz package. When an external image was included as a figure, a reference to
 the source is linked in the caption (e.g. @xkcd1356).
+
+Sources for the other illustrations:
+
+* front cover @threekerbalmun
+* chapter banners @banners
+* back cover @ksp
