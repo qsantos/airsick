@@ -356,7 +356,7 @@ At time $\delay{t}$, we have $\speed{v_G}(\delay{t}) = \speed{v_R}(\delay{t}) =
 \speed{v_e} \times \mass{\dm}
 &=
 \speed{v_G}(\delay{t}+\delay{\dt}) \times (\mass{m}+\mass{\dm})
-& \text{~with~} \speed{v_F} = \speed{v_R} - \speed{v_e}
+&& \text{~with~} \speed{v_F} = \speed{v_R} - \speed{v_e}
 \\
 %
 %
@@ -365,7 +365,7 @@ At time $\delay{t}$, we have $\speed{v_G}(\delay{t}) = \speed{v_R}(\delay{t}) =
 \speed{v_e} \times \mass{\dm}
 &=
 \speed{v_G}(\delay{t}+\delay{\dt}) \times \mass{m}
-& \text{~because~} \mass{m}+\mass{\dm} \simeq \mass{m}
+&& \text{~because~} \mass{m}+\mass{\dm} \simeq \mass{m}
 \\
 %
 %
@@ -376,14 +376,14 @@ At time $\delay{t}$, we have $\speed{v_G}(\delay{t}) = \speed{v_R}(\delay{t}) =
 \speed{v_R}(\delay{t}) \times \mass{m}
 +
 \force{F} \delay{\dt}
-& \text{~with~} \speed{v_G}(\delay{t}+\delay{\dt}) = \speed{v_G}(\delay{t}) + \accel{\dot {v_G}} \delay{\dt}
+&& \text{~with~} \speed{v_G}(\delay{t}+\delay{\dt}) = \speed{v_G}(\delay{t}) + \accel{\dot {v_G}} \delay{\dt}
 \\
 %
 %
 \frac {\speed{v_R}(\delay{t}+\delay{\dt}) - \speed{v_R}(\delay{t})} {\delay{\dt}}
 &=
 - \speed{v_e} \times \frac {\mass{\dm}} {\delay{\dt}} \times \frac 1 {\mass{m}} + \frac {\force{F}} {\mass{m}}
-& \text{~by dividing by~} \delay{\dt}
+&& \text{~by dividing by~} \delay{\dt}
 \\
 %
 %
