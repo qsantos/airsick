@@ -210,6 +210,7 @@ math a:target
 	border-bottom: 1px dotted grey;
 }
 
+
 /* Table of contents */
 #TOC>ul
 {
@@ -242,4 +243,41 @@ math a:target
 {
 	border-left: 5px solid black;
 	padding-left: .5em;
+}
+
+
+/* remark and important blocks */
+.remark
+{
+	background-color: #d9ffd9;
+	padding: 0.5em 1em;
+	margin-top: 2em;
+}
+.remark::before
+{
+	content: "?";
+	color: #00b200;
+	font-size: 3em;
+	font-family: sans;
+	font-weight: bold;
+	position: absolute;
+	margin-top: -0.9em;
+	margin-left: -0.55em;
+}
+.important
+{
+	background-color: #ffd9d9;
+	padding: 0.5em 1em;
+	margin-top: 2em;
+}
+.important::before
+{
+	content: "!";
+	color: #b20000;
+	font-size: 3em;
+	font-family: sans;
+	font-weight: bold;
+	position: absolute;
+	margin-top: -0.9em;
+	margin-left: -0.55em;
 }
