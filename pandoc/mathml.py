@@ -28,7 +28,7 @@ def make_bib_preamble(f):
 
 def communicate(process, command):
     """Send command to process, return result"""
-    process.stdin.write(command.encode() + b'\x04\n')
+    process.stdin.write(command.encode('utf-8') + b'\x04\n')
     out = ""
 
     for _ in range(1024):
