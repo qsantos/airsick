@@ -5,6 +5,7 @@
 <title>Airsick</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* headings */
 header
 {
 	margin-bottom: 5em;
@@ -46,11 +47,15 @@ header>h2 strong
 	display: inline-block;
 }
 
-img
+/* illustrations */
+#front
 {
 	max-width:100%;
 	box-shadow: 0px 0px 50px #000;
+	border-radius: 1em;
 }
+
+/* navigation */
 nav::before
 {
 	content: '';
@@ -78,7 +83,7 @@ dt>a
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	display: block;
-	width: 100%;
+	border-radius: 1em;
 }
 dd
 {
@@ -105,7 +110,7 @@ Program</a>.
 </p>
 </header>
 
-<img alt="Front cover" src="img/front.jpg">
+<img id="front" alt="Front cover" src="img/front.jpg">
 <p style="text-align: center">
 <a href="#toc">Browse the web version</a> | <a href="airsick.pdf">Download the PDF</a>
 </p>
