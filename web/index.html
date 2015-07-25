@@ -19,12 +19,12 @@ header>h2
 {
 	text-align: center
 }
-header>h2>em
+header>h2 em
 {
 	font-style: normal;
 	font-size: large;
 }
-header>h2>strong
+header>h2 strong
 {
 	font-size: 1.2em;
 	font-style: italic;
@@ -40,6 +40,12 @@ header>h2>strong
 {
 	color: #bada55;
 }
+/* inspired from https://stackoverflow.com/questions/5392853/html-css-denoting-a-preferred-place-for-a-line-break/10104013#10104013 */
+.avoidwrap
+{
+	display: inline-block;
+}
+
 img
 {
 	max-width:100%;
@@ -88,7 +94,10 @@ dd
 
 <header>
 <h1 class="title">A.i.r.s.i.c.k.</h1>
-<h2>Advised Introduction to <strong>Rocket Science</strong> <em>(Including Crashes)</em> for <span class="badass">Kerbals</span></h2>
+<h2>
+<span class="avoidwrap">Advised Introduction to <span class="avoidwrap"><strong>Rocket Science</strong></span></span>
+<span class="avoidwrap"><em>(Including Crashes)</em> for <span class="badass">Kerbals</span></span>
+</h2>
 <p>
 A website/booklet covering the basics of spaceflight and orbital mechanics,
 inspired by <a href="https://kerbalspaceprogram.com/en/">Kerbal Space
