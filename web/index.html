@@ -8,7 +8,7 @@
 /* headings */
 header
 {
-	margin-bottom: 5em;
+	margin-bottom: 6em;
 }
 header>h1
 {
@@ -18,7 +18,8 @@ header>h1
 }
 header>h2
 {
-	text-align: center
+	text-align: center;
+	margin-bottom: 3em;
 }
 header>h2 em
 {
@@ -65,6 +66,17 @@ header>h2 strong
 #front+.attribution
 {
 	margin-top: -.8em;
+}
+img.inline
+{
+	height: 3em;
+	position: relative;
+	top: 1em;
+	margin-top: -2em;
+}
+a>img:hover
+{
+	opacity: 0.7;
 }
 
 /* navigation */
@@ -116,10 +128,10 @@ dd
 <span class="avoidwrap"><em>(Including Crashes)</em> for <span class="badass">Kerbals</span></span>
 </h2>
 <p>
-A website/booklet covering the basics of spaceflight and orbital mechanics,
-inspired by <a href="https://kerbalspaceprogram.com/en/">Kerbal Space
-Program</a>.
-</p>
+A website/booklet inspired by
+<a href="https://kerbalspaceprogram.com/en/"><img src="img/ksp_logo.png" alt="Kerbal Space Program" class="inline"></a>
+covering the basics of spaceflight and orbital mechanics. The material is
+freely available, but you can make a payment to support the project.
 </header>
 
 <img id="front" alt="Front cover" src="img/front.jpg">
