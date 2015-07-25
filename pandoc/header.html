@@ -30,10 +30,6 @@ function mathml_compat()
 	if (has_mathml())
 		return;
 
-	var mathjax = document.createElement('script');
-	mathjax.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML.js';
-	document.head.appendChild(mathjax);
-
 	var toc = document.getElementById('TOC');
 	var warning = document.createElement('p');
 	warning.style.fontWeight = 'bold';
@@ -42,6 +38,10 @@ function mathml_compat()
 	warning.style.borderRight = '2px solid red';
 	warning.innerHTML = 'You may want to upgrade to an <a href="https://www.mozilla.org/en-US/firefox/new/">up-to-date browser</a> which supports <a href="https://en.wikipedia.org/wiki/MathML">MathML</a>.';
 	toc.parentNode.insertBefore(warning, toc);
+
+	var mathjax = document.createElement('script');
+	mathjax.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML.js';
+	document.head.appendChild(mathjax);
 }
 window.addEventListener('load', mathml_compat, false);
 </script>
