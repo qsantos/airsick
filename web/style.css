@@ -6,9 +6,6 @@ body
 	line-height: 1.8;
 	color: #333;
 	background-color: #f4f4f4;
-}
-main
-{
 	margin: 0 auto;
 	max-width: 40em;
 }
@@ -51,7 +48,7 @@ section>p
 /* headings */
 h1, h2, h3
 {
-	font-family: sans;
+	font-family: sans-serif;
 }
 main>header>h1.title
 {
@@ -258,7 +255,7 @@ math a:target
 	content: "?";
 	color: #00b200;
 	font-size: 3em;
-	font-family: sans;
+	font-family: sans-serif;
 	font-weight: bold;
 	position: absolute;
 	margin-top: -0.9em;
@@ -275,7 +272,7 @@ math a:target
 	content: "!";
 	color: #b20000;
 	font-size: 3em;
-	font-family: sans;
+	font-family: sans-serif;
 	font-weight: bold;
 	position: absolute;
 	margin-top: -0.9em;

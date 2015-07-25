@@ -9,10 +9,15 @@ Also, <mlabeledtr> still is not supported.
 // inspired from from https://github.com/mathjax/MathJax/issues/182
 function has_mathml()
 {
-	var hasMathML = false;
+	// official way to test MathML
+	if (!document.implementation.hasFeature("org.w3c.dom.mathml", "2.0"))
+		return false;
+
+	// like, seriously?
 	if (!document.createElement)
 		return false;
 
+	// unofficial way: test MathML fractions behaviour
 	var div = document.createElement("div");
 	div.style.position = "absolute";
 	div.style.top = div.style.left = 0;
