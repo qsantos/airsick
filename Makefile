@@ -24,6 +24,7 @@ $(BUILDDIR)/%.tex: %.md $(wildcard pandoc/*.py pandoc/*.tex)
 		pandoc/quote.py latex | \
 		pandoc/tags.py latex | \
 		pandoc/tikz.py latex | \
+		pandoc/svggraphics.py latex | \
 		pandoc -f json -t latex --biblatex --template pandoc/template.tex -o $@
 
 $(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
