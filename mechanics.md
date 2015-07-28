@@ -1,6 +1,6 @@
 ---
 title: Mechanics
-date: 2015-07-11
+date: 2015-07-28
 ---
 
 > Every body continues in its state of rest, or of uniform motion in a right
@@ -10,19 +10,67 @@ date: 2015-07-11
 the laws of [motion](https://en.wikipedia.org/wiki/Newton's_laws_of_motion)
 and [gravitation](https://en.wikipedia.org/wiki/Newton's_law_of_universal_gravitation)
 
+Mechanics is the study of movement. In this chapter, we will describe how
+physicists study the movement of physical objects using mathematical laws. With
+this knowledge, we will then see how this is relevant to rocket science.
+
 Referential
 ===========
 
-A referential is the object you use as a landmark (origin) to keep track of
+Origin
+------
+
+The first thing we want to do is to find a way to describe **where** objects
+are. For this, we will elect an object (an actual physical object or just an
+arbitrary virtual point in space) to be fixed, and consider all movements
+relative to this **origin**.
+
+
+Dimensions
+----------
+
+If all the objects are on a same line (for instance a race track), then we can
+describe the position of each object with a single measure: the distance from
+the origin. Since a single measure is sufficient, a line is said to have one
+dimension.
+
+If all the objects are on a same surface (for instance, on a checkboard), then
+we need two numbers to fully describe the position of any of these objects. For
+example, we may arrange items on a grid a tell their positions as the row and
+column numbers; we can locate a location on the surface of the Earth using
+longitude and latitude. Since two measures are needed, a surface is said to
+have two dimensions.
+
+<important>
+There are many ways to choose how to describe the position of an object. For
+instance, rather than using the row and column number, we could use the
+distance from the center and the angle formed with a fixed line. When we say
+"there are two dimensions", the "two dimensions" do not refer to any particular
+measures, but to the necessity of two different ones. There are many choices of
+two measures to describe two dimensions.
+</important>
+
+Finally, we can consider an arbitrary location in space, which needs three
+dimensions. For example, if we add altitude to longitude and latitude, we can
+easily locate any object.
+
+A referential is the object we use as a landmark (origin) to keep track of
 interesting points. A system of coordinates if the kind of data you use to
 store the position of these points relatively to the origin.
+
+The most common set of measures used in two dimensions are the **Cartesian
+coordinate** and the **polar coordinate** systems. The Cartesian coordinate
+system extend to three dimensions naturally; there are two ways to extend the
+polar coordinates system to a third dimension: the **cylindrical coordinate**
+and the **spherical coordinate** systems.
+
 
 Cartesian coordinates
 ---------------------
 
-Cartesian coordinates are the most common. You basically choose two directions
-on give the how much you have to go on each coordinate to get from the origin
-to the point.
+Cartesian coordinates are the most common. We basically choose two (or three,
+in space) directions, and the measures describes how much you have to go each
+way to get from the origin to the point.
 
 <figure>
 \begin{tikzpicture}
@@ -39,12 +87,25 @@ to the point.
 \draw (P) edge[dashed] (Py);
 \end{tikzpicture}
 <figcaption>
-$\posit{P}$ is at coordinates $\posit{(1,2)}$ in this referential
+$\posit{P}$ is at coordinates $\posit{(1,2)}$ in this referential: to go from
+origin $\posit{O}$ to $\posit{O}$, we have to go along direction $\vec x$ for
+$1$ unit, and along direction $\vec y$ for $2$ units
 </figcaption>
 </figure>
 
-Cartesian coordinates can be used in three dimensions by adding one axis
-(usually notated $z$).
+The directions used in Cartesian coordinates (the axes) are usually
+perpendicular and conventionally named $x$ and $y$, (and $z$)).
+
+### Derivatives
+
+A nice property of the Cartesian coordinate system is that, if we are
+interested in the variation of some point $\posit{P}$ with Cartesian
+coordinates $(x, y)$, we can simply consider the **vector** (x, y).
+
+<remark>
+While a point denotes an offset from the origin, a vector denotes an offset
+from an unspecified point.
+</remark>
 
 
 Polar coordinates
@@ -70,29 +131,44 @@ The polar coordinates of $\posit{P}$ are $\posit{(r,\theta)}$
 </figcaption>
 </figure>
 
+### Derivative
 
-Polar coordinates
------------------
+Consider a point $\posit{P}$ given in polar coordinates $(\angle{\theta},
+\dist{r})$. We can use the corresponding Cartesian coordinates: $\posit{P} =
+(\dist{r} \cos(\angle{\theta}), \dist{r} \sin(\angle{\theta}))$. Then we can
+derive on each Cartesian coordinate using the derivation rules for function
+composition.
 
-We define the polar base as $(\hat r, \hat \theta) = ((\cos \angle{\theta},
-\sin \angle{\theta}), (-\sin \angle{\theta}, \cos \angle{\theta}))$. It means
-that the point $(\angle{\theta}:\dist{r})$ has Cartesian coordinates $r(\cos
-\angle{\theta}, \sin \angle{\theta})$. First, we remark that:
+If we define $\hat r =  = (\cos \angle{\theta}, \sin \angle{\theta})$ and $\hat
+\theta = (-\sin \angle{\theta}, \cos \angle{\theta}))$, then:
 
 $$
 \left\{
 \begin{aligned}
-\frac {\d} {\dt} \hat r      &= \dot \theta (- \sin \angle{\theta},   \cos \angle{\theta}) = \dot \theta \hat \theta \\
-\frac {\d} {\dt} \hat \theta &= \dot \theta (- \cos \angle{\theta}, - \sin \angle{\theta}) = - \dot \theta \hat r \\
+\frac {\d} {\dt} \hat r
+&= (- \dot \theta \sin \angle{\theta}, \dot \theta \cos \angle{\theta})
+= \dot \theta \hat \theta \\
+\frac {\d} {\dt} \hat \theta
+&= (- \dot \theta \cos \angle{\theta}, - \dot \theta \sin \angle{\theta}) = - \dot \theta \hat r \\
 \end{aligned}
 \right.
 $$
 
-Then, when we derive a vector in polar base, we get:
+Now, $\posit{P}$ is at an offset $\posit{\vec r}$ to the origin, where:
+
+$$
+\posit{\vec r}
+= (\dist{r} \cos(\angle{\theta}), \dist{r} \sin(\angle{\theta}))
+= \dist{r} \hat r
+$$
+
+thus:
 
 $$
 \speed{\dot {\vec r}}
 = \frac {\d} {\delay{\dt}} \Big(\dist{r} \hat r\Big)
+= \hat r \frac {\d} {\delay{\dt}} \dist{r}
++ \dist{r} \frac {\d} {\delay{\dt}} \hat r
 = \speed{\dot r} \hat r + \dist{r} \dot \theta \hat \theta
 $$
 
@@ -159,18 +235,55 @@ v}} = \accel{\ddot{\vec r}}$.
 Newton's second law
 -------------------
 
-If we consider a point-mass $(\posit{P}, \mass{m})$ which is subjected to
-forces $\force{\vec F}$. Note that $\force{\vec F}$ represent the sum of all
-the forces exerted on $\posit{P}$.
+Consider a mass-point $(\posit{P}, \mass{m})$ subjected to forces $\force{\vec
+F_1}, \force{\vec F_2}, \dots$. We need not consider every force independentely
+and can sum them as the **resultant force** $\force{\vec F} = \sum \force{\vec
+F_i}$.
+
+Then, according to Newton's second law:
 
 $$
 \accel{\vec a} = \frac 1 {\mass{m}} \force{\vec F}
 $$
 
+This equation means several things. First, it means that an object on which is
+exerted a non-zero resultant force will be accelerated (acceleration
+encompasses the slowing down of an object). Second, the more mass it has, the
+less it will accelerate; since this is perceived as a resistance to movement,
+we call this inertia.
+
 <remark>
-When $\force{\vec F} = 0$, the acceleration is null as well and the speed is
-constant (in practise, there are forces of friction, which slows objects down).
-This is Newton's first law (chapter quote).
+When $\force{\vec F} = 0$, the acceleration is null as well. Thus, the speed is
+constant; this is Newton's first law (chapter quote).
+</remark>
+
+
+Gravitation
+-----------
+
+The gravitational force is one of the four fundamental forces that physicist
+have identified, along with the electromagnetic, weak and strong forces.
+
+Gravitation says that any two objects with a mass attract each other, at any
+distance.  Since it is extremely feeble, we do not observe it within common
+objects. It becomes perceptible when huge masses are grouped together; for
+instance, we observe an apple falling because of the vast mass of the Earth
+effecting the apple.
+
+The amount of force exerted by an object of mass $\mass{M}$ over an object of
+mass $\mass{m}$ is:
+
+$$
+\force{F}
+= \mathcal G \frac {\mass{M} \mass{m}} {\dist{r}^2}
+$$
+
+where $\dist{r}$ is the distance between the two objects.
+
+<remark>
+The object of mass $\mass{m}$ attracts the object of $\mass{M}$ with the exact
+same mount of force. The reason the Earth does not seem to move towards a falling
+apple is because of inertia (see Newton's second law).
 </remark>
 
 
@@ -178,12 +291,13 @@ This is Newton's first law (chapter quote).
 Shell theorem
 =============
 
-We consider a sphere of center $\posit{C}$, radius $\dist{R}$ and uniform
-density $\mu$ whose center is at distance $\dist{r}$ of mass point
-$(\mass{m},\posit{P})$. We wish to infer the force $\vec g$ exerted by
-$\posit{C}$ on $\posit{P}$. We will use spherical coordinates and center the
-referential on $\posit{P}$ since it is the one point not moving when
-integrating.
+Problem
+-------
+
+We are interested in knowing the gravitation exerted by a celestial body
+$\posit{C}$ (i.e. the gravity). We will assume the celestial body is a ball of radius
+$\dist{R}$ and uniform density $\mu$  and consider a mass-point $(\mass{m},
+\posit{P})$ at distance $\dist{r}$ from $\posit{C}$:
 
 <figure>
 \begin{tikzpicture}
@@ -202,8 +316,60 @@ integrating.
 \end{tikzpicture}
 </figure>
 
-Because of the symmetry around the axis $(PC)$, we already know that $\vec g$
-will be in the same direction as $\dist{\overrightarrow{PC}}$.
+
+Elementary force
+----------------
+
+The usual way to solve a large problem is to split it in smaller problems and
+solve those instead. Here, to find the total force exerted, we will split the
+spherical body in many mass points $(\posit{Q}, \mass{\d m})$.
+
+The force exerted by $\posit{Q}$ over $\posit{P}$ is oriented along $\dist{\vec
+{QP}}$ and has magnitude:
+
+$$
+\force{F}
+= \accel{\vec{\d g}} \mass{m}
+= \mathcal G \frac {\mass{m} \mass{\d m}} {\dist{PQ}^2}
+$$
+
+Another way to write this is:
+
+$$
+\accel{\vec{\d g}}
+= \mathcal G \frac {\mu \vol{\d V}} {\dist{s}^2}
+$$
+
+where $\dist{s}$ is just $\dist{PQ}$
+
+
+Symmetry
+--------
+
+Now, to simplify things, we can notice the axial symmetry of the whole
+situation around $(CP)$. This means that the resultant force $\accel{\vec g}$
+can only be along the axis $(CP)$: no other could be justified without breaking
+the symmetry.
+
+Thus, we can only choose to only consider the effect of $\posit{Q}$ along
+$(CP)$; the others effect will cancel out. The effect of gravitation from
+$\posit{Q}$ exerted on $\posit{P}$ along $(CP)$ is:
+
+$$
+\accel{\vec{\d g}} \cdot \frac {\dist{\vec{PC}}} {\dist{PC}}
+= \mathcal G \frac {\mu \vol{\d V}} {\dist{s}^2} \times \cos{\angle{\psi}}
+$$
+
+where $\angle{\psi}$ is the angle $\hat{CPQ}$.
+
+
+Integrating
+-----------
+
+Now, it is only a matter of integrating. We first extend the elementary volume
+$\vol{\d V}$ in spherical coordinates as $(\dist{\rho} \sin \angle{\psi}
+\angle{\d \theta}) (\dist{\rho} \angle{\d \psi})$. Then we just need to do a
+substitution and to cancel out terms.
 
 \begin{align*}
 \accel{g}
@@ -248,8 +414,23 @@ will be in the same direction as $\dist{\overrightarrow{PC}}$.
    \int_{\dist{0}}^{\dist{R}}
    \dist{u}^2 \dist{\d u} \\
 %
-&= \mathcal G \underbrace{\frac 4 3 \pi \dist{R}^3}_{= \mass{M}} \times \frac 1 {\dist{r}^2}
+&= \mathcal G \mu \underbrace{\frac 4 3 \pi \dist{R}^3}_{= \vol{V}} \times \frac 1 {\dist{r}^2}
 \end{align*}
+
+
+Result
+------
+
+In the end, $\accel{g} = \mathcal G \frac {\mass{M}} {\dist{s}^2}$. It means
+that, the resultant gravitation force exerted by a planet is the same as the
+mass-point in the center with the same mass, even when close to it.
+
+This will make all considerations involving the gravitation of a planet
+relatively easy, as long as we assume it is spherical and uniform.
+
+
+Details on the substitution
+---------------------------
 
 To get from (\ref{eql:before}) to (\ref{eql:after}), we substitute $\dist{u} =
 \sqrt{\dist{R}^2 - \dist{r}^2\sin^2\angle{\psi}}$ for $\angle{\psi}$. This
@@ -272,18 +453,33 @@ We then use the relations $\sin(\arcsin x) = x$ and $\cos(\arcsin x) = \sqrt{1
 - x^2}$ for $0 \leq x \leq \frac {\pi} 2$.
 
 
-
-Sphere of incluence
+Sphere of influence
 ===================
 
-Consider spherical bodies $(\posit{P_1}, \mass{M_1})$ and $(\posit{P_2},
-\mass{M_2})$ and a point-mass $(\posit{P}, \mass{m})$ between those two
-($\posit{P} \in [\posit{P_1}, \posit{P_2}]$). We want to estimate how much
-$\posit{P_1}$ amounts in the gravitation forces exerted on $\posit{P}$.
-According to the previous section we don't need to know the radius of the
-bodies and can just pretend they are point-masses as well. The intensity of
-forces $\force{F_1}$ and $\force{F_2}$ respectively exerted by $\posit{P_1}$
-and $\posit{P_2}$ are:
+Patched conics
+--------------
+
+In reality, an object travelling through space is influenced by all moons,
+planets and stars of the universe. Even when restricting to the closest moon,
+closest planet and closest star, the combined influence of several bodies is
+hard to take into account simultaneously.
+
+A simple approximation is to only consider the body with the most influence.
+The region where a celestial body has the most influence is called the **sphere
+of influence**. When leaving the sphere of influence of one body, we transition
+to that of another. The trajectory is then made of two parts (two conics),
+hence the name **patched conics** approximation.
+
+
+Influences
+----------
+
+We will consider two mass-points $(\posit{P_1}, \mass{M_1})$ and $(\posit{P_2},
+\mass{M_2})$ and look at their influences on a mass-point $(\posit{P},
+\mass{m})$ between them.
+
+The intensity of forces $\force{F_1}$ and $\force{F_2}$ respectively exerted by
+$\posit{P_1}$ and $\posit{P_2}$ are:
 
 $$
 \force{F_1} = \mathcal G \frac {\mass{M_1} \mass{m}} {\dist{P_1 P}^2}
@@ -291,123 +487,183 @@ $$
 \force{F_2} = \mathcal G \frac {\mass{M_2} \mass{m}} {\dist{P_2 P}^2}
 $$
 
-Thus, with $\dist{r} = \dist{P_1 P}$ and $\dist{P_2 P} = \dist{P_1 P_2}
-- \dist{r}$:
+For short, we define $\dist{r} = \dist{P_1 P}$ and $\dist{R} = \dist{P_1 P_2}$.
+Thus, $\dist{P_2 P} = \dist{P_1 P_2} - \dist{P_1 P} = \dist{R} - \dist{r}$. We
+also define $\mu_1 = \mathcal G \mass{M_1}$ and $\mu_2 = \mathcal G \mass{M_2}$
+(the **gravitational parameters**). The accelerations due to each are:
 
 $$
-\frac {\force{F_1}} {\force{F_2}}
-= \frac {\mass{M_1} (\dist{P_1 P_2} - \dist{r})^2} {\mass{M_2} \dist{r}^2}
-= \frac {\mass{M_1}} {\mass{M_2}} \left(\frac {\dist{P_1 P_2}} {\dist{r}} - 1\right)^2
+\accel{g_1} = \frac {\mu_1} {\dist{r}^2}
+\text{~and~}
+\accel{g_2} = \frac {\mu_2} {(\dist{R} - \dist{r})^2}
 $$
 
-So, if we want $F_1$ to be at least $p$ of the exerted force, we want:
+The acceleration exerted by $\posit{P_1}$ over $\posit{P_2}$, and by
+$\posit{P_2}$ over $\posit{P_1}$ are respectively:
+
+$$
+\accel{g_{1,2}} = \frac {\mu_1} {\dist{R}^2}
+\text{~and~}
+\accel{g_{2,1}} = \frac {\mu_2} {\dist{R}^2}
+$$
+
+Perturbations
+-------------
+
+Now, if we look at the acceleration of $\posit{P}$ **relatively**  to
+$\posit{P_1}$, it is **perturbed** by the fact that $\posit{P_2}$ does not
+exert the same acceleration over $\posit{P}$ and over $\posit{P_1}$. The
+absolute perturbation is $\accel{g_2} - \accel{g_{2,1}}$ (the difference in
+acceleration from $\posit{P_2}$).
+
+In practice, this value only makes sense when compared to the **main**
+acceleration $\accel{g_1}$. Here, we will assume that $\dist{r} \ll \dist{R}$;
+it makes sense when $\posit{P_1}$ is an object significantly smaller than
+$\posit{P_2}$. We define the relative perturbation $Q_1$ as:
+
+$$
+Q_1
+= \frac {\accel{g_2} - \accel{g_{2,1}}} {\accel{g_1}}
+= \frac {\frac {\mu_2} {(\dist{R} - \dist{r})^2} - \frac {\mu_2} {\dist{R}^2}} {\frac {\mu_1} {\dist{r}^2}}
+= \frac {\dist{r}^2} {\dist{R}^2} \frac {\mu_2} {\mu_1} \left(\frac 1 {\left(1 - \frac {\dist{r}} {\dist{R}}\right)^2} - 1\right)
+$$
+
+Now, it can be shown that, when $x$ is small, $\frac 1 {(1 - x)^2} = 1 + 2 x +
+3 x^2 + \dots \simeq 1 + 2 x$. With $x = \frac {\dist{r}} {\dist{R}}$ we get
+that:
+
+$$
+Q_1
+= \frac {\dist{r}^2} {\dist{R}^2} \frac {\mu_2} {\mu_1} \times 2 \frac {\dist{r}} {\dist{R}}
+= 2 \frac {\dist{r}^3} {\dist{R}^3} \frac {\mu_2} {\mu_1}
+$$
+
+Similarly, the relative perturbation due to $\posit{P_1}$ when looking at the
+acceleration of $\posit{P}$ relatively to $\posit{P_2}$ is:
+
+$$
+Q_2
+= \frac {\accel{g_1} - \accel{g_{1,2}}} {\accel{g_2}}
+= \frac {\frac {\mu_1} {\dist{r}^2} \strike{- \frac {\mu_1} {\dist{R}^2}}} {\frac {\mu_2} {(\dist{R} \strike{- \dist{r}})^2}}
+= \frac {\mu_1} {\mu_2} \frac {\dist{R}^2} {\dist{r}^2}
+$$
+
+Again, we use the fact that $x \ll X$ to simplify the expression.
+
+
+Radius of influence
+-------------------
+
+Now, we are interested in the point $\posit{P}$ between $\posit{P_1}$ and
+$\posit{P_2}$ where both relative perturbations are of the same magnitude. We
+thus solve:
 
 \begin{align*}
-\frac {\force{F_1}} {\force{F_1} + \force{F_2}} \ge p
-& \Leftrightarrow 1 + \frac {\force{F_2}} {\force{F_1}} \le p^{-1} \\
-& \Leftrightarrow \frac {\force{F_1}} {\force{F_2}} \ge \frac 1 {p^{-1} - 1} \\
-& \Leftrightarrow \frac {\mass{M_1}} {\mass{M_2}} \left(\frac {\dist{P_1 P_2}} {\dist{r}} - 1\right)^2 \ge \frac 1 {p^{-1} - 1} \\
-& \Leftrightarrow \frac {\dist{P_1 P_2}} {\dist{r}} - 1 \ge \sqrt{\frac 1 {p^{-1} - 1} \frac {\mass{M_2}} {\mass{M_1}}} \\
-& \Leftrightarrow \frac {\dist{r}} {\dist{P_1 P_2}} \le \frac 1 {1 + \sqrt{\frac 1 {p^{-1} - 1} \frac {\mass{M_2}} {\mass{M_1}}}} \\
+Q_1 = Q_2
+&\Leftrightarrow
+2 \frac {\dist{r}^3} {\dist{R}^3} \frac {\mu_2} {\mu_1}
+= \frac {\mu_1} {\mu_2} \frac {\dist{R}^2} {\dist{r}^2}
+\\
+&\Leftrightarrow
+\dist{r}
+= \frac 1 {2^{\frac 1 5}} \dist{R} \left(\frac {\mu_1} {\mu_2}\right)^{\frac 2 5}
+= 2^{- \frac 1 5} \dist{R} \left(\frac {\mass{M_1}} {\mass{M_2}}\right)^{\frac 2 5}
 \end{align*}
 
-$\force{F_1} = \mathcal G \frac {\mass{M_1} \mass{m}} {\dist{a}^2}$
-
-$\force{F_2} = \mathcal G \frac {\mass{M_2} \mass{m}} {\dist{r}^2}$
-
-\begin{align*}
-\force{F_1} = \force{F_2}
-& \Leftrightarrow \frac {\mass{M_1}} {\dist{a}^2} = \frac {\mass{M_2}} {\dist{r}^2} \\
-& \Leftrightarrow \dist{r} = \dist{a} \sqrt{\frac {\mass{M_2}} {\mass{M_1}}} \\
-\end{align*}
+<remark>
+The $2^{- \frac 1 5}$ factor seems to be forgotten often. Since its value is
+about 0.87, it is still the right order of magnitude.
+</remark>
 
 
 
 Thrust
 ======
 
-Set up
-------
+Propulsion
+----------
 
-We consider a rocket with center of mass $\posit{R}$. From $\delay{t}$ to
-$\delay{t}+\delay{dt}$, it ejects $\mass{\dm}$ of its fuel with relative
-velocity $\speed{v_e}$; its center of mass is notated $\posit{F}$. We will use
-$\posit{G}$ to refer to the center of mass of the system containing both the
-rocket and the ejected fuel.
+A car can push along the road thanks to friction; a plane can generate lift
+from air and speed; a balloon can use buoyancy in the atmosphere.  However, a
+rocket needs to be able to operate in the vacuum of outer space, which implies
+no physical object to push against.
+
+Articulating an object into space will not move its center of mass. It means
+that a rocket can only gain speed by interacting with the exterior. Thus, the
+only way a rocket can accelerate is by throwing parts of its mass out. This is
+exactly what their exhaust do: it ejects lots of mass (propellant) down, so
+that the rocket will lift up.
+
+<remark>
+Technically, outer space is not empty: light from the Sun is theoretically
+enough for the low-thrust propulsion of **solar sails**.
+</remark>
 
 
-Derivation of exerted force
----------------------------
+Conserved momentum
+------------------
 
-At time $\delay{t}$, we have $\speed{v_G}(\delay{t}) = \speed{v_R}(\delay{t}) =
-\speed{v_F}(\delay{t})$ so, at time $\delay{t}+\delay{dt}$:
+We consider a **r**ocket with center $\posit{R}$ of mass $\mass{m}$. From
+$\delay{t}$ to $\delay{t}+\delay{\dt}$, it ejects $\mass{\dm}$ of its
+**p**ropellant ($\posit{P}$) with relative (**exhaust**) velocity
+$\speed{v_e}$.
+
+Let us notate $\posit{G}$ the center of mass of the system $\{\posit{R},
+\posit{P}\}$. Since the system did not interact with its environment, the speed
+of $\posit{G}$ remains unchanged by the ejection. However, since $\posit{P}$ is
+moving downwards, it means the rocket have gained speed.
+
+![
+Before time $\delay{t}$, $\posit{R}$ and $\posit{P}$ are moving together. Then,
+$\posit{P}$ is ejected downwards at speed $\speed{v_e}$. Since the **momentum**
+of the pair $\{\posit{R}, \posit{P}\}$ has not changed, it means that the
+rocket has gained some speed upwards.
+](img/rocket_exhaust.svg)
+
+
+Exerted force
+-------------
+
+We are interested in the changes of speed $\speed{\d v_R}$ and $\speed{\d v_P}$
+from $\delay{t}$ to $\delay{t+dt}$. If we do not take into account external
+forces, then $\speed{\d v_g} = 0$. Thus:
 
 \begin{align*}
-\speed{v_R}(\delay{t}+\delay{\dt}) \times \mass{m}
-+
-\speed{v_F}(\delay{t}+\delay{\dt}) \times \mass{\dm}
-&=
-\speed{v_G}(\delay{t}+\delay{\dt}) \times (\mass{m}+\mass{\dm})
-\\
-%
-%
-\speed{v_R}(\delay{t}+\delay{\dt}) \times (\mass{m}+\mass{\dm})
-+
-\speed{v_e} \times \mass{\dm}
-&=
-\speed{v_G}(\delay{t}+\delay{\dt}) \times (\mass{m}+\mass{\dm})
-&& \text{~with~} \speed{v_F} = \speed{v_R} - \speed{v_e}
-\\
-%
-%
-\speed{v_R}(\delay{t}+\delay{\dt}) \times \mass{m}
-+
-\speed{v_e} \times \mass{\dm}
-&=
-\speed{v_G}(\delay{t}+\delay{\dt}) \times \mass{m}
-&& \text{~because~} \mass{m}+\mass{\dm} \simeq \mass{m}
-\\
-%
-%
-\speed{v_R}(\delay{t}+\delay{\dt}) \times \mass{m}
-+
-\speed{v_e} \times \mass{\dm}
-&=
-\speed{v_R}(\delay{t}) \times \mass{m}
-+
-\force{F} \delay{\dt}
-&& \text{~with~} \speed{v_G}(\delay{t}+\delay{\dt}) = \speed{v_G}(\delay{t}) + \accel{\dot {v_G}} \delay{\dt}
-\\
-%
-%
-\frac {\speed{v_R}(\delay{t}+\delay{\dt}) - \speed{v_R}(\delay{t})} {\delay{\dt}}
-&=
-- \speed{v_e} \times \frac {\mass{\dm}} {\delay{\dt}} \times \frac 1 {\mass{m}} + \frac {\force{F}} {\mass{m}}
-&& \text{~by dividing by~} \delay{\dt}
-\\
-%
-%
-\mass{m} \accel{\dot {v_R}}
-&=
-\underbrace{- \speed{v_e} \dot m}_{\force{F_t}}
-+ \force{F}
-\eqtag{eql:accel}
+0
+&= \speed{\d v_G} \\
+&= \speed{\d v_R} \mass{m} + \speed{\d v_P} \mass{\d m} \\
+&= \speed{\d v_R} (\mass{m} + \mass{\d m}) + \speed{v_e} \mass{\d m}
+&& \text{~because~} \speed{v_P} = \speed{v_R} - \speed{v_e} \\
 \end{align*}
 
+Dividing by $\delay{dt}$ and with $\mass{m+\d m} \simeq \mass{m}$, it follows
+that:
+
+$$
+\mass{m} \frac {\d \speed{v_r}} {\delay{\dt}} = - \speed{v_e} \frac {\mass{\d m}} {\delay{\dt}}
+$$
+
+We finally get the expression of the thrusting force:
+
+$$
+\force{F_t} = \mass{m} \accel{a_R} = - \speed{v_e} \dot m
+\eqtag{eql:accel}
+$$
 
 Specific impulse
 ----------------
 
 In KSP, the engines are defined by their maximum thrust $\force{F_t}$ and their
-$\delay{I_{\mathrm{sp}}}$ (“atmosphereCurve” in config files). The SPecific
-Impulse is just the force exerted per unit (in weight) of fuel used, i.e.
-$\delay{I_{\mathrm{sp}}} = \frac {\force{F_t}} {\dot m \accel{g}}$. Thus:
+$\delay{I_{\mathrm{sp}}}$ (“atmosphereCurve” in configuration files). The
+**sp**ecific **i**mpulse is just the force exerted per unit (in weight) of fuel
+used, i.e.  $\delay{I_{\mathrm{sp}}} = \frac {\force{F_t}} {\dot m \accel{g}}$.
+Thus:
 
 $$
 \begin{array}{lr}
 \dot m
 = \frac {\force{F_t}} {\delay{I_{\mathrm{sp}}} \times \accel{g}}
-,
+\text{~and~}
 &
 \speed{v_e}
 = - \delay{I_{\mathrm{sp}}} \times \accel{g}
@@ -418,29 +674,20 @@ $$
 Tsiolkovsky rocket equation
 ---------------------------
 
-We can now integrate (\ref{eql:accel}) to get the velocity change of a rocket:
+We can now integrate equation (\ref{eql:accel}) to get the velocity change of a
+rocket over a long period of time:
 
 \begin{align*}
 \speed{\Delta v}
 &= \int_{\delay{0}}^{\delay{t}} \accel{\dot{v_R}} \delay{\dt} \\
-&= \int_{\delay{0}}^{\delay{t}} \left(
-	- \speed{v_e} \frac {\dot m} {\mass{m}}
-	+ \frac {\force{F}} {\mass{m}}
-\right) \delay{\dt} \\
-&= \left[- \speed{v_e} \ln(\mass{m})\right]_{\delay{0}}^{\delay{t}}
-+ \underbrace{
-	\int_{\delay{0}}^{\delay{t}} \frac {\force{F}} {\mass{m}} \delay{\dt}
-}_{\speed{I}_{\force{F}}(\delay{t})} \\
-&= \speed{v_e} \ln \frac {\mass{m}(\delay{0})} {\mass{m}(\delay{t})} + \speed{I}_{\force{F}}(\delay{t})
+&= \int_{\delay{0}}^{\delay{t}} - \speed{v_e} \frac {\dot m} {\mass{m}} \delay{\dt} \\
+&= \left[- \speed{v_e} \ln(\mass{m})\right]_{\delay{0}}^{\delay{t}} \\
+&= \speed{v_e} \ln \frac {\mass{m}(\delay{0})} {\mass{m}(\delay{t})}
 \eqtag{eql:thrust}
 \end{align*}
 
-This formula is usually applied when $\force{F}$ can be ignored (e.g. in
-orbit). Note that, during ascent, $\frac {\force{F}} {\mass{m}} = - \frac
-{\mathcal G \mass{M}} {(R + z)^2}$ leads to a quadratic differential equation
-of second order which is difficult to solve.
-
-Conversely, we can compute the amount of fuel to eject to reach a given speed:
+Conversely, we can compute the amount of propellant $\mass{\Delta m}$ to eject
+to bring a mass $\mass{m}$ to a given speed:
 
 $$
 \mass{\Delta m} = \mass{m} \left(1 - e^{-\frac {\speed{\Delta v}} {\speed{v_e}}}\right)
