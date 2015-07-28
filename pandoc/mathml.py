@@ -59,7 +59,7 @@ def find_in_sources(text):
             continue
         with open(filename) as f:
             if f.read().decode('utf-8').find(text) >= 0:
-                return filename
+                return filename[:-3] + '.html'
     raise IndexError
 
 
@@ -74,7 +74,7 @@ def tex2span(tex):
         except ValueError:
             # look for external reference
             try:
-                filename = find_in_sources(identifier)
+                filename = find_in_sources('\eqtag{' + identifier + '}')
             except IndexError:
                 return r'?'  # unknwon reference
             else:
