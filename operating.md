@@ -69,7 +69,7 @@ to the \textcolor{red}{red} one (\delay{1998}) and then to the
 \textcolor{blue}{blue} one (\delay{1999}). The \textcolor{blue}{blue}
 trajectory was further improved by gravity assists by the Earth (\delay{1999})
 and by Jupiter (\delay{2000}). @cassiniassists
-](img/cassiniorbit.png)
+](img/Cassini_interplanet_trajectory.svg)
 
 
 
