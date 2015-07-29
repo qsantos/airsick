@@ -92,7 +92,8 @@ def filter(key, value, format, meta):
         sys.stderr.write('Unexpected format "%s"\n' % format)
         sys.exit(1)
 
-    image = pandocfilters.Image([], [filename, "TikZ figure"])
+    alternate_text = pandocfilters.Str("")
+    image = pandocfilters.Image([alternate_text], [filename, ""])
     return pandocfilters.Para([image])
 
 

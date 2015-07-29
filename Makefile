@@ -30,7 +30,7 @@ $(BUILDDIR)/%.tex: %.md $(wildcard pandoc/*.py pandoc/*.tex)
 $(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
 	@echo $@
 	@mkdir -p "$(WEBDIR)/figures/"
-	@pandoc $< -t json | \
+	@pandoc $< -t json -M lang=en | \
 		pandoc/quote.py html5 | \
 		pandoc/citations.py html5 | \
 		pandoc/tags.py html5 | \

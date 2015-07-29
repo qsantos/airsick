@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Airsick</title>
 <link rel="stylesheet" href="style.css">
 <style>
@@ -15,6 +16,13 @@ header>h1
 	letter-spacing: .2em;
 	font-variant: small-caps;
 	font-size: 3em;
+}
+@media (max-width: 420px)
+{
+	header>h1
+	{
+		letter-spacing: 0;
+	}
 }
 header>h2
 {
@@ -30,10 +38,6 @@ header>h2 strong
 {
 	font-size: 1.2em;
 	font-style: italic;
-	/*
-	text-decoration: underline;
-	text-decoration: underline double;
-	*/
 	border-bottom: 5px double red;
 	font-variant: small-caps;
 	color: #000;
