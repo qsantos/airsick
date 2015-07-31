@@ -37,7 +37,7 @@ $(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
 		pandoc/mathml.py html5 | \
 		pandoc/tikz.py html5 | \
 		pandoc -f json -t html5 -o $@ \
-			-s --css=style.css --toc --toc-depth=1 --section-divs \
+			-s --css=style.css --toc --toc-depth=1 --section-divs -T "Airsick" \
 			-H pandoc/header.html -B pandoc/before.html -A pandoc/after.html
 
 optimize: all
