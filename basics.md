@@ -38,13 +38,13 @@ Dimension         SI unit                 Other units
 \mass {mass}      kilogram (kg)           ton (t), pound (lb)
        pressure   pascal (Pa)             atmosphere (atm), bar (bar)
 
-<remark>
+<note>
 A \dist{light} year is the distance that a particle of light can travel in a
 \delay{year}. For comparison, it takes light a little bit more than
 \delay{eight minutes} (\delay{8~min}) to get from the Sun to the Earth, meaning
 that the Sun is \dist{8~light-minutes} away from the Earth. Kerbin is about
 \dist{45~light-seconds} away from Kerbol.
-</remark>
+</note>
 
 
 Prefixes
@@ -69,14 +69,14 @@ kilo- (k-)  mega- (M-)  giga- (G-)  tera- (T-)
 ----------  ----------  ----------  ----------
 10³         10⁶         10⁹         10¹²
 
-<remark>
+<note>
 There are also prefixes to decrease the value of an unit:
 
 milli- (m-)  micro- (µ-)  nano- (n-)  pico- (p-)
 -----------  -----------  ----------  ----------
 10⁻³         10⁻⁶         10⁻⁹        10⁻¹²
 
-</remark>
+</note>
 
 Conversion
 ----------
@@ -368,10 +368,10 @@ $$
 x' = \frac {\dist{\d x}} {\delay{\dt}}
 $$
 
-<remark>
+<note>
 When the derivation is done with respect to time (i.e. $\frac {\dots}
 {\delay{t}}$), we can simply use the dot notation: $\speed{\dot x}$.
-</remark>
+</note>
 
 <figure>
 \begin{tikzpicture}
@@ -591,11 +591,11 @@ approximation.
 </figcaption>
 </figure>
 
-<remark>
+<note>
 Note that $\speed{v_0} \times \delay{t_0}$ is also the area of a rectangle of
 height $\speed{v_0}$ and width $\delay{t_0}$. This maps to the green area on
 the graph.
-</remark>
+</note>
 
 For a better approximation, we will simply split this in several parts of width
 $\delay{h}$.
@@ -735,11 +735,11 @@ aproximation becomes more precise.
 </figcaption>
 </figure>
 
-<remark>
+<note>
 Notice that the value we are looking for is the sum of the surface areas of the
 green rectangles. It turns out that this tends to match the value of the
 surface area under the curve.
-</remark>
+</note>
 
 As for derivation, when $\delay{h}$ tends to zero, our rough approximation will
 become more precise. Since we stil want $h \times n = \delay{t_0}$ we will
@@ -765,7 +765,7 @@ $$
 \int_{\delay{0~s}}^{\delay{t_0}} \speed{v}
 $$
 
-<remark>
+<note>
 Notations with $\dist{\d x}$ and $\delay{\dt}$ make it easy to reason with
 derivatives and integrals. Since $\speed{v}$ is the derivative of $\posit{x}$:
 
@@ -788,7 +788,7 @@ $$
 \dist{x}(\delay{t_2}) - \dist{x}(\delay{t_1})
 = [\dist{x}]_{\delay{t_1}}^{\delay{t_2}}
 $$
-</remark>
+</note>
 
 
 Illustration
@@ -954,7 +954,7 @@ $$
 \frac {\d} {\d x} (e^x) = e^x
 $$
 
-<remark>
+<note>
 If we define $f(x) = e^{g(x)}$ instead, derivation rules gives us:
 
 $$
@@ -963,7 +963,7 @@ $$
 $$
 
 so that $\frac {\d f} {\d x} = g' f$.
-</remark>
+</note>
 
 
 First order

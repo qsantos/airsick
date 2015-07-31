@@ -95,11 +95,11 @@ simulate a basic rocket made of the following parts:
 * FL-T800 Fuel Tank
 * LV-T30 Liquid Fuel Engine
 
-<remark>
+<note>
 We could see more clearly the contrast between the different situations by
 using a large pod (Mk1-2 Command Pod) instead. However, such a rocket will not
 go as high.
-</remark>
+</note>
 
 <figure>
 \begin{tikzpicture}[scale=0.69]
@@ -376,7 +376,7 @@ $$
 \speed{2279~m/s}
 $$
 
-<remark>
+<note>
 To save $\speed{\Delta v}$, launches are done close to the equator to go with
 the movement of the surface due to the body's rotation. On Kerbin, we save
 ($\delay{T}$ is the orbital period):
@@ -388,4 +388,4 @@ $$
 =
 \speed{174.5~m/s}
 $$
-</remark>
+</note>

@@ -102,10 +102,10 @@ A nice property of the Cartesian coordinate system is that, if we are
 interested in the variation of some point $\posit{P}$ with Cartesian
 coordinates $(x, y)$, we can simply consider the **vector** (x, y).
 
-<remark>
+<note>
 While a point denotes an offset from the origin, a vector denotes an offset
 from an unspecified point.
-</remark>
+</note>
 
 
 Polar coordinates
@@ -252,10 +252,10 @@ encompasses the slowing down of an object). Second, the more mass it has, the
 less it will accelerate; since this is perceived as a resistance to movement,
 we call this inertia.
 
-<remark>
+<note>
 When $\force{\vec F} = 0$, the acceleration is null as well. Thus, the speed is
 constant; this is Newton's first law (chapter quote).
-</remark>
+</note>
 
 
 Gravitation
@@ -280,11 +280,11 @@ $$
 
 where $\dist{r}$ is the distance between the two objects.
 
-<remark>
+<note>
 The object of mass $\mass{m}$ attracts the object of $\mass{M}$ with the exact
 same mount of force. The reason the Earth does not seem to move towards a falling
 apple is because of inertia (see Newton's second law).
-</remark>
+</note>
 
 
 
@@ -570,10 +570,10 @@ Q_1 = Q_2
 = 2^{- \frac 1 5} \dist{R} \left(\frac {\mass{M_1}} {\mass{M_2}}\right)^{\frac 2 5}
 \end{align*}
 
-<remark>
+<note>
 The $2^{- \frac 1 5}$ factor seems to be forgotten often. Since its value is
 about 0.87, it is still the right order of magnitude.
-</remark>
+</note>
 
 
 
@@ -594,10 +594,10 @@ only way a rocket can accelerate is by throwing parts of its mass out. This is
 exactly what their exhaust do: it ejects lots of mass (propellant) down, so
 that the rocket will lift up.
 
-<remark>
+<note>
 Technically, outer space is not empty: light from the Sun is theoretically
 enough for the low-thrust propulsion of **solar sails**.
-</remark>
+</note>
 
 
 Conserved momentum

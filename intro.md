@@ -34,11 +34,11 @@ mimics. This information can be read simply for curiosity, or can serve to
 design more precise launches in the game. When possible, example values will be
 taken from reality or KSP.
 
-<remark>
+<note>
 KSP is a propietary software. You can play the demo for free, but will be
 limited to an older version with only a few parts available for building. The
 demo is way harder and the complete game way richer.
-</remark>
+</note>
 
 <important>
 This document is intended to provide information both for beginners and actual

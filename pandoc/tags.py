@@ -23,8 +23,8 @@ def filter(key, value, format, meta):
     if format in ('html', 'html5'):
         lang = 'html'
         mapping = {
-            '<remark>': '<div class="remark">',
-            '</remark>': '</div>',
+            '<note>': '<div class="remark">',
+            '</note>': '</div>',
             '<important>': '<div class="important">',
             '</important>': '</div>',
         }
@@ -45,8 +45,8 @@ def filter(key, value, format, meta):
                 return pandocfilters.RawBlock(lang, code)
 
         mapping = {
-            '<remark>': r'\begin{remark}\gobblepars',
-            '</remark>': r'\end{remark}',
+            '<note>': r'\begin{remark}\gobblepars',
+            '</note>': r'\end{remark}',
             '<important>': r'\begin{important}\gobblepars',
             '</important>': r'\end{important}',
             '<figure>': r'\begin{figure}[H]\centering',

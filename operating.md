@@ -81,12 +81,12 @@ spacecraft $\posit{P1}$ roughly matching those of $\posit{P2}$. Once the
 spacecrafts have performed a rendez-vous, they can do useful action such as
 docking or crew transfer.
 
-<remark>
+<note>
 After rendez-vous, two vessels would be moving along a very similar orbit. On
 short durations (compared to the orbital periods), the pull of gravity can
 simply be ignored like if the vessels were subject to no force at all (making
 docking simple).
-</remark>
+</note>
 
 Same position and same velocity means a similar orbit. Once both satellites are
 revolving around the same body, the first correction is that of inclination:
@@ -213,12 +213,12 @@ n
 \frac {\pi} {\arcsin \frac {\dist{r_a}} {2 \dist{r}}}
 $$
 
-<remark>
+<note>
 Functions $\arccos$ and $\arcsin$ are only defined from $-1$ to $1$
 meaning that we need that $\dist{r} > \dist{R}$; this makes sense.
 Moreover, when $2 \dist{r} < \dist{r_a}$, the second conditions should
 be ignored, since it means the whole orbit stays in range.
-</remark>
+</note>
 
 Similar information is available on the KSP wiki @coverage.
 
@@ -259,12 +259,12 @@ there is a right angle in $\posit{X1}$
 </figcaption>
 </figure>
 
-<remark>
+<note>
 This property is used on the surface: the crow's nest is an observation spot
 located high in the masts of a ship to see significantly farther away. The
 distance you can see from altitude $\dist{a}$ is $\dist{R} \arccos \frac
 {\dist{R}} {\dist{R} + \dist{a}}$.
-</remark>
+</note>
 
 We quickly see that $\sin \angle{\alpha} = \cos \angle{\beta} = \frac
 {\dist{R}} {\dist{r}}$.

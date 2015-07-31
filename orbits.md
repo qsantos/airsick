@@ -11,12 +11,12 @@ of the [laws of orbits
 Orbital mechanics
 =================
 
-<remark>
+<note>
 We study orbital mechanics before the ascent since we can always pretend the
 space craft is in orbit. When it is resting on the launchpad, it is at its
 apoapsis but stays there because of the ground. This apoapsis is raised during
 the ascent and the gravity turn is simply raising the periapsis.
-</remark>
+</note>
 
 
 Set up
