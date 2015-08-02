@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="579.68091"
-   width="544.02325"
+   height="100.00155"
+   width="91.160454"
    id="svg6002"
    sodipodi:version="0.32"
    inkscape:version="0.91 r13725"
@@ -77,7 +77,7 @@
        xlink:href="#linearGradient2880"
        id="radialGradient5797"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.593746,-7.045529e-2,3.017666e-2,0.259761,-263.4913,612.9045)"
+       gradientTransform="matrix(0.593746,-0.07045529,0.03017666,0.259761,-263.4913,612.9045)"
        cx="-573.76666"
        cy="1007.2775"
        fx="-573.76666"
@@ -91,9 +91,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:cx="244.01885"
-     inkscape:cy="280.89578"
-     inkscape:zoom="0.98994949"
+     inkscape:cx="30.808918"
+     inkscape:cy="50.436567"
+     inkscape:zoom="7.9195959"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1920"
@@ -101,7 +101,11 @@
      inkscape:window-x="0"
      inkscape:window-y="31"
      showgrid="false"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata6007">
     <rdf:RDF>
@@ -118,9 +122,9 @@
      inkscape:groupmode="layer"
      inkscape:label="Warstwa 1"
      id="layer1"
-     transform="translate(-15.3712,-22.89608)">
+     transform="translate(-31.100586,-502.57541)">
     <g
-       transform="matrix(0.53055831,0,0,0.53055831,1399.6287,-304.72077)"
+       transform="matrix(0.09154462,0,0,0.09154462,267.23182,446.02823)"
        id="g5803">
       <path
          inkscape:export-ydpi="7.6053801"
@@ -221,7 +225,7 @@
     </g>
     <g
        id="g4729"
-       transform="matrix(1.5175275,0,0,1.4759637,-274.26015,-318.03684)">
+       transform="matrix(0.26184017,0,0,0.25466859,-21.587558,443.73063)">
       <path
          style="fill:none;stroke:#359000;stroke-width:27.86652946;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="path2993"
