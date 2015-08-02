@@ -1,4 +1,8 @@
-/* This script properly aligns equation numbers */
+/* This properly aligns equation numbers
+   Yuck. Javascript.
+   But hey, try aligning MathML sutff in CSS.
+   Also, <mlabeledtr> still is not supported.
+*/
 
 function $(query)
 {
