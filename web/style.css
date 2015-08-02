@@ -215,7 +215,10 @@ math a:target
 	border-top: 1px dotted grey;
 	border-bottom: 1px dotted grey;
 }
-
+math
+{
+	white-space: nowrap;
+}
 
 /* Table of contents */
 #TOC>ul
