@@ -117,6 +117,15 @@ figcaption::before
 	content: "Figure: ";
 	font-weight: bold;
 }
+@media (max-width: 420px)
+{
+	figure
+	{
+		margin: 1em 0;
+		padding: 0;
+		box-shadow: none;
+	}
+}
 
 
 /* Quotes */
