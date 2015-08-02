@@ -48,39 +48,41 @@
 }}
 \newcommand{\orbit}[6][]{% options, focus, apoapsis, periapsis, start angle, end angle
 \begin{scope}[shift={(#2)}]
-	\pgfmathsetmacro{\ap}{(#3)}
-	\pgfmathsetmacro{\pe}{(#4)}
-	\pgfmathsetmacro{\a}{(\ap+\pe)/2}
-	\pgfmathsetmacro{\b}{sqrt(\ap*\pe)}
-	\pgfmathsetmacro{\e}{(\ap-\pe)/(\ap+\pe)}
-	\pgfmathsetmacro{\f}{\a*\e}
-	\draw[-latex,thick,#1] plot[domain=#5:#6,samples=\samples]
-		({\x}:{\a*(1-\e*\e)/(1-\e*cos(\x))});
+	\pgfmathsetmacro{\orbitLap}{(#3)}
+	\pgfmathsetmacro{\orbitLpe}{(#4)}
+	\pgfmathsetmacro{\orbitLa}{(\orbitLap+\orbitLpe)/2}
+	\pgfmathsetmacro{\orbitLb}{sqrt(\orbitLap*\orbitLpe)}
+	\pgfmathsetmacro{\orbitLe}{(\orbitLap-\orbitLpe)/(\orbitLap+\orbitLpe)}
+	\pgfmathsetmacro{\orbitLf}{\orbitLa*\orbitLe}
+	\draw[-latex,thick,#1]
+	plot[domain=#5:#6,samples=\samples]
+		({\x}:{\orbitLa*(1-\orbitLe*\orbitLe)/(1-\orbitLe*cos(\x))});
 \end{scope}
 }
 \newcommand{\orbitpoint}[7][]{% options, focus, apoapsis, periapsis, angle, name, label
 \begin{scope}[shift={(#2)}]
-	\pgfmathsetmacro{\ap}{(#3)}
-	\pgfmathsetmacro{\pe}{(#4)}
-	\pgfmathsetmacro{\a}{(\ap+\pe)/2}
-	\pgfmathsetmacro{\b}{sqrt(\ap*\pe)}
-	\pgfmathsetmacro{\e}{(\ap-\pe)/(\ap+\pe)}
-	\pgfmathsetmacro{\f}{\a*\e}
-	\pgfmathsetmacro{\ang}{#5}
-	\pgfmathsetmacro{\rad}{\a*(1-\e*\e)/(1-\e*cos(\ang))}
-	\node[-latex,thick,#1] (#6) at (\ang:\rad) {#7};
+	\pgfmathsetmacro{\orbitpointLap}{(#3)}
+	\pgfmathsetmacro{\orbitpointLpe}{(#4)}
+	\pgfmathsetmacro{\orbitpointLa}{(\orbitpointLap+\orbitpointLpe)/2}
+	\pgfmathsetmacro{\orbitpointLb}{sqrt(\orbitpointLap*\orbitpointLpe)}
+	\pgfmathsetmacro{\orbitpointLe}{(\orbitpointLap-\orbitpointLpe)/(\orbitpointLap+\orbitpointLpe)}
+	\pgfmathsetmacro{\orbitpointLf}{\orbitpointLa*\orbitpointLe}
+	\pgfmathsetmacro{\orbitpointLang}{#5}
+	\pgfmathsetmacro{\orbitpointLrad}{\orbitpointLa*(1-\orbitpointLe*\orbitpointLe)/(1-\orbitpointLe*cos(\orbitpointLang))}
+	\node[-latex,thick,#1] (#6) at (\orbitpointLang:\orbitpointLrad) {#7};
 \end{scope}
 }
-\newcommand{\horbit}[5][]{% options, focus, periapsis, excentricity, domain
+\newcommand{\horbit}[5][]{% options, focus, periapsis, eccentricity, domain
 	\draw[-latex,thick,#1] let \p1=(#2) in \pgfextra{
-		\pgfmathsetmacro{\ap}{#3}
-		\pgfmathsetmacro{\e}{#4}
-		\pgfmathsetmacro{\a}{\ap/(\e-1)}
-		\pgfmathsetmacro{\b}{(\a*sqrt(\e*\e-1)}
+		\pgfmathsetmacro{\horbitLap}{#3}
+		\pgfmathsetmacro{\horbitLe}{#4}
+		\pgfmathsetmacro{\horbitLa}{\horbitLap/abs(\horbitLe-1)}
+		\pgfmathsetmacro{\horbitLb}{(\horbitLa*sqrt(abs(\horbitLe*\horbitLe-1))}
 		\pgfmathsetmacro{\Ox}{\x1/1cm}
 		\pgfmathsetmacro{\Oy}{\y1/1cm}
 	}
-	plot[domain=-#5:#5,samples=\samples] ({\Ox - \a - \ap + \a*cosh(\x)},{\Oy + \b*sinh(\x)});
+	plot[domain=-#5:#5,samples=\samples]
+		({\Ox - \horbitLa - \horbitLap + \horbitLa*cosh(\x)},{\Oy + \horbitLb*sinh(\x)});
 }
 
 % http://tex.stackexchange.com/questions/12010/how-can-i-invert-a-clip-selection-within-tikz/12033#12033
