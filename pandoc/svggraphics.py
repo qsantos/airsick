@@ -15,7 +15,7 @@ def filter(key, value, format, meta):
     if key != 'Image':
         return None
 
-    _, (filename, alternate_text) = value
+    properties, alternate_text, (filename, title) = value
     if not filename.endswith('.svg'):
         return None
 
@@ -24,7 +24,7 @@ def filter(key, value, format, meta):
     pdffile = os.path.join(builddir, basename + '.pdf')
     subprocess.check_call(["inkscape", filename, '--export-pdf', pdffile])
 
-    return pandocfilters.Image(_, (pdffile, alternate_text))
+    return pandocfilters.Image(properties, alternate_text, (pdffile, title))
 
 
 if __name__ == "__main__":

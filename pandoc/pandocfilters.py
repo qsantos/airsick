@@ -7,8 +7,11 @@ Functions to aid writing python scripts that process the pandoc
 AST serialized as JSON.
 """
 
+from functools import reduce
 import sys
 import json
+import io
+import codecs
 
 
 def walk(x, action, format, meta):
@@ -40,10 +43,13 @@ def walk(x, action, format, meta):
 
 
 def toJSONFilter(action):
-    """Converts an action into a filter that reads a JSON-formatted
+    toJSONFilters([action])
+
+def toJSONFilters(actions):
+    """Converts a list of actions into a filter that reads a JSON-formatted
     pandoc document from stdin, transforms it by walking the tree
-    with the action, and returns a new JSON-formatted pandoc document
-    to stdout.  The argument is a function action(key, value, format, meta),
+    with the actions, and returns a new JSON-formatted pandoc document
+    to stdout.  The argument is a list of functions action(key, value, format, meta),
     where key is the type of the pandoc object (e.g. 'Str', 'Para'),
     value is the contents of the object (e.g. a string for 'Str',
     a list of inline elements for 'Para'), format is the target
@@ -55,12 +61,19 @@ def toJSONFilter(action):
     the list to which the target object belongs.    (So, returning an
     empty list deletes the object.)
     """
-    doc = json.loads(sys.stdin.read())
+    try: 
+        input_stream = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+    except AttributeError:
+        # Python 2 does not have sys.stdin.buffer.
+        # REF: http://stackoverflow.com/questions/2467928/python-unicodeencodeerror-when-reading-from-stdin
+        input_stream = codecs.getreader("utf-8")(sys.stdin)
+        
+    doc = json.loads(input_stream.read())
     if len(sys.argv) > 1:
         format = sys.argv[1]
     else:
         format = ""
-    altered = walk(doc, action, format, doc[0]['unMeta'])
+    altered = reduce(lambda x, action: walk(x, action, format, doc[0]['unMeta']), actions, doc)
     json.dump(altered, sys.stdout)
 
 
@@ -145,7 +158,8 @@ Space = elt('Space', 0)
 LineBreak = elt('LineBreak', 0)
 Math = elt('Math', 2)
 RawInline = elt('RawInline', 2)
-Link = elt('Link', 2)
-Image = elt('Image', 2)
+Link = elt('Link', 3)
+Image = elt('Image', 3)
 Note = elt('Note', 1)
+SoftBreak = elt('SoftBreak', 0)
 Span = elt('Span', 2)

@@ -93,7 +93,7 @@ def filter(key, value, format, meta):
         sys.exit(1)
 
     alternate_text = pandocfilters.Str("")
-    image = pandocfilters.Image([alternate_text], [filename, ""])
+    image = pandocfilters.Image(['', [], []], [alternate_text], [filename, ""])
     return pandocfilters.Para([image])
 
 

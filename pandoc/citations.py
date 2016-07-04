@@ -52,7 +52,7 @@ def filter(key, value, format, meta):
     title = citation
     return [
         pandocfilters.Str('['),
-        pandocfilters.Link([text], [link, title]),
+        pandocfilters.Link(['', [], []], [text], [link, title]),
         pandocfilters.Str(']'),
     ]
 
