@@ -274,6 +274,7 @@ Using the closed expression for the pressure, we can now derive the density and
 then the terminal velocity depending on the altitude:
 
 <figure>
+$$
 \begin{tikzpicture}
 \begin{axis}[
 	no markers,
@@ -301,7 +302,7 @@ then the terminal velocity depending on the altitude:
 \addplot[red] table [y=v]   {data/air_density.dat};
 \end{axis}
 \end{tikzpicture}
-
+$$
 <figcaption>
 The terminal velocity quickly rises after \dist{30~km}
 </figcaption>

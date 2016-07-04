@@ -73,12 +73,16 @@ def tex2image(tex, extension='svg'):
 
 def filter(key, value, format, meta):
     # look for a raw TikZ block
-    if key != 'RawBlock':
+    if key == 'Math':
+        mode, code = value
+    elif key == 'RawBlock':
+        lang, code = value
+        if lang != 'latex':
+            return None
+    else:
         return None
-    lang, code = value
-    if lang != 'latex':
-        return None
-    if not code.startswith(r"\begin{tikzpicture}"):
+
+    if not code.strip().startswith(r"\begin{tikzpicture}"):
         return None
 
     # create the figure, if not already done
@@ -94,7 +98,10 @@ def filter(key, value, format, meta):
 
     alternate_text = pandocfilters.Str("")
     image = pandocfilters.Image(['', [], []], [alternate_text], [filename, ""])
-    return pandocfilters.Para([image])
+    if key == 'Math':
+        return image
+    else:  # RawBlock
+        return pandocfilters.Para([image])
 
 
 if __name__ == "__main__":

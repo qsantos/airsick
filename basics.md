@@ -311,6 +311,7 @@ Since we expect the speed to not change a lot on short periods of time, a
 natural solution is to consider the mean velocity over shorter durations.
 
 <figure>
+$$
 \begin{tikzpicture}
 \foreach \i [
 	evaluate=\i as \x using {mod(\i,2)*\linewidth*2},
@@ -333,6 +334,7 @@ natural solution is to consider the mean velocity over shorter durations.
 	\end{axis}
 }
 \end{tikzpicture}
+$$
 <figcaption>
 The closer to $\posit{A}$ we pick $\posit{B}$, the best the blue line matches
 the curve at $\posit{A}$.
