@@ -30,7 +30,7 @@ def tex2image(tex, extension='svg'):
         sys.stderr.write('-> %s\n' % texfile)
         with open(texfile, 'w') as f:
             f.write(
-                r'\documentclass{standalone}'  # crop the viewport
+                r'\documentclass[preview]{standalone}'  # crop the viewport
                 r'\input{header}'  # usual LaTeX stuff
                 r'\input{drawing}'  # needed for drawing
                 r'\begin{document}'
