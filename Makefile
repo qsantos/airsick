@@ -40,8 +40,8 @@ $(WEBDIR)/%.html: %.md $(wildcard pandoc/*.py pandoc/*.html)
 			-s --css=style.css --toc --toc-depth=1 --section-divs -T "Airsick" \
 			-H pandoc/header.html -B pandoc/before.html -A pandoc/after.html
 
-optimize: all
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -sOutputFile=airsick_opt.pdf airsick.pdf
+optimize: $(TARGET)
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dNOPAUSE -dBATCH -sOutputFile=$(<:.pdf=_opt.pdf) $<
 
 toc: all
 	rm -f $(TARGET)
