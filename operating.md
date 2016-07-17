@@ -1,6 +1,6 @@
 ---
 title: Operating
-date: 2015-07-11
+date: 2016-07-17
 ---
 
 > Let's face it, space is a risky business. I always considered every launch a
@@ -305,11 +305,73 @@ the primary star.
 </figcaption>
 </figure>
 
+Consider the typical case of a satellite running on photovoltaic cells. Most of
+the time, it can relies on the sunlight emitted by the local star. However, for
+some time during each orbit, it will pass behind its primary (unless it is
+orbiting the star itself). During that duration, it will thus have to run on
+batteries. To know the needed electrical capacity, we will need to know how
+long an episode lasts.
+
+<figure>
+\begin{tikzpicture}
+% inspired from http://www.texample.net/tikz/examples/earth-orbit/
+\def\R{1.5}
+\def\r{2.5}
+\node[point=O] (O) at (5,5) {};
+% shadow
+\draw[yellow!20!black!80] (O) +(0,-\R) -- +(5,-\R);
+\draw[yellow!20!black!80] (O) +(0,+\R) -- +(5,+\R);
+\draw (O) circle (\R);
+% arrow
+\draw[black,->,thick] (O) +(-3,2) --node[below]{star} +(-4,2);
+% orbit
+\orbit[red]{O}{\r}{\r}{0}{360};
+\begin{scope}
+\clip (O) +(0,-\R) rectangle +(5,\R);
+\orbit[blue]{O}{\r}{\r}{0}{360};
+\end{scope}
+\orbitpoint[roint=P]{O}{\r}{\r}{20}{}{}
+\pgfmathsetmacro{\halfnightangle}{asin(\R / \r)}
+% notable points
+\orbitpoint[point=A]{O}{\r}{\r}{+\halfnightangle}{A}{}
+\orbitpoint[roint=B]{O}{\r}{\r}{0}{B}{}
+\orbitpoint[boint=C]{O}{\r}{\r}{-\halfnightangle}{C}{}
+\coordinate[boint=H] (H) at ($(O)!(A)!(B)$);
+% show angles
+\draw (B) -- (O) -- (A) -- (H);
+\draw (O) -- (C);
+\markangle{A}{O}{B}{$\theta$}{0.5}
+\markangle{B}{O}{C}{$\theta$}{0.5}
+\draw (H) +(0,0) -- +(0,.2) -- +(-.2,.2) -- +(-.2,0);
+\end{tikzpicture}
+<figcaption>
+A schematic representing the situation with some points, lines and angles that
+will turn useful.
+</figcaption>
+</figure>
+
+As shown in the schematic above, we can see that $\sin \theta = \frac
+{\dist{AH}} {\dist{OA}}$. Since $\dist{AH} = \dist{R}$ (the radius of the
+primary) and $\dist{OA} = \dist{r}$ (the radius of the orbit), we get:
+
+$$
+\sin \theta = \frac {\dist{R}} {\dist{r}}
+$$
+
+Then, we can use the formula for the period of the orbit, we can deduce the
+time duration:
+
+$$
+\delay{t_{\text{dark}}}
+= 2 \times \mathrm{asin}\left(\frac {\dist{R}} {\dist{r}}\right)
+\times \sqrt{\frac {\dist{a}^3} {\mu}}
+$$
+
 <important>
-If $\posit{O}$ is a moon orbiting around a planet, both the night time around
-the moon and around the planet must be computed. In the worst case (when the
-night of one ends, the night of the other starts), they can add up and make a
-longer night than expected.
+If the primary of the satellite is a moon, both the night time around the moon
+and around the planet must be computed. In the worst case (when the night of
+one ends, the night of the other starts), they can add up and make a longer
+night than expected.
 </important>
 
 
