@@ -276,7 +276,25 @@ then the terminal velocity depending on the altitude:
 <figure>
 $$
 \begin{tikzpicture}
+\pgfmathsetmacro{\Pz}{101325}
+\pgfmathsetmacro{\L}{0.0065}
+\pgfmathsetmacro{\Tz}{288.15}
+\pgfmathsetmacro{\g}{9.80665}
+\pgfmathsetmacro{\M}{0.0289644}
+\pgfmathsetmacro{\R}{8.31447}
+\pgfmathsetmacro{\Rsp}{287.058}
+\pgfmathsetmacro{\H}{\R*\Tz/\g/\M}
+\pgfmathsetmacro{\m}{1000}
+\pgfmathsetmacro{\A}{0.008*\m}
+\pgfmathsetmacro{\Cd}{0.2}
+\pgfmathdeclarefunction{p}{1}{\pgfmathparse{\Pz*(1 - \L*#1/\Tz)^(\g*\M/\R/\L)}}
+%\pgfmathdeclarefunction{p}{1}{\pgfmathparse{\Pz*exp(-#1/\H)}}
+\pgfmathdeclarefunction{T}{1}{\pgfmathparse{\Tz - \L * #1}}
+\pgfmathdeclarefunction{rho}{1}{\pgfmathparse{p(#1)/\Rsp/T(#1)}}
+\pgfmathdeclarefunction{vterm}{1}{\pgfmathparse{sqrt(2*\g*\m/rho(#1)/\A/\Cd)}}
 \begin{axis}[
+	domain=0:30000,
+	samples=\samples,
 	no markers,
 	axis lines=left,
 	xlabel=$\dist{h}$,
@@ -286,25 +304,31 @@ $$
 	legend style={
 		cells={anchor=west},
 		legend pos=north west,
-	}
+	},
+	scaled ticks=false,
+	yticklabel style={/pgf/number format/fixed},
 ]
-\addlegendentry{$\rho(h)$}
-\addplot[blue] table [y=rho] {data/air_density.dat};
+\addplot[black] {p(x)};
 \end{axis}
 \begin{axis}[
+	domain=0:30000,
+	samples=\samples,
 	no markers,
 	axis lines=left,
 	axis y line=right,
 	ylabel=$\speed{v_{\mathrm{term}}}$,
 	y unit=m/s,
+	scaled ticks=false,
+	yticklabel style={/pgf/number format/fixed},
 ]
-\addlegendentry{$\speed{v_{\mathrm{term}}}(\dist{h})$}
-\addplot[red] table [y=v]   {data/air_density.dat};
+%
+\addplot[speed] {vterm(x)};
 \end{axis}
 \end{tikzpicture}
 $$
 <figcaption>
-The terminal velocity quickly rises after \dist{30~km}
+Terminal velocity increases as air density decreases; notice that the terminal
+velocity at the surface is about \speed{100~m/s} in this example
 </figcaption>
 </figure>
 
