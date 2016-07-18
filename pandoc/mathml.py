@@ -6,24 +6,8 @@ import pandocfilters
 import subprocess
 import fcntl
 import os
-import sys
 import time
 import re
-
-
-def bibitem_keys(f):
-    for line in f:
-        if line.startswith(r'\bibitem{') and line.endswith('}\n'):
-            yield line[9:-2]
-
-
-def make_bibcites(f):
-    for i, key in enumerate(bibitem_keys(f), 1):
-        yield r'\bibcite{%s}{%i}' % (key, i)
-
-
-def make_bib_preamble(f):
-    return '\n'.join(make_bibcites(f))
 
 
 def communicate(process, command):
@@ -192,9 +176,6 @@ if __name__ == "__main__":
     # set its stdout to non-blocking
     fd = ttm_process.stdout.fileno()
     fcntl.fcntl(fd, fcntl.F_SETFL, os.O_NONBLOCK)
-
-    with open('bib.tex') as f:
-        bib = make_bib_preamble(f)
 
     # send LaTeX header to ttm
     ttm_process.stdin.write((

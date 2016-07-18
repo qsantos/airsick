@@ -84,11 +84,3 @@
 	plot[domain=-#5:#5,samples=\samples]
 		({\Ox - \horbitLa - \horbitLap + \horbitLa*cosh(\x)},{\Oy + \horbitLb*sinh(\x)});
 }
-
-% http://tex.stackexchange.com/questions/12010/how-can-i-invert-a-clip-selection-within-tikz/12033#12033
-\tikzstyle{reverseclip}=[insert path={(current page.north east) --
-  (current page.south east) --
-  (current page.south west) --
-  (current page.north west) --
-  (current page.north east)}
-]
