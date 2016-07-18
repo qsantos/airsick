@@ -274,7 +274,6 @@ Using the closed expression for the pressure, we can now derive the density and
 then the terminal velocity depending on the altitude:
 
 <figure>
-$$
 \begin{tikzpicture}
 \pgfmathsetmacro{\Pz}{101325}
 \pgfmathsetmacro{\L}{0.0065}
@@ -300,7 +299,7 @@ $$
 	xlabel=$\dist{h}$,
 	x unit=m,
 	ylabel=$\rho$,
-	y unit=kg/m^3,
+	y unit=kg/m\^3,
 	legend style={
 		cells={anchor=west},
 		legend pos=north west,
@@ -325,7 +324,6 @@ $$
 \addplot[speed] {vterm(x)};
 \end{axis}
 \end{tikzpicture}
-$$
 <figcaption>
 Terminal velocity increases as air density decreases; notice that the terminal
 velocity at the surface is about \speed{100~m/s} in this example

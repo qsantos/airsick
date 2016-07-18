@@ -311,7 +311,6 @@ Since we expect the speed to not change a lot on short periods of time, a
 natural solution is to consider the mean velocity over shorter durations.
 
 <figure>
-$$
 \begin{tikzpicture}
 \foreach \i [
 	evaluate=\i as \x using {mod(\i,2)*\linewidth*2},
@@ -329,12 +328,11 @@ $$
 	]
 	\addplot+[color=green]{examplepos(x)};
 	\node[roint=A] (A) at (axis cs:4.0, {examplepos(4.0)}) {};
-	\node[loint=B] (B) at (axis cs:{4.0+0.9/(2^\i)}, {examplepos(4.0+0.9/(2^\i))}) {};
+	\node[loint=B] (B) at (axis cs:{4.0+0.9/(2\^\i)}, {examplepos(4.0+0.9/(2\^\i))}) {};
 	\draw[color=blue,shorten <=-2cm,shorten >=-1cm] (A) -- (B);
 	\end{axis}
 }
 \end{tikzpicture}
-$$
 <figcaption>
 The closer to $\posit{A}$ we pick $\posit{B}$, the best the blue line matches
 the curve at $\posit{A}$.

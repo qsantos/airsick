@@ -85,6 +85,8 @@ def filter(key, value, format, meta):
     if not code.strip().startswith(r"\begin{tikzpicture}"):
         return None
 
+    code = code.replace(r'\^', '^')
+
     # create the figure, if not already done
     if format in ('html', 'html5'):
         original = tex2image(code, 'svg')
