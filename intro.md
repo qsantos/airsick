@@ -8,9 +8,23 @@ skipnumber: yes
 -- [Neil Armstrong](https://en.wikipedia.org/wiki/Neil_Armstrong),
 first human being on the Moon
 
+Are you curious about the “How?” behind space exploration and satellite
+operating? This document might help you quench that thirst for knowledge.
+Although it is still very much in the making, it tries to clearly explain the
+technical terms and to guide you through the mathematics.
+
+If some part of it seems to be unclear or lacking explanation, do not hesitate
+to contact the author at [author@airsick.guide](mailto:author@airsick.guide).
+
+Kerbal Space Program
+====================
+
 Kerbal Space Program @ksp is a rocket simulation game; it lets you build,
-launch and pilot a rocket to put up satellites, send probes, land rovers, and
-have Kerbals do SCIENCE.
+launch and pilot a rocket to put up
+[satellites](https://en.wikipedia.org/wiki/Satellite), send
+[probes](https://en.wikipedia.org/wiki/Space_probe), land
+[rovers](https://en.wikipedia.org/wiki/Rover_%28space_exploration%29), and have
+Kerbals do SCIENCE.
 
 ![
 Mouseover text reads ”To be fair, my job at NASA was working
@@ -50,13 +64,43 @@ physics, feel free to skip irrelevant parts.
 </important>
 
 
+About this document
+===================
+
+This document was written using
+[Markdown](https://en.wikipedia.org/wiki/Markdown) and
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX). Markdown is a very simple format
+for rich text; LaTeX is currently the most flexible way to write formulas and
+draw complex graphs (using TiKZ).
+
+The source is made so as to be compiled into either a PDF or a set of webpages.
+
+* PDF: the Markdown/LaTeX source is converted to pure LaTeX using
+  [Pandoc](http://pandoc.org/); the LaTeX files are then compiled with
+  `pdflatex`
+* HTML: the Markdown is converted to HTML using Pandoc, inline LaTeX (formulas)
+  * are converted to [MathML](https://en.wikipedia.org/wiki/MathML) using
+  `ttm`, and TikZ pictures are converted to SVG files using `latex` and
+  `dvisgm`
+
+A few more details:
+
+* since several browsers still [do not support
+  MathML](http://caniuse.com/#search=mathml), including Google Chrome, Opera
+  and Microsoft Internet Explorer, the Javascript library
+  [MathJax](https://en.wikipedia.org/wiki/MathJax) is conditionnaly enabled to
+  fill the gap
+* some discrepancies between PDF and HTML generations are handled by [Pandoc
+  filters](http://pandoc.org/scripting.html).
+* to be more precise, during the PDF generation, TikZ pictures are
+  converted to individual PDFs using (`latex` and `dvipdf`)
+
 
 Credits
 =======
 
 This document makes extensive use of pictures, diagrams and various
-illustrations. Most figures were generated with the file from \LaTeX using the
-Tikz package. When an external image was included as a figure, a reference to
+illustrations. When an external image was included as a figure, a reference to
 the source is linked in the caption (e.g. @xkcd1356).
 
 Sources for the other illustrations:
