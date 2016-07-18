@@ -7,6 +7,7 @@ body
 	background-color: #f4f4f4;
 	margin: 0 auto;
 	max-width: 40em;
+	padding: .5em;
 }
 main>section+section::before
 {
