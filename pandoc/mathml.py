@@ -117,9 +117,11 @@ def filter(key, value, format, meta):
         lang, code = value
         if lang != 'latex':
             return None
-        if code.startswith(r'\begin{align*}') and code.endswith(r'\end{align*}'):
+        if code.startswith(r'\begin{align*}') and \
+                code.endswith(r'\end{align*}'):
             code = code[14:-12]  # remove environment
-        elif code.startswith(r'\begin{alignat*}{') and code.endswith(r'\end{alignat*}'):
+        elif code.startswith(r'\begin{alignat*}{') and \
+                code.endswith(r'\end{alignat*}'):
             start = code.index('}', 17) + 1  # skip alignat argument
             code = code[start:-14]  # remove environment
         else:
@@ -180,15 +182,11 @@ if __name__ == "__main__":
     # send LaTeX header to ttm
     ttm_process.stdin.write((
         r'\documentclass{article}'
-        r'\input{header}'
-        +
-        define('mathbb', '<mstyle mathvariant="double-struck">', '</mstyle>')
-        +
-        define('mathcal', '<mstyle mathvariant="script">', '</mstyle>')
-        +
+        r'\input{header}' +
+        define('mathbb', '<mstyle mathvariant="double-struck">', '</mstyle>') +
+        define('mathcal', '<mstyle mathvariant="script">', '</mstyle>') +
         define('strike', '<menclose notation="updiagonalstrike">',
-               '</menclose>', True)
-        +
+               '</menclose>', True) +
         r'\begin{document}'
     ).encode())
 

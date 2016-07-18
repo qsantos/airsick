@@ -28,23 +28,17 @@ def filter(key, value, format, meta):
         return [
             pandocfilters.BlockQuote(value),
             pandocfilters.Plain(
-                [pandocfilters.RawInline('html', '<cite>')]
-                +
-                cite
-                +
+                [pandocfilters.RawInline('html', '<cite>')] +
+                cite +
                 [pandocfilters.RawInline('html', '</cite>')]
             )
         ]
     elif format == 'latex':
         return pandocfilters.Plain(
-            [pandocfilters.RawInline('latex', r'\chaptquote{')]
-            +
-            cite
-            +
-            [pandocfilters.RawInline('latex', '}{')]
-            +
-            value[0]['c']  # assume there is only one paragraph
-            +
+            [pandocfilters.RawInline('latex', r'\chaptquote{')] +
+            cite +
+            [pandocfilters.RawInline('latex', '}{')] +
+            value[0]['c'] +  # assume there is only one paragraph
             [pandocfilters.RawInline('latex', '}')]
         )
 
