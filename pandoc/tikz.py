@@ -54,7 +54,7 @@ def tex2image(tex, extension='svg'):
         if not os.path.isfile(pdffile):
             sys.stderr.write('-> %s\n' % pdffile)
             subprocess.check_call(
-                ['dvipdf', dvifile, pdffile],
+                ['dvipdf', '-dAutoRotatePages=/None', dvifile, pdffile],
                 stderr=devnull,
             )
         return pdffile
