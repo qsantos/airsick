@@ -40,7 +40,7 @@ function mathml_compat()
 	toc.parentNode.insertBefore(warning, toc);
 
 	var mathjax = document.createElement('script');
-	mathjax.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML.js';
+	mathjax.src = '/mathjax/MathJax.js?config=MML_HTMLorMML.js';
 	document.head.appendChild(mathjax);
 }
 window.addEventListener('load', mathml_compat, false);
