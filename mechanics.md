@@ -1,6 +1,6 @@
 ---
 title: Mechanics
-date: 2015-07-28
+date: 2016-07-24
 ---
 
 > Every body continues in its state of rest, or of uniform motion in a right
@@ -643,10 +643,12 @@ $$
 \mass{m} \frac {\d \speed{v_r}} {\delay{\dt}} = - \speed{v_e} \frac {\mass{\d m}} {\delay{\dt}}
 $$
 
-We finally get the expression of the thrusting force:
+We finally get the expression of the force of thrust:
 
 $$
-\force{F_t} = \mass{m} \accel{a_R} = - \speed{v_e} \dot m
+\force{F_t}
+= \mass{m} \accel{a_t}
+= - \speed{v_e} \dot m
 \eqtag{eql:accel}
 $$
 
@@ -675,20 +677,28 @@ Tsiolkovsky rocket equation
 ---------------------------
 
 We can now integrate equation (\ref{eql:accel}) to get the velocity change of a
-rocket over a long period of time:
+rocket due to thrust, over a long period of time:
 
 \begin{align*}
-\speed{\Delta v}
-&= \int_{\delay{0}}^{\delay{t}} \accel{\dot{v_R}} \delay{\dt} \\
+\speed{\Delta v_t}
+&= \int_{\delay{0}}^{\delay{t}} \accel{\dot{v_t}} \delay{\dt} \\
 &= \int_{\delay{0}}^{\delay{t}} - \speed{v_e} \frac {\dot m} {\mass{m}} \delay{\dt} \\
 &= \left[- \speed{v_e} \ln(\mass{m})\right]_{\delay{0}}^{\delay{t}} \\
 &= \speed{v_e} \ln \frac {\mass{m}(\delay{0})} {\mass{m}(\delay{t})}
 \eqtag{eql:thrust}
 \end{align*}
 
+<note>
+Remark that we did not make any particular asumption about $\mass{m}$: the
+ejection rate $\dot m$ might grow or shrink in any (continuous) way. This makes
+it easy to plan complex trajectories with several maneuvers: rockets with
+different thrusts and staging arrangements will follow similar paths, as long
+as $\speed{\Delta v}$ are the same.
+</note>
+
 Conversely, we can compute the amount of propellant $\mass{\Delta m}$ to eject
 to bring a mass $\mass{m}$ to a given speed:
 
 $$
-\mass{\Delta m} = \mass{m} \left(1 - e^{-\frac {\speed{\Delta v}} {\speed{v_e}}}\right)
+\mass{\Delta m} = \mass{m} \left(1 - e^{-\frac {\speed{\Delta v_t}} {\speed{v_e}}}\right)
 $$
