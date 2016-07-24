@@ -1,6 +1,6 @@
 ---
 title: Launch to orbit
-date: 2015-07-11
+date: 2016-07-24
 ---
 
 > Can it be that you have come from outer space?
@@ -13,79 +13,65 @@ first human being in space, to people near his landing site
 Vertical ascent
 ===============
 
-General expression
-------------------
+Thrust
+------
 
-Assume that $\dot m$ is constant. Using (\ref{eql:thrust}), it comes that:
+From the Tsiolkovsky equation (\ref{eql:thrust}), we know that:
 
 $$
-\speed{\Delta v}
+\speed{\Delta v_t}
 = - \speed{v_e} \ln\left(1 - \frac {\dot m} {\mass{m}(\delay{0})} \delay{t}\right)
-  + \speed{I}_{\force{F}}(\delay{t})
 $$
 
-And integrating once more:
+If we now assume that $\dot m$ (and thus the thrust) is constant:
 
 \begin{align*}
-\dist{z}
+\dist{\Delta x_t}
 &= - \speed{v_e} \times \frac 1 {- \frac {\dot m} {\mass{m}(\delay{0})}}
 \left(
 	\left(1 - \frac {\dot m} {\mass{m}(\delay{0})} \delay{t}\right)
 	\ln\left(1 - \frac {\dot m} {\mass{m}(\delay{0})} \delay{t}\right)
 	+ \frac {\dot m} {\mass{m}(\delay{0})} \delay{t}
-\right) + \underbrace{
-	\int_{\delay{0}}^{\delay{t}} \speed{I}_{\force{F}}(\delay{t}) \delay{\dt}
-}_{\dist{J}_{\force{F}}(\delay{t})} \\
+\right) \\
 & = \speed{v_e}
 	\left(\frac {\mass{m}(\delay{0})} {\dot m} - \delay{t}\right)
 	\ln\left(1 - \frac {\dot m} {\mass{m}(\delay{0})} \delay{t}\right)
 	+ \speed{v_e} \delay{t}
-+ \dist{J}_{\force{F}}(\delay{t})
 \end{align*}
 
+This gives us the displacement done by the thrust of the engines.
 
 Gravity
 -------
 
-If we assume $z \ll R$, we can estimate the effect of gravity $\force{F} = -
-\frac {\mathcal G \mass{M} \mass{m}} {(R+z)^2} \simeq \mass{m} \accel{g}$ and
-$\dist{J}_{\mass{m} \accel{g}} = \frac 1 2 \accel{g} \delay{t}^2$.
-
-The approximation is close enough for large bodies such as Earth or even
-Kerbin. On smaller bodies, there is no atmosphere and the ascent is not a
-problem. To verify this however, we will use (\ref{eql:thrust}) to get:
+Let us notate $\mu = \mathcal G \mass{M}$ the gravitational parameter of the
+body our rocket is landed at, $\dist{R}$ the radius of that body, and
+$\dist{z}$ the current altitude of the rocket. As long as $\dist{z} \ll
+\dist{R}$, the acceleration due to gravity will be:
 
 $$
-\accel{\ddot z}
-= - \speed{v_e} \frac {\dot m} {\mass{m}(\delay{0}) - \dot m \delay{t}} - \frac {\mathcal G \mass{M}} {(\dist{R}+\dist{z})^2}
+\accel{a_g}
+= \frac {\mu} {(\dist{R} + \dist{z})^2}
+\simeq \frac {\mu} {\dist{R}^2}
 $$
 
-We will then proceed to a numerical approximation:
+<note>
+The approximation $\dist{z} \ll \dist{R}$ is verified on large bodies since we
+will usually aim for a low orbit topping the atmosphere. On small bodies, the
+gravity as well as the atmosphere will usually be negligible.
+</note>
+
+Then, integrating twice:
 
 $$
-\left\{
-\begin{aligned}
-\dist{z}(\delay{0})
-&= \dist{0} \\
-%
-\speed{\dot z}(\delay{0})
-&= \speed{0} \\
-%
-\accel{\ddot z}(\delay{t})
-&= - \speed{v_e} \frac {\dot m} {\mass{m}(\delay{0}) - \dot m \delay{t}} - \frac {\mathcal G \mass{M}} {(\dist{R}+\dist{z}(\delay{t}))^2} \\
-%
-\speed{\dot z}(\delay{t} + \delay{\dt})
-&= \speed{\dot z}(\delay{t}) + \delay{\dt} \accel{\ddot z}(\delay{t}) \\
-%
-\dist{z}(\delay{t} + \delay{\dt})
-&= \dist{z}(\delay{t}) + \delay{\dt} \speed{\dot z}(\delay{t})
-\end{aligned}
-\right.
+\dist{\Delta x_g}
+= \frac 1 2 \delay{t}^2 \times \accel{a_g}
 $$
 
+This is the displacement due to gravity.
 
-Graphs
-------
+General expression
+------------------
 
 We now compare the graphs for the different approaches (ignoring gravity,
 constant gravity, or numerical approximation). To get actual values, we
@@ -132,9 +118,12 @@ go as high.
 }
 \end{tikzpicture}
 <figcaption>
-We can see that the assumption that $z \ll R$ is safe enough; moreover, the
-effect of gravity on small bodies (c) (d) is negligible on such short periods
-of time.
+Here, $\force{F}$ is the model used for gravity: we either ignore it
+($\force{0}$), assume it is a constant ($\frac {\mathcal G \mass{M} \mass{m}}
+{\dist{R}^2}$), or use the exact formula ($\frac {\mathcal G \mass{M} \mass{m}}
+{(\dist{R}+\dist{z})^2}$). From the graphs, we see that assuming that the
+gravity is constant ($z \ll R$) makes for a good approximation. Moreover, on
+small bodies (c) (d), gravity has a very limited impact on such short periods.
 </figcaption>
 </figure>
 
@@ -146,53 +135,99 @@ Atmospheric drag
 Definition
 ----------
 
-Atmospheric drag exerts a force opposite to the velocity with intensity:
+An object moving through a fluid (gaz or liquid) pushes matter around; by the
+principle of action-reaction, the object will be subjected to an opposing
+force. We are only interested in two effects of this: **drag**, which is the
+**prograde** component (along the velocity vector), and **lift**, a **normal**
+component.
+
+For now, we will assume an axial symmetry around the velocity vector. In other
+words, we make it so as not to generate lift. It has been measured that the
+force of drag was of the form:
 
 $$
-\force{F_D}
-= \frac 1 2 \rho \speed{v}^2 C_d \area{A}
+\force{F_d}
+= \frac 1 2 \rho \times C_d \area{A} \times \speed{v}^2
 $$
 
-where $\rho$ is the density of air and $C_d$ and $A$ are aerodynamics factors.
+where $\rho$ is the density of air and $C_d$ and $\area{A}$ are aerodynamics
+factors dependent on the shape of the ship.
 
 
 Terminal velocity
 -----------------
 
+Let us consider a falling object subjected only to gravitation and atmospheric
+drag. Gravitation is a constant force oriented downwards; here, drag is a force
+oriented upwards and growing with speed. There will hthus be a point where
+gravitation and drag balances and speed becomes constant. This speed is named
+**terminal velocity**.
+
 When terminal velocity is reached, $\speed{\dot z}$ is constant so
 $\accel{\ddot z}$ is null and:
 
-$$
-\force{F_D} = \mass{m} \accel{g}
-\Leftrightarrow
-\speed{v} = \sqrt{2\frac {\mass{m} \accel{g}} {\rho C_d \area{A}}}
-$$
+\begin{align*}
+\accel{\ddot z} = 0
+&\Leftrightarrow \accel{a_g} = \accel{a_d} \\
+&\Leftrightarrow \force{F_g} = \force{F_d} \\
+&\Leftrightarrow \frac 1 2 \rho \times C_d \area{A} \times \speed{v_{\text{term}}}^2 = \mass{m} \accel{g} \\
+&\Leftrightarrow \speed{v_{\text{term}}} = \sqrt{\frac {2 \mass{m} \accel{g}} {\rho C_d \area{A}}}
+\end{align*}
 
+<note>
+In Kerbal Space Program pre-1.0, \area{A} used to be computed as
+$\frac 1 {125} ~\area{m^2}/\mass{kg} \times \mass{m}$. This means that the terminal
+velocity only depended on the air density $\rho$ and the coefficient of drag
+$C_d$ (usually about 0.2).
 
-Optimal speed
--------------
+$\frac {\mass{m}} {125 \mass{kg} / \area{m^2}}$. This means that the terminal
 
-Equation (\ref{eql:thrust}) shows us that if we want to optimize fuel
-consumption, we can simply reason on $\speed{\Delta v}$.
+This is not realistic since, according to the square-cube law, mass tends to
+grow cubically while area tends to grow quadratically: larger ships should
+experience *proportionally* less drag.
 
-$$
+The new aerodynamic model ("drag cubes") avoids this issue.
+</note>
+
+Ascent optimal speed
+--------------------
+
+Since drag grows with speed, we face the problem of aiming for an ascent speed
+that minimizes the time of ascent (implying a higher speed) as well as the drag
+(implying a lower speed).
+
+Ultimately, we are trying to minimize the cost in propellant, measured in
+$\speed{\Delta v}$ to reach an altitude $\posit{\Delta z}$. If we assume
+$\speed{v}$ is constant, then so is $\force{F_d}$ (as well as $\force{F_g}$
+from above), and:
+
+\begin{align*}
 \speed{\Delta v}
-= (\force{F_D} + \mass{m} \accel{g}) \delay{\Delta t}
-= \left(\frac 1 2 \rho \speed{v}^2 C_d \area{A} + \mass{m} \accel{g}\right) \frac {\dist{\Delta z}} {\speed{v}}
-= \left(
-	\underbrace{\frac 1 2 \rho C_d \area{A}}_{C_1} \speed{v} +
-	\underbrace{\mass{m} \accel{g}}_{\force{C_2}} \frac 1 {\speed{v}}
-\right) \dist{\Delta z}
-$$
+&= (\accel{a_g} + \accel{a_d}) \delay{\Delta t} \\
+&= \left(\frac {\force{F_d}} {\mass{m}} + \accel{g}\right) \delay{\Delta t} \\
+&= \left(\frac 1 2 \rho C_d \times \area{A} \times \speed{v}^2 + \mass{m} \accel{g} \right) \frac 1 {\mass{m}} \frac {\dist{\Delta z}} {\speed{v}} \\
+&= \underbrace{\left(
+	\frac 1 2 \rho C_d \area{A} \speed{v} + \mass{m} \accel{g} \frac 1 {\speed{v}}
+\right) }_{f(\speed{v})} \dist{\Delta z}
+\end{align*}
 
-Now we define $f(\speed{v}) = C_1 \speed{v} + \frac {\force{C_2}} {\speed{v}}$
-and find its minimum. Its derivative is $f'(v) = C_1 - \frac {\force{C_2}}
-{\speed{v}^2}$. It comes that the minimum is $\speed{v} = \sqrt{\frac
-{\force{C_2}} {C_1}}$.  It matches the terminal velocity.
+To find the minimum of $\speed{\Delta v}$, we try to minimize $f(\speed{v})$:
+
+\begin{align*}
+f(\speed{v}) \text{~min}
+&\Rightarrow f'(\speed{v}) = 0 \\
+&\Rightarrow \frac 1 2 \rho C_d \area{A} - \mass{m} \accel{g} \frac 1 {\speed{v}^2} = 0 \\
+&\Rightarrow \frac 1 2 \rho C_d \area{A} - \mass{m} \accel{g} \frac 1 {\speed{v}^2} = 0 \\
+&\Leftrightarrow \speed{v} = \sqrt{\frac {2 \mass{m} \accel{g}} {\rho C_d \area{A}}} \\
+&\Leftrightarrow \speed{v} = \speed{v_{\text{term}}}
+\end{align*}
+
+From this, we see that the optimal vertical ascent speed is the terminal
+velocity.
 
 
-Derivation of air pressure
---------------------------
+Air pressure
+------------
 
 Assume the atmosphere is in a stable state and consider an infenitesimal volume
 $\vol{\d V}$. The force exerted on it are the gravity and the pressure
@@ -202,12 +237,12 @@ note $\d P$ the difference in pressure below and above $\vol{\d V}$.
 <figure>
 \begin{tikzpicture}[->]
 \node (O) at (0,0) {$\vol{\d V}$};
+\draw[dist,->] (-2.5,-1) node[right]{$z$} -- (-2.5,1) node[right]{$z + \d z$};
 \draw (O) circle (0.5);
 \draw (-2,0) -- node[above]{$P$} (-1,0);
 \draw ( 2,0) -- node[above]{$P$} ( 1,0);
+\draw (0, 2) -- node[right]{$P + \d P$} (0, 1);
 \draw (0,-3) -- node[right]{$P$} (0,-1);
-\draw (0, 2) -- node[right]{$P$} (0, 1);
-\draw (0,-3) -- node[right]{$P - \d P$} (0,-1);
 \end{tikzpicture}
 <figcaption>
 The pressure below $\vol{\d V}$ must be stronger to fight gravity. $\d P$ will
@@ -320,7 +355,6 @@ then the terminal velocity depending on the altitude:
 	scaled ticks=false,
 	yticklabel style={/pgf/number format/fixed},
 ]
-%
 \addplot[speed] {vterm(x)};
 \end{axis}
 \end{tikzpicture}
@@ -332,8 +366,8 @@ velocity at the surface is about \speed{100~m/s} in this example
 
 
 
-Gravity turn
-============
+Insertion burn
+==============
 
 Principle
 ---------
@@ -412,3 +446,7 @@ $$
 \speed{174.5~m/s}
 $$
 </note>
+
+
+Gravity turn
+------------
