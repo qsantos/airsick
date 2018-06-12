@@ -2,6 +2,7 @@
 \pgfplotsset{compat=1.10}
 \usepgfplotslibrary{units}
 \usetikzlibrary{pgfplots.units}
+\usetikzlibrary{positioning}
 
 \def\samples{160}
 \pgfmathdeclarefunction{examplepos}{1}{\pgfmathparse{e^(2.2*(#1)) - e^(10-5*(#1))}}

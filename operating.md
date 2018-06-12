@@ -315,34 +315,43 @@ long an episode lasts.
 <figure>
 \begin{tikzpicture}
 % inspired from http://www.texample.net/tikz/examples/earth-orbit/
-\def\R{1.5}
-\def\r{2.5}
-\node[point=O] (O) at (5,5) {};
+\def\R{1.0}
+\def\ra{5.0}
+\def\rp{1.5}
+\node[point=F] (F) at (5,5) {};
+\node[point=O,right = ((\ra-\rp)/2) of F] (O) {};
 % shadow
-\draw[yellow!20!black!80] (O) +(0,-\R) -- +(5,-\R);
-\draw[yellow!20!black!80] (O) +(0,+\R) -- +(5,+\R);
-\draw (O) circle (\R);
+\draw[yellow!20!black!80] (F) +(0,-\R) -- +(5,-\R);
+\draw[yellow!20!black!80] (F) +(0,+\R) -- +(5,+\R);
+% planet
+\draw[brown] (F) circle (\R);
 % arrow
 \draw[black,->,thick] (O) +(-3,2) --node[below]{star} +(-4,2);
 % orbit
-\orbit[red]{O}{\r}{\r}{0}{360};
+\orbit[red]{F}{\ra}{\rp}{0}{360};
 \begin{scope}
-\clip (O) +(0,-\R) rectangle +(5,\R);
-\orbit[blue]{O}{\r}{\r}{0}{360};
+\clip (F) +(0,-\R) rectangle +(5,\R);
+\orbit[blue]{F}{\ra}{\rp}{0}{360};
 \end{scope}
-\orbitpoint[roint=P]{O}{\r}{\r}{20}{}{}
-\pgfmathsetmacro{\halfnightangle}{asin(\R / \r)}
+\orbitpoint[roint=S]{F}{\ra}{\rp}{320}{S}{}
+\pgfmathsetmacro{\halfnightangle}{asin(\R / \ra)}
 % notable points
-\orbitpoint[point=A]{O}{\r}{\r}{+\halfnightangle}{A}{}
-\orbitpoint[roint=B]{O}{\r}{\r}{0}{B}{}
-\orbitpoint[boint=C]{O}{\r}{\r}{-\halfnightangle}{C}{}
-\coordinate[boint=H] (H) at ($(O)!(A)!(B)$);
+\orbitpoint[loint=Pe]{F}{\ra}{\rp}{180}{Pe}{}
+\orbitpoint[roint=Ap]{F}{\ra}{\rp}{0}{Ap}{}
+\orbitpoint[point=N_e]{F}{\ra}{\rp}{+\halfnightangle}{N_e}{}
+\orbitpoint[boint=N_s]{F}{\ra}{\rp}{-\halfnightangle}{N_s}{}
+\coordinate[boint=H] (H) at ($(F)!(N_s)!(Ap)$);
 % show angles
-\draw (B) -- (O) -- (A) -- (H);
-\draw (O) -- (C);
-\markangle{A}{O}{B}{$\theta$}{0.5}
-\markangle{B}{O}{C}{$\theta$}{0.5}
-\draw (H) +(0,0) -- +(0,.2) -- +(-.2,.2) -- +(-.2,0);
+\draw[dashed] (O) -- (Ap)
+              (O) -- (Pe)
+              (O) -- (N_s)
+              (O) -- (N_e)
+              (O) -- (S)
+              (N_e) -- (H);
+\markangle{Ap}{O}{N_s}{$\theta$}{0.7}
+\markangle{Ap}{O}{N_e}{$\theta$}{0.7}
+\markangle{Pe}{O}{S}{$E$}{0.5}
+\draw (H) +(0,.2) -- +(-.2,.2) -- +(-.2,0);
 \end{tikzpicture}
 <figcaption>
 A schematic representing the situation with some points, lines and angles that
@@ -350,31 +359,31 @@ will turn useful.
 </figcaption>
 </figure>
 
-As shown in the schematic above, we can see that $\sin \theta = \frac
-{\dist{AH}} {\dist{OA}}$. Since $\dist{AH} = \dist{R}$ (the radius of the
-primary) and $\dist{OA} = \dist{r}$ (the radius of the orbit), we get:
+As shown in the schematic above, we can see that $\sin \angle{\theta} = \frac
+{\dist{N_e H}} {\dist{N_e O}}$. Since $\dist{N_e H} = R$ (the radius of the
+primary) and $\dist{N_e O} = \dist{b} \cos \angle{\theta}$ (the radius of the
+orbit), we get:
 
 $$
-\sin \theta = \frac {\dist{R}} {\dist{r}}
+\sin \angle{\theta} = \frac {\dist{R}} {\dist{b}}
 $$
 
-Then, we can use the formula for the period of the orbit, we can deduce the
-time duration:
+From this, we can determine that the dark time start with eccentric anomaly
+$\angle{E} = \angle{E_s} = \angle{\pi} - \angle{\theta}$ and ends at eccentric
+anomaly $\angle{E} = \angle{E_e} = \angle{\pi} + \angle{\theta}$. Then:
 
-$$
-\delay{t_{\text{dark}}}
-= 2 \times \mathrm{asin}\left(\frac {\dist{R}} {\dist{r}}\right)
-\times \sqrt{\frac {\dist{a}^3} {\mu}}
-$$
-
-<important>
-If the primary of the satellite is a moon, both the night time around the moon
-and around the planet must be computed. In the worst case (when the night of
-one ends, the night of the other starts), they can add up and make a longer
-night than expected.
-</important>
-
-
+\begin{align*}
+\delay{\Delta t_{\text{dark}}}
+&= \delay{t}(\angle{E}=\angle{E_e}) - \delay{t}(\angle{E}=\angle{E_s}) \\
+&= \frac 1 n (M(\angle{E}=\angle{\pi}+\angle{\theta}) - M(\angle{E}=\angle{\pi}-\angle{\theta})) \\
+&= \frac 1 n (
+    (\strike[red]{\angle{\pi}}+\angle{\theta} - e \sin(\angle{\pi}+\angle{\theta}))
+    -
+    (\strike[red]{\angle{\pi}}-\angle{\theta} - e \sin(\angle{\pi}-\angle{\theta})
+) \\
+&= \frac 2 n (\angle{\theta} + e \sin \angle{\theta}) \\
+&= \frac 2 n \left(\sin^{-1}\left(\frac R b\right) + e \frac R b\right)
+\end{align*}
 
 Flight duration
 ===============
