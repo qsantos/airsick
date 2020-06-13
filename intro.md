@@ -49,7 +49,7 @@ design more precise launches in the game. When possible, example values will be
 taken from reality or KSP.
 
 <note>
-KSP is a propietary software. You can play the demo for free, but will be
+KSP is a proprietary software. You can play the demo for free, but will be
 limited to an older version with only a few parts available for building. The
 demo is way harder and the complete game way richer.
 </note>
@@ -58,7 +58,7 @@ demo is way harder and the complete game way richer.
 This document is intended to provide information both for beginners and actual
 physicists. The first few chapters are an introduction to the elementary
 concepts used within this book. In every chapters accurate derivations and
-complete proofs are developed wherevever needed. If you are not interested in
+complete proofs are developed wherever needed. If you are not interested in
 the specifics of a demonstration or have already some knowledge of basics
 physics, feel free to skip irrelevant parts.
 </important>
