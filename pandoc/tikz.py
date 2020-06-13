@@ -1,23 +1,21 @@
 #!/usr/bin/env python3
 """Build TikZ figures as SVGs"""
-
-import pandocfilters
-import subprocess
 import hashlib
 import os
-import sys
 import shutil
+import subprocess
+import sys
+from typing import Any, Dict
+
+import pandocfilters
 
 builddir = '.build'
 
 
-try:  # Python 3
-    devnull = subprocess.DEVNULL
-except AttributeError:  # Python 2
-    devnull = open(os.devnull, 'w')
+devnull = subprocess.DEVNULL
 
 
-def tex2image(tex, extension='svg'):
+def tex2image(tex: str, extension: str = 'svg') -> str:
     """Convert LaTeX to SVG or PDF"""
 
     # pick a deterministic file name
@@ -29,7 +27,7 @@ def tex2image(tex, extension='svg'):
     if not os.path.isfile(texfile):
         sys.stderr.write('-> %s\n' % texfile)
         with open(texfile, 'w') as f:
-            f.write(
+            f.write((
                 r'\documentclass[preview]{standalone}'  # crop the viewport
                 r'\input{header}'  # usual LaTeX stuff
                 r'\input{drawing}'  # needed for drawing
@@ -37,14 +35,14 @@ def tex2image(tex, extension='svg'):
                 '\n%s\n'
                 r'\end{document}' '\n'
                 % tex
-            )
+            ))
 
     # make .dvi from .tex
     dvifile = basename + '.dvi'
     if not os.path.isfile(dvifile):
         sys.stderr.write('-> %s\n' % dvifile)
         subprocess.check_call(
-            ["latex", "-output-directory", builddir, basename],
+            ['latex', '-output-directory', builddir, basename],
             stdout=devnull,
         )
 
@@ -70,8 +68,10 @@ def tex2image(tex, extension='svg'):
             )
         return svgfile
 
+    assert False
 
-def filter(key, value, format, meta):
+
+def filter(key: str, value: Any, format: str, meta: Dict) -> Any:
     # look for a raw TikZ block
     if key == 'Math':
         mode, code = value
@@ -82,7 +82,7 @@ def filter(key, value, format, meta):
     else:
         return None
 
-    if not code.strip().startswith(r"\begin{tikzpicture}"):
+    if not code.strip().startswith(r'\begin{tikzpicture}'):
         return None
 
     code = code.replace(r'\^', '^')
@@ -98,15 +98,15 @@ def filter(key, value, format, meta):
         sys.stderr.write('Unexpected format "%s"\n' % format)
         sys.exit(1)
 
-    alternate_text = pandocfilters.Str("")
-    image = pandocfilters.Image(['', [], []], [alternate_text], [filename, ""])
+    alternate_text = pandocfilters.Str('')
+    image = pandocfilters.Image(['', [], []], [alternate_text], [filename, ''])
     if key == 'Math':
         return image
     else:  # RawBlock
         return pandocfilters.Para([image])
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # ensure build directory exists
     try:
         os.mkdir(builddir)

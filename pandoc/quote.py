@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 """Sourced quotes"""
+from typing import Any, Dict, List, TypeVar
 
 import pandocfilters
 
+T = TypeVar('T')
 
-def rindex(self, value):
+
+def rindex(self: List[T], value: T) -> int:
     """Return last index of value"""
     reversed_index = self[::-1].index(value)
-    return len(self)-1 - reversed_index
+    return len(self) - 1 - reversed_index
 
 
-def filter(key, value, format, meta):
+def filter(key: str, value: List, format: str, meta: Dict) -> Any:
     if key != 'BlockQuote':
         return None
 
@@ -20,29 +23,30 @@ def filter(key, value, format, meta):
         idx = rindex(last_paragraph, {'c': '--', 't': 'Str'})
     except ValueError:
         return None
-    cite = last_paragraph[idx+2:]  # strip '--' and first space
-    last_paragraph[idx-1:] = []  # strip last space
+    cite = last_paragraph[idx + 2:]  # strip '--' and first space
+    last_paragraph[idx - 1:] = []  # strip last space
 
     # export
     if format in ('html', 'html5'):
         return [
             pandocfilters.BlockQuote(value),
-            pandocfilters.Plain(
-                [pandocfilters.RawInline('html', '<cite>')] +
-                cite +
-                [pandocfilters.RawInline('html', '</cite>')]
-            )
+            pandocfilters.Plain((
+                [pandocfilters.RawInline('html', '<cite>')]
+                + cite
+                + [pandocfilters.RawInline('html', '</cite>')]
+            )),
         ]
     elif format == 'latex':
-        return pandocfilters.Plain(
+        return pandocfilters.Plain((
             [pandocfilters.RawInline('latex', r'\chaptquote{')] +
-            cite +
-            [pandocfilters.RawInline('latex', '}{')] +
-            value[0]['c'] +  # assume there is only one paragraph
-            [pandocfilters.RawInline('latex', '}')]
-        )
+            + cite
+            + [pandocfilters.RawInline('latex', '}{')]
+            + value[0]['c']  # assume there is only one paragraph
+            + [pandocfilters.RawInline('latex', '}')]
+        ))
 
     return None
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     pandocfilters.toJSONFilter(filter)

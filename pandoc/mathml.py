@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """Export LaTeX to MathML"""
-
-import pandocfilters
-import subprocess
 import fcntl
 import os
-import time
 import re
+import time
+from subprocess import PIPE, Popen
+from typing import Any, Dict, List, Tuple
+
+import pandocfilters
 
 
-def communicate(process, command):
+def communicate(process: Popen, command: str) -> str:
     """Send command to process, return result"""
-    process.stdin.write(command.encode('utf-8') + b'\x04\n')
+    assert process.stdin is not None
+    assert process.stdout is not None
+    process.stdin.write(command.encode() + b'\x04\n')
     process.stdin.flush()
-    out = ""
+    out = ''
 
     for _ in range(1024):
         # give some time to ttm
@@ -26,15 +29,15 @@ def communicate(process, command):
         if out[-1:] == '\x04':
             return out[:-1].strip()
 
-    raise Exception('ttm took too long (command <%s>)' % command)
+    raise Exception(f'ttm took too long (command <{command}>)')
 
 
 # global variable
 # save known references
-references = []
+references: List[str] = []
 
 
-def find_in_sources(text):
+def find_in_sources(text: str) -> str:
     """Locate text in Markdown sources"""
     for filename in os.listdir('.'):
         if not filename.endswith('.md'):
@@ -45,7 +48,7 @@ def find_in_sources(text):
     raise IndexError
 
 
-def tex2span(tex):
+def tex2span(tex: str) -> str:
     """Convert non-math LaTeX to HTML"""
 
     if tex.startswith(r'\ref{') and tex.endswith('}'):
@@ -56,7 +59,7 @@ def tex2span(tex):
         except ValueError:
             # look for external reference
             try:
-                filename = find_in_sources('\eqtag{' + identifier + '}')
+                filename = find_in_sources(r'\eqtag{' + identifier + '}')
             except IndexError:
                 return r'?'  # unknwon reference
             else:
@@ -65,23 +68,23 @@ def tex2span(tex):
                 filename = filename[:-3] + '.html'
         else:
             # link to internal reference
-            tex = r'\hyperlink{%s}{%i}' % (identifier, reference+1)
+            tex = r'\hyperlink{%s}{%i}' % (identifier, reference + 1)
 
     return communicate(ttm_process, tex)
 
 
-def tex2mathml(tex, display_style='inline'):
+def tex2mathml(tex: str, display_style: str = 'inline') -> str:
     """Convert LaTeX to MathML"""
 
     # support for aligned environment
     tex = tex.replace(r'\begin{aligned}', r'\begin{array}{rl}')
     tex = tex.replace(r'\end{aligned}', r'\end{array}')
 
-    def tagger(match):
+    def tagger(match: re.Match) -> str:
         identifier = match.group(1)
         reference = len(references)
         references.append(identifier)
-        return r'\hypertarget{%s}{(%i)}' % (identifier, reference+1)
+        return r'\hypertarget{%s}{(%i)}' % (identifier, reference + 1)
 
     tex = re.sub(r'\\eqtag{(.*?)}', tagger, tex)
 
@@ -109,17 +112,15 @@ def tex2mathml(tex, display_style='inline'):
     return xml
 
 
-def filter(key, value, format, meta):
+def filter(key: str, value: Tuple[str, str], format: str, meta: Dict) -> Any:
     if key == 'RawBlock':
         # support for align* and alignat* environments
         lang, code = value
         if lang != 'latex':
             return None
-        if code.startswith(r'\begin{align*}') and \
-                code.endswith(r'\end{align*}'):
+        if code.startswith(r'\begin{align*}') and code.endswith(r'\end{align*}'):
             code = code[14:-12]  # remove environment
-        elif code.startswith(r'\begin{alignat*}{') and \
-                code.endswith(r'\end{alignat*}'):
+        elif code.startswith(r'\begin{alignat*}{') and code.endswith(r'\end{alignat*}'):
             start = code.index('}', 17) + 1  # skip alignat argument
             code = code[start:-14]  # remove environment
         else:
@@ -142,7 +143,7 @@ def filter(key, value, format, meta):
         return pandocfilters.RawInline('html', code)
 
 
-def define(command, before, after, option=False):
+def define(command: str, before: str, after: str, option: bool = False) -> str:
     """Define a LaTex macro in HTML"""
     if option:
         return (
@@ -164,28 +165,29 @@ def define(command, before, after, option=False):
         )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # START SET UP TTM
 
     # I really do not want block buffering, thus stdbuf
-    ttm_process = subprocess.Popen(
+    ttm_process = Popen(
         ['stdbuf', '-o', '0', 'ttm', '-u', '-r'],
-        stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+        stdin=PIPE, stdout=PIPE,
     )
 
     # set its stdout to non-blocking
+    assert ttm_process.stdout is not None
     fd = ttm_process.stdout.fileno()
     fcntl.fcntl(fd, fcntl.F_SETFL, os.O_NONBLOCK)
 
     # send LaTeX header to ttm
+    assert ttm_process.stdin is not None
     ttm_process.stdin.write((
         r'\documentclass{article}'
-        r'\input{header}' +
-        define('mathbb', '<mstyle mathvariant="double-struck">', '</mstyle>') +
-        define('mathcal', '<mstyle mathvariant="script">', '</mstyle>') +
-        define('strike', '<menclose notation="updiagonalstrike">',
-               '</menclose>', True) +
-        r'\begin{document}'
+        + r'\input{header}'
+        + define('mathbb', '<mstyle mathvariant="double-struck">', '</mstyle>')
+        + define('mathcal', '<mstyle mathvariant="script">', '</mstyle>')
+        + define('strike', '<menclose notation="updiagonalstrike">', '</menclose>', True)
+        + r'\begin{document}'
     ).encode())
 
     # END SET UP TTM

@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 """Handle citations"""
+import json
+import subprocess
+from typing import Any, Dict, Iterator, TextIO, Tuple
 
 import pandocfilters
-import subprocess
-import json
 
 
-def parse(code, from_='markdown'):
+def parse_bib_item(code: str, from_: str = 'markdown') -> Any:
     """Parse code using Pandoc"""
     pandoc_process = subprocess.Popen(
         ['pandoc', '-f', from_, '-t', 'json'],
-        stdin=subprocess.PIPE, stdout=subprocess.PIPE
+        stdin=subprocess.PIPE, stdout=subprocess.PIPE,
     )
     stdout, _ = pandoc_process.communicate(code.encode())
     return json.loads(stdout)['blocks']
 
 
-def bib_items(f):
+def iter_bib_items(f: TextIO) -> Iterator[Tuple[str, str]]:
     """List items of a LaTeX bibliograph"""
     for line in f:
         if line.startswith(r'\bibitem{') and line.endswith('}\n'):
@@ -24,19 +25,18 @@ def bib_items(f):
             yield line[9:-2], '\n'.join(iter(lambda: next(f).strip(), ''))
 
 
-def parse_bib(f):
+def parse_bib(f: TextIO) -> Dict:
     """Parse a LaTeX bibliography to Pandoc intermediate representation"""
-    def format(arg):
-        key, value = arg
-        # parse and add HTML id
-        return key, [pandocfilters.Div([key, [], []], parse(value, 'latex'))]
-    return dict(map(format, bib_items(f)))
+    return {
+        key: [pandocfilters.Div([key, [], []], parse_bib_item(value, 'latex'))]
+        for key, value in iter_bib_items(f)
+    }
 
 
 citations = []
 
 
-def filter(key, value, format, meta):
+def filter(key: str, value: str, format: str, meta: Dict) -> Any:
     # look for a citation
     if key != 'Cite':
         return None
@@ -49,7 +49,7 @@ def filter(key, value, format, meta):
     # display it nicely
     index = citations.index(citation) + 1
     text = pandocfilters.Str(str(index))
-    link = '#'+citation
+    link = '#' + citation
     title = citation
     return [
         pandocfilters.Str('['),
@@ -58,7 +58,7 @@ def filter(key, value, format, meta):
     ]
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import sys
 
     doc = json.load(sys.stdin)

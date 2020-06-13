@@ -4,14 +4,14 @@
 Add custom tags <remark> and <important>.
 Export <remark>, <important>, <figure> and <figcaption> to LaTeX.
 """
+from typing import Any, Dict
 
 import pandocfilters
-
 
 figure_depth = 0
 
 
-def filter(key, value, format, meta):
+def filter(key: str, value: Any, format: str, meta: Dict) -> Any:
     # look for raw HTML code
     if key not in ('RawInline', 'RawBlock'):
         return None
@@ -66,5 +66,5 @@ def filter(key, value, format, meta):
         return pandocfilters.RawBlock(lang, code)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     pandocfilters.toJSONFilter(filter)
