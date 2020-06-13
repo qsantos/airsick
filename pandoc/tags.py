@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Custom HTML tags
 
 Add custom tags <remark> and <important>.

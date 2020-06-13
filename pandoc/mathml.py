@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 """Export LaTeX to MathML"""
 
 import pandocfilters
@@ -13,6 +12,7 @@ import re
 def communicate(process, command):
     """Send command to process, return result"""
     process.stdin.write(command.encode('utf-8') + b'\x04\n')
+    process.stdin.flush()
     out = ""
 
     for _ in range(1024):
@@ -20,10 +20,8 @@ def communicate(process, command):
         time.sleep(0.0009765625)
 
         # get output
-        try:
-            out += process.stdout.read()
-        except IOError:
-            pass
+        data = process.stdout.read() or b''
+        out += data.decode()
 
         if out[-1:] == '\x04':
             return out[:-1].strip()
@@ -42,7 +40,7 @@ def find_in_sources(text):
         if not filename.endswith('.md'):
             continue
         with open(filename) as f:
-            if f.read().decode('utf-8').find(text) >= 0:
+            if f.read().find(text) >= 0:
                 return filename[:-3] + '.html'
     raise IndexError
 

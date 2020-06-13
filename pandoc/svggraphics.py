@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """Convert SVG images to PDF for LaTeX"""
 
 import pandocfilters
